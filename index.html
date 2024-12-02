@@ -636,6 +636,11 @@
       });
     }
 
+    // Automatic slideshow
+    setInterval(() => {
+      changeSlide(1);
+    }, 5000);
+
     // Counter animations
     function animateCounter(id, start, end, duration, callback) {
       let obj = document.getElementById(id);
