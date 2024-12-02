@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stark International Header</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #ffffff;
+    }
+
+    /* Link hover underline animation */
+    .nav-link::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 3px;
+      background: #ffffff;
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* Header gradient */
+    header {
+      background: linear-gradient(to right, #0f609b, #118f9d);
+      padding: 2rem;
+    }
+
+    /* Header container adjustments */
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Logo Style */
+    .logo {
+      flex-shrink: 0;
+      margin-right: 2rem;
+    }
+
+    /* Navigation Links */
+    nav {
+      display: flex;
+      gap: 1.2rem;
+      margin-left: -1rem;
+    }
+
+    .nav-link {
+      font-size: 1.2rem;
+      color: #ffffff;
+    }
+
+    /* Icon Styles */
+    .icon {
+      font-size: 1.5rem;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .icon:hover {
+      transform: scale(1.1);
+      color: #67a955;
+    }
+
+    /* Flexbox fixes for spacing */
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    /* Fullscreen section styling */
+    .fullscreen-section {
+      position: relative;
+      width: 100%;
+      height: 90vh;
+      background-image: url('images/medicine.jpg');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+      overflow: hidden;
+      box-shadow: inset 0 0 400px rgba(0, 0, 0, 0.8);
+    }
+
+    .fullscreen-content {
+      position: relative;
+      z-index: 2;
+      padding: 3rem;
+      max-width: 70%;
+    }
+
+    .fullscreen-content h1 {
+      text-shadow: 4px 4px 20px rgba(0, 0, 0, 1);
+      font-size: 4rem;
+    }
+
+    .fullscreen-content p {
+      text-shadow: 4px 4px 20px rgba(0, 0, 0, 1);
+      font-size: 1.8rem;
+    }
+
+    .learn-more-btn {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 1rem 2rem;
+      background-color: #118f9d;
+      color: white;
+      font-weight: 600;
+      border-radius: 30px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .learn-more-btn:hover {
+      background-color: #67a955;
+      transform: translateY(-3px);
+    }
+
+    /* Fullscreen Section Arrow Buttons */
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      border: none;
+      padding: 1rem 2rem;
+      cursor: pointer;
+      border-radius: 10%;
+      transition: background-color 0.3s ease;
+    }
+
+    .arrow:hover {
+      background-color: #0f609b;
+    }
+
+    .arrow.left {
+      left: 2rem;
+    }
+
+    .arrow.right {
+      right: 2rem;
+    }
+
+    /* Content Section Styling */
+    .content-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: 4rem auto;
+      background: #ffffff;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .text-content {
+      max-width: 600px;
+    }
+
+    .text-content h2 {
+      color: #67a955;
+      font-weight: 600;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .text-content h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+
+    .text-content p {
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+
+    .text-content a {
+      color: #118f9d;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .text-content a:hover {
+      text-decoration: underline;
+    }
+
+    .image-container {
+      flex: 1;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .image-container img {
+      max-width: 400px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Why Choose Us and About Us Section Split Styling */
+    .split-section {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 6rem;
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: 4rem auto;
+      position: relative;
+    }
+
+    .split-content {
+      flex: 1;
+      text-align: center;
+      padding: 3rem;
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+      background: #ffffff;
+    }
+
+    .split-content img {
+      width: 150px;
+      height: 150px;
+      margin: 0 auto 1.5rem;
+      border-radius: 50%;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      display: block;
+    }
+
+    .split-content h2 {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #118f9d;
+      margin-bottom: 1rem;
+    }
+
+    .split-content p {
+      font-size: 1rem;
+      line-height: 1.8;
+      padding: 0 1rem;
+    }
+
+    /* Improved Vertical Line Separator */
+    .vertical-line {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 6px;
+      background: #118f9d;
+      transform: translateX(-50%);
+      border-radius: 10px;
+    }
+
+    /* Order Products Section Styling */
+    .order-products-section {
+      text-align: center;
+      padding: 5rem 2rem;
+      background: #f0f0f0;
+      margin-top: 4rem;
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .order-products-section h2 {
+      font-size: 3rem;
+      font-weight: bold;
+      margin-bottom: 2rem;
+    }
+
+    .order-products-section p {
+      font-size: 1.5rem;
+      line-height: 1.8;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .order-products-section a {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 1rem 2rem;
+      background-color: #118f9d;
+      color: white;
+      font-weight: 600;
+      border-radius: 30px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      text-decoration: none;
+    }
+
+    .order-products-section a:hover {
+      background-color: #67a955;
+      transform: translateY(-3px);
+    }
+
+    /* Statistics section styling */
+    .statistics-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      margin-top: 3rem;
+    }
+
+    .stat-box {
+      background: #fff;
+      border-radius: 15px;
+      padding: 2.5rem;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      flex: 1 1 30%;
+      text-align: center;
+      max-width: 300px;
+    }
+
+    .stat-box h3 {
+      font-size: 1.5rem;
+      color: #118f9d;
+      margin-bottom: 1rem;
+    }
+
+    .stat-box .icon {
+      font-size: 2.5rem;
+      color: #118f9d;
+      margin-bottom: 1rem;
+    }
+
+    .stat-box .counter {
+      font-size: 2.5rem;
+      color: #118f9d;
+      font-weight: bold;
+    }
+
+    /* Enhanced Map Section Styling */
+    .map-section-container { 
+      display: flex; 
+      align-items: flex-start; 
+      gap: 3rem; 
+      margin-top: 4rem; 
+      justify-content: space-between; 
+      max-width: 1200px;
+      margin: 4rem auto;
+      background: #ffffff;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .map-details {
+      width: 40%;
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 3rem;
+      text-align: left;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .map-details h2 {
+      color: #118f9d;
+      font-weight: 600;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .map-details ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .map-details ul li {
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+    }
+
+    .map-details ul li a {
+      color: #118f9d;
+      font-weight: 500;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+    }
+
+    .map-details ul li a:hover {
+      text-decoration: underline;
+    }
+
+    .map-section {
+      width: 55%;
+      height: 500px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Enhanced Footer Section Styling */
+    .footer {
+      background: #118f9d;
+      color: white;
+      padding: 4rem 2rem;
+    }
+
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .footer-section {
+      flex: 1;
+      margin-bottom: 2rem;
+    }
+
+    .footer-section h3 {
+      color: #ffffff;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    .footer-section p {
+      line-height: 1.8;
+    }
+
+    .footer-section a {
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    .footer-section a:hover {
+      color: #bdbdbd;
+    }
+
+    .footer-icons {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header class="text-white shadow-lg sticky top-0 z-50">
+    <div class="container mx-auto header-container">
+      <!-- Logo -->
+      <div class="text-3xl font-bold cursor-pointer logo">
+        Stark International
+      </div>
+
+      <!-- Navigation Links -->
+      <nav>
+        <a href="#" class="nav-link font-medium">Home</a>
+        <a href="#about" class="nav-link font-medium">About</a>
+        <a href="#products" class="nav-link font-medium">Products</a>
+        <a href="#contact" class="nav-link font-medium">Contact</a>
+      </nav>
+
+      <!-- WhatsApp and Gmail Icons -->
+      <div class="controls">
+        <!-- WhatsApp Icon -->
+        <a href="https://wa.me/+1234567890" target="_blank" class="hover:text-green-400 transition">
+          <i class="fab fa-whatsapp icon"></i>
+        </a>
+
+        <!-- Gmail Icon -->
+        <a href="mailto:contact@starkint.com" class="hover:text-red-400 transition">
+          <i class="fas fa-envelope icon"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Fullscreen Section for Pictures and Text -->
+  <section id="medicine-section" class="fullscreen-section">
+    <button class="arrow left" onclick="changeSlide(-1)">&#8249;</button>
+    <div class="fullscreen-content">
+      <h1 class="text-5xl font-bold">Stark International</h1>
+      <p class="text-2xl mt-4">A Partner to Trust</p>
+      <a href="#about" class="learn-more-btn">Learn More</a>
+    </div>
+    <button class="arrow right" onclick="changeSlide(1)">&#8250;</button>
+  </section>
+
+  <!-- Content Section for Introducing Stark International -->
+  <section id="about" class="content-section">
+    <div class="text-content">
+      <h2>Pioneering Healthcare Solutions</h2>
+      <h1>Transforming lives through innovation</h1>
+      <p>Stark International stands as a trusted leader in pharmaceutical raw materials sourcing and distribution, committed to a customer-centric approach. We are on a mission to revolutionize the pharmaceutical landscape in the Middle East, enhancing health and well-being for all. Our dedicated Stark family continuously strives to elevate the industry, unlock new potential, and transform lives, ensuring that we meet the evolving needs of our customers and partners.</p>
+      <a href="#contact">Get in touch</a>
+    </div>
+    
+    <!-- Image Section -->
+    <div class="image-container">
+      <img src="images/medicine.jpg" alt="Pharmaceutical Supplies">
+    </div>
+  </section>
+
+  <!-- Split Section for Why Choose Us and About Stark International -->
+  <section class="split-section">
+    <div class="split-content">
+      <img src="images/chemistry.jpg" alt="Chemistry Icon">
+      <h2>Why Choose Stark International</h2>
+      <p>At Stark International, we prioritize customer satisfaction. Our skilled professionals, with extensive experience in the chemical and pharmaceutical industries, ensure exceptional quality and innovative solutions, making us a reliable partner in the pharmaceutical sector.</p>
+    </div>
+    <div class="vertical-line"></div>
+    <div class="split-content">
+      <img src="images/chemistry.jpg" alt="Pharmaceutical Icon">
+      <h2>About Stark International</h2>
+      <p>Stark International is committed to revolutionizing the pharmaceutical industry through top-quality raw materials. We strive to meet clients' evolving needs and provide unparalleled service across the Middle East.</p>
+    </div>
+  </section>
+
+  <!-- Order Products Section -->
+  <section class="order-products-section">
+    <h2>Order Our Products</h2>
+    <p>Since 2005, we have specialized in the field of pharmaceutical ingredients and cosmetic raw materials. Our customer base encompasses multi-national pharmaceutical corporations, generic pharmaceutical companies, biotech, and virtual companies, as well as others at the forefront of healthcare and personal care industries.</p>
+    <a href="#contact">Contact Us and Order</a>
+  </section>
+
+  <!-- Statistics Section -->
+  <section class="statistics-section">
+    <div class="stat-box">
+      <i class="fas fa-shopping-cart icon"></i>
+      <h3>Users Bought This Month</h3>
+      <div class="counter" id="users-bought">0</div>
+    </div>
+    <div class="stat-box">
+      <i class="fas fa-users icon"></i>
+      <h3>Trust This</h3>
+      <div class="counter" id="users-trust">0</div>
+    </div>
+    <div class="stat-box">
+      <i class="fas fa-box icon"></i>
+      <h3>Items in Stock</h3>
+      <div class="counter" id="items-stock">0</div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="content-section">
+    <div class="map-section-container">
+      <!-- Contact Details -->
+      <div class="map-details">
+        <h2>Get in Touch</h2>
+        <p>For inquiries and support, connect with us:</p>
+        <ul>
+          <li>Email: <a href="mailto:contact@starkint.com" class="hover:text-blue-500">contact@starkint.com</a></li>
+          <li>WhatsApp: <a href="https://wa.me/+971505050505" target="_blank" class="hover:text-green-500">Click here to chat with us on WhatsApp</a></li>
+          <li>Phone: <a href="tel:+971505050505" class="hover:text-blue-500">+971 50 505 0505</a></li>
+          <li>Address: Stark International, Ras Al Khaimah, UAE</li>
+        </ul>
+      </div>
+      <!-- Embedded Map Section -->
+      <div class="map-section">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d55269.14114684963!2d31.192423826495394!3d30.033333001765642!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x145840c4d14a3881%3A0xd93d6a13bc3f0980!2sRas%20Al%20Khaimah%2C%20UAE!5e0!3m2!1sen!2s!4v1698791234567!5m2!1sen!2s" width="100%" height="500" style="border:0; border-radius: 15px;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Enhanced Footer Section -->
+  <footer class="footer">
+    <div class="container mx-auto footer-container">
+      <div class="footer-section">
+        <h3>Our Services</h3>
+        <ul>
+          <li><a href="#">Pharmaceutical Ingredients</a></li>
+          <li><a href="#">Chemical Raw Material Sourcing</a></li>
+          <li><a href="#">Distribution and Supply Chain Management</a></li>
+          <li><a href="#">Consulting Services</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Connect with Us</h3>
+        <div class="footer-icons">
+          <a href="https://wa.me/+971505050505" target="_blank" class="hover:text-green-400">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+          <a href="mailto:contact@starkint.com" class="hover:text-red-400">
+            <i class="fas fa-envelope icon"></i>
+          </a>
+          <a href="tel:+971505050505" class="hover:text-blue-400">
+            <i class="fas fa-phone"></i>
+          </a>
+          <a href="https://www.linkedin.com" target="_blank" class="hover:text-blue-500">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="https://twitter.com" target="_blank" class="hover:text-blue-400">
+            <i class="fab fa-twitter"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const images = [
+      'images/medicine.jpg',
+      'images/medicine2.jpg',
+      'images/medicine3.jpg'
+    ];
+    let currentImageIndex = 0;
+
+    function changeSlide(direction) {
+      currentImageIndex = (currentImageIndex + direction + images.length) % images.length;
+      const section = document.getElementById('medicine-section');
+      $(section).fadeOut(300, function() {
+        section.style.backgroundImage = `url(${images[currentImageIndex]})`;
+        $(section).fadeIn(300);
+      });
+    }
+
+    // Counter animations
+    function animateCounter(id, start, end, duration, callback) {
+      let obj = document.getElementById(id);
+      let range = end - start;
+      let increment = end > start ? 1 : -1;
+      let stepTime = Math.abs(Math.floor(duration / range));
+      let current = start;
+      let timer = setInterval(function () {
+        current += increment;
+        obj.textContent = current;
+        if (current == end) {
+          clearInterval(timer);
+          if (callback) callback();
+        }
+      }, stepTime);
+    }
+
+    // Run counters on page load
+    window.onload = function() {
+      animateCounter("users-bought", 0, 1000, 50);
+      animateCounter("users-trust", 0, 4000000, 100, function() {
+        document.getElementById("users-trust").textContent = "It's endless!";
+      });
+      animateCounter("items-stock", 0, 5000, 50);
+    };
+
+    // Redirect to mobile version if on mobile
+    if (/Mobi|Android/i.test(navigator.userAgent)) {
+      window.location.href = 'index1.html';
+    }
+  </script>
+</body>
+</html>
