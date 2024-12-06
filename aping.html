@@ -1,0 +1,1612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stark International - APIs</title>
+  <script>
+    // Device Detection Script
+    document.addEventListener('DOMContentLoaded', function() {
+      var userAgent = navigator.userAgent.toLowerCase();
+      // A basic check for common mobile keywords in the user agent
+      if (userAgent.includes('mobile') || userAgent.includes('android') || userAgent.includes('iphone') || userAgent.includes('ipad') || userAgent.includes('ipod')) {
+        window.location.href = 'aping1.html';
+      }
+    });
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f4f8;
+    }
+
+    /* Link hover underline animation */
+    .nav-link::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 3px;
+      background: #ffffff;
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* Header gradient */
+    header {
+      background: linear-gradient(to right, #0f609b, #118f9d);
+      padding: 1.5rem 2rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Header container adjustments */
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Logo Style */
+    .logo {
+      flex-shrink: 0;
+      margin-right: 2rem;
+      color: #ffffff;
+      font-size: 2.5rem;
+      font-weight: bold;
+    }
+
+    /* Navigation Links */
+    nav {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .nav-link {
+      font-size: 1.2rem;
+      color: #ffffff;
+      transition: color 0.3s ease;
+    }
+
+    /* Icon Styles */
+    .controls {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .icon {
+      font-size: 1.5rem;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .icon:hover {
+      transform: scale(1.1);
+      color: #67a955;
+    }
+
+    /* Enhanced Footer Section Styling */
+    .footer {
+      background: #118f9d;
+      color: white;
+      padding: 4rem 2rem;
+      box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .footer-section {
+      flex: 1;
+      margin-bottom: 2rem;
+    }
+
+    .footer-section h3 {
+      color: #ffffff;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-section ul li {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-section a {
+      color: #ffffff;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-section a:hover {
+      color: #bdbdbd;
+    }
+
+    .footer-icons {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .footer-icons a:hover {
+      transform: scale(1.1);
+    }
+
+    /* Ingredients Section Styling */
+    .ingredients-section {
+      max-width: 1200px;
+      margin: 4rem auto;
+      padding: 4rem;
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .ingredients-heading {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .ingredients-heading h2 {
+      font-size: 2.5rem;
+      color: #118f9d;
+      font-weight: bold;
+    }
+
+    .ingredients-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .ingredient-item {
+      background: linear-gradient(to bottom, #f0f8f4, #e0e8e5);
+      border-radius: 15px;
+      padding: 2rem;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-align: center;
+      position: relative;
+    }
+
+    .ingredient-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .ingredient-item h3 {
+      font-size: 1.8rem;
+      color: #0b3d91;
+      margin-bottom: 1rem;
+    }
+
+    .ingredient-item .search-icon {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 1.5rem;
+      color: #0b3d91;
+      cursor: pointer;
+    }
+
+    /* Why Choose Our APIs Section */
+    .why-choose-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+      justify-content: center;
+      max-width: 1200px;
+      margin: 4rem auto;
+      padding: 4rem;
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .why-choose-content {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .why-choose-content h2 {
+      font-size: 2.5rem;
+      color: #118f9d;
+      font-weight: bold;
+      margin-bottom: 1.5rem;
+    }
+
+    .why-choose-content ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .why-choose-content ul li {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .why-choose-content ul li i {
+      color: #118f9d;
+      margin-right: 1rem;
+    }
+
+    .why-choose-image {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .why-choose-image img {
+      width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <header class="text-white shadow-lg sticky top-0 z-50">
+    <div class="container mx-auto header-container">
+      <!-- Logo -->
+      <div class="text-3xl font-bold cursor-pointer logo">
+        Stark International
+      </div>
+
+      <!-- Navigation Links -->
+      <nav>
+        <a href="index.html" class="nav-link font-medium">Home</a>
+        <a href="about.html" class="nav-link font-medium">About</a>
+        <a href="products.html" class="nav-link font-medium">Products</a>
+        <a href="contact.html" class="nav-link font-medium">Contact</a>
+      </nav>
+
+      <!-- WhatsApp and Gmail Icons -->
+      <div class="controls">
+        <a href="https://wa.me/+1234567890" target="_blank" class="hover:text-green-400 transition">
+          <i class="fab fa-whatsapp icon"></i>
+        </a>
+        <!-- Gmail Icon -->
+        <a href="mailto:contact@starkint.com" class="hover:text-red-400 transition">
+          <i class="fas fa-envelope icon"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <section class="fullscreen-section">
+    <div class="fullscreen-content" style="text-align: center; padding: 4rem;">
+      <h1 style="font-size: 3rem; color: #0f609b; font-weight: 700;">Active Pharmaceutical Ingredients (API)</h1>
+      <p style="font-size: 1.2rem; color: #333; margin-top: 1rem;">Providing a diverse range of high-quality APIs to cater to global needs, ensuring international quality standards and regulatory compliance.</p>
+      <a href="#ingredients" class="learn-more-btn" style="display: inline-block; margin-top: 2rem; padding: 1rem 2rem; background-color: #118f9d; color: white; font-weight: 600; border-radius: 30px; transition: background-color 0.3s ease, transform 0.3s ease; text-decoration: none;">Contact Us</a>
+    </div>
+  </section>
+
+  <section id="ingredients" class="heading ingredients-section">
+    <div class="ingredients-heading">
+      <h2>API Ingredients</h2>
+    </div>
+    <div class="ingredients-grid">
+      <!-- Start of full API list -->
+      <div class="ingredient-item">
+        <h3>Abiraterone Acetate</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Abiraterone%20Acetate" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Amoxicillin Sodium</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Amoxicillin%20Sodium" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Amoxicillin Trihydrate</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Amoxicillin%20Trihydrate" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Ampicillin Lecithin</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Ampicillin%20Lecithin" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Ampicillin Sodium Sterile</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Ampicillin%20Sodium%20Sterile" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Ampicillin Trihydrate</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Ampicillin%20Trihydrate" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Ampicillin+Sulbactam Sterile</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Ampicillin%2BSulbactam%20Sterile" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Amprolium</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Amprolium" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Avibactam</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Avibactam" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Aztreonam</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Aztreonam" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Beclomethasone Dipropionate</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Beclomethasone%20Dipropionate" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Benzathine Pencillin G</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Benzathine%20Pencillin%20G" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Benzocaine</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Benzocaine" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Betamethasone base</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Betamethasone%20base" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Betamethasone Dipropionate</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Betamethasone%20Dipropionate" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Betamethasone Valerate</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Betamethasone%20Valerate" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Biperiden Hydrochloride</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Biperiden%20Hydrochloride" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Bisoprolol Fumarate</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Bisoprolol%20Fumarate" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Budesonide</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Budesonide" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Calcium Sennosides</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Calcium%20Sennosides" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Cefadroxil Monohydrate</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Cefadroxil%20Monohydrate" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Cefdinir</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Cefdinir" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Cefepime</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Cefepime" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+
+      <!-- Continuing with the rest of the APIs -->
+      <div class="ingredient-item">
+        <h3>Cefixime Trihydrate</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Cefixime%20Trihydrate" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Cefoperazone Sodium and Sulbactam</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Cefoperazone%20Sodium%20and%20Sulbactam" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Cefotaxime Sodium</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Cefotaxime%20Sodium" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Cefovecin Sodium (Vet.)</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Cefovecin%20Sodium%20(Vet.)" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Cefpodoxime Proxetil</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Cefpodoxime%20Proxetil" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Cefradine L arginine</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Cefradine%20L%20arginine" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Ceftazidime sodium sodium carbonate</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Ceftazidime%20sodium%20sodium%20carbonate" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Ceftazidime with sodium carbonate</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Ceftazidime%20with%20sodium%20carbonate" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Ceftiofur Hcl/Sodium (Vet.)</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Ceftiofur%20Hcl%2FSodium%20(Vet.)" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Ceftriaxone Sodium</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Ceftriaxone%20Sodium" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Cefuroxime Axetil</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Cefuroxime%20Axetil" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Cefuroxime Sodium</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Cefuroxime%20Sodium" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Celecoxib</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Celecoxib" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Cephalexin</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Cephalexin" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Cephapirin Sodium (Vet.)</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Cephapirin%20Sodium%20(Vet.)" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Cephradine Benzathine (Vet.)</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Cephradine%20Benzathine%20(Vet.)" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Cinacalcet Hcl</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Cinacalcet%20Hcl" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Ciprofloxacin</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Ciprofloxacin" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Citicoline Sodium</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Citicoline%20Sodium" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>CITRIC ACID ANHYDROUS</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=CITRIC%20ACID%20ANHYDROUS" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Clomiphene</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Clomiphene" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Cloxacillin Benzathine</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Cloxacillin%20Benzathine" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Cloxacillin Sodium</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Cloxacillin%20Sodium" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Creatinine</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Creatinine" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Cyproterone Acetate</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Cyproterone%20Acetate" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Dabigatran Etexitale</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Dabigatran%20Etexitale" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Dapagliflozin</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Dapagliflozin" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Dapagliflozin Amorhpous</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Dapagliflozin%20Amorhpous" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Dapagliflozin Propanediol</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Dapagliflozin%20Propanediol" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Dapoxetine Hydrochloride</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Dapoxetine%20Hydrochloride" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Desferasirox</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Desferasirox" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Desogestrel</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Desogestrel" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Desogestrel</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Desogestrel" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Di Iodo</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Di%20Iodo" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Diazepam injection grade</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Diazepam%20injection%20grade" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Diclofenac Potassium</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Diclofenac%20Potassium" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Diclofenac Sodium</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Diclofenac%20Sodium" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Dicloxacillin Sodium</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Dicloxacillin%20Sodium" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Dicloxacillin Sodium Sterile</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Dicloxacillin%20Sodium%20Sterile" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Dienogest</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Dienogest" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Diluted Nitroglycerin</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Diluted%20Nitroglycerin" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Domperidone Base/Maleate</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Domperidone%20Base%2FMaleate" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Doripenem</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Doripenem" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Doripenem Monohydrate Sterile</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Doripenem%20Monohydrate%20Sterile" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Doxazosin Mesylate</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Doxazosin%20Mesylate" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Doxazosin Mesylate</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Doxazosin%20Mesylate" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>DOXICYCLINE HCL</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=DOXICYCLINE%20HCL" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Drospirenone</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Drospirenone" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Duloxetine Hcl</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Duloxetine%20Hcl" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Dutasteride</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Dutasteride" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Dydrogesterone</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Dydrogesterone" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Empagliflozin</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Empagliflozin" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Enoxaparin Sodium</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Enoxaparin%20Sodium" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Enoxaparin Sodium</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Enoxaparin%20Sodium" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Entacapone</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Entacapone" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Entecavir Monohydrate</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Entecavir%20Monohydrate" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Ertapenem Monosodium (NS)</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Ertapenem%20Monosodium%20(NS)" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Ertugliflozin</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Ertugliflozin" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>ERYTHROMYCIN THIOCYANATE</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=ERYTHROMYCIN%20THIOCYANATE" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Eslicarbazepine Acetate</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Eslicarbazepine%20Acetate" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Estradiol</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Estradiol" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Estradiol Valerate</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Estradiol%20Valerate" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>ETHINYL ESTRADIOL</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=ETHINYL%20ESTRADIOL" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Ethinyl Estradiol</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Ethinyl%20Estradiol" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>ETHINYL Valirate</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=ETHINYL%20Valirate" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Etilefrine HCL</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Etilefrine%20HCL" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Ezetimibe</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Ezetimibe" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>FAMOTIDINE</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=FAMOTIDINE" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Famotidine</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Famotidine" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Fexofenadine</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Fexofenadine" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Fexofinadine Hcl</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Fexofinadine%20Hcl" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Finasteride</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Finasteride" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Flucloxacillin Magnesium</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Flucloxacillin%20Magnesium" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Flucloxacillin Sodium</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Flucloxacillin%20Sodium" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Flucloxacillin Sodium Sterile</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Flucloxacillin%20Sodium%20Sterile" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>FLUMEQUINE</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=FLUMEQUINE" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Fluvastatin Sodium</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Fluvastatin%20Sodium" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Folic Acid</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Folic%20Acid" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Gestodene</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Gestodene" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Heparin</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Heparin" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Homatropine Methylbromide</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Homatropine%20Methylbromide" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Hydrocortisone Micronized</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Hydrocortisone%20Micronized" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Hydroxyprogesterone</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Hydroxyprogesterone" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Imipenem + Cilastatin</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Imipenem%20%2B%20Cilastatin" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Imipenem+Cilastatin</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Imipenem%2BCilastatin" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Insline</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Insline" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Ketoprofen Lysinate</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Ketoprofen%20Lysinate" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Ketoprofen</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Ketoprofen" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>L-5-methyltetrahydrofolate- Calcium salt</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=L-5-methyltetrahydrofolate-%20Calcium%20salt" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Levonorgestrel</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Levonorgestrel" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Lidocaine HCL/ Base</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Lidocaine%20HCL%2F%20Base" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Liraglutide</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Liraglutide" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Mebeverine HCl</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Mebeverine%20HCl" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Mecobalamin</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Mecobalamin" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Meloxicam</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Meloxicam" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Meropenem</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Meropenem" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Meropenem Sterile</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Meropenem%20Sterile" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Mesalamine</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Mesalamine" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Mesterolone</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Mesterolone" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Metformin Hcl</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Metformin%20Hcl" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Methylcellulose</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Methylcellulose" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Mirtazapine</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Mirtazapine" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Misoprostol HPMC</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Misoprostol%20HPMC" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Molnupiravir</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Molnupiravir" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Mometasone Furote</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Mometasone%20Furote" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Montelukast</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Montelukast" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Moxifloxacin Hcl</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Moxifloxacin%20Hcl" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Nafcillin</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Nafcillin" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>NALBUPHINE HCL</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=NALBUPHINE%20HCL" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Nandrolon</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Nandrolon" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Nebivolol Hydrochloride</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Nebivolol%20Hydrochloride" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Nicotinmide</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Nicotinmide" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Nintedanib Esylate</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Nintedanib%20Esylate" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>NORETHISTERONE (Micronized)</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=NORETHISTERONE%20(Micronized)" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Norethisterone Acetate</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Norethisterone%20Acetate" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Norethisterone Enanthate</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Norethisterone%20Enanthate" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Norgestrel</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Norgestrel" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Olmesartan</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Olmesartan" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Omperazole</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Omperazole" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Oxacillin Sodium</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Oxacillin%20Sodium" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Oxacillin Sodium Sterile</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Oxacillin%20Sodium%20Sterile" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Oxytetacycline</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Oxytetacycline" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Paracetamol</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Paracetamol" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Paracetamol</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Paracetamol" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Penicillin G-Benzathine</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Penicillin%20G-Benzathine" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Pentosan Polysulfate Sodium</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Pentosan%20Polysulfate%20Sodium" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Perindopril Erbumine</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Perindopril%20Erbumine" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Phthalyl Sulfathiazole</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Phthalyl%20Sulfathiazole" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Pioglitazone Hcl</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Pioglitazone%20Hcl" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Piperacillin + Tazobactam</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Piperacillin%20%2B%20Tazobactam" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Piperacillin + Tazobactam</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Piperacillin%20%2B%20Tazobactam" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Pivmecillinam Hcl</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Pivmecillinam%20Hcl" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Pramipexole Hcl</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Pramipexole%20Hcl" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Prasterone Enanthate</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Prasterone%20Enanthate" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Prasugrel Hcl</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Prasugrel%20Hcl" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Progesterone</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Progesterone" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Quetiapine Fumarate</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Quetiapine%20Fumarate" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Ramelteon</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Ramelteon" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Rifaximin</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Rifaximin" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Rifaximin</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Rifaximin" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Risedronate Sodium</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Risedronate%20Sodium" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Rivaroxaban</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Rivaroxaban" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Rosuvastatin Calcium</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Rosuvastatin%20Calcium" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Sacubitril Valsartan</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Sacubitril%20Valsartan" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Saxagliptin Monohydrate</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Saxagliptin%20Monohydrate" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Semaglutide</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Semaglutide" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Sertraline Hcl</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Sertraline%20Hcl" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Sesame oil</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Sesame%20oil" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Sevelamer Carbonate</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Sevelamer%20Carbonate" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Sevelamer Hcl</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Sevelamer%20Hcl" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Sitagliptin Phosphate Monohydrate</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Sitagliptin%20Phosphate%20Monohydrate" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Sodium Hyaluronate</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Sodium%20Hyaluronate" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Spiramycin</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Spiramycin" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Streptomycin Oral</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Streptomycin%20Oral" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>STREPTOMYCIN Sterile</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=STREPTOMYCIN%20Sterile" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>SUCCINIC ACID</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=SUCCINIC%20ACID" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Sulbactam Sodium Sterile</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Sulbactam%20Sodium%20Sterile" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>SULPHAQUINOXALINE  SODIUM</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=SULPHAQUINOXALINE%20%20SODIUM" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Sultamicillin Tosylate</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Sultamicillin%20Tosylate" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Sumatriptan Succinate</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Sumatriptan%20Succinate" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Tamsulosin Hcl</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Tamsulosin%20Hcl" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Tazobactam</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Tazobactam" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Terazosin Hcl</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Terazosin%20Hcl" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Terbinafine Hcl</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Terbinafine%20Hcl" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Testosterone Base</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Testosterone%20Base" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Testosterone Decanoate</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Testosterone%20Decanoate" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Testosterone Enanthate</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Testosterone%20Enanthate" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Testosterone Isocaproate</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Testosterone%20Isocaproate" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Testosterone Phenylpropionate</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Testosterone%20Phenylpropionate" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Testosterone Propionate</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Testosterone%20Propionate" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Testosterone undecanoate</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Testosterone%20undecanoate" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Testosterone Undecanoate</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Testosterone%20Undecanoate" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Tetrahydrozoline HCL</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Tetrahydrozoline%20HCL" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Tibolone</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Tibolone" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Tirzepatide</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Tirzepatide" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Tolterodine Tartrate</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Tolterodine%20Tartrate" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Torasemide</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Torasemide" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Triamcinolone Acetonide</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Triamcinolone%20Acetonide" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Trimetazidine HCl</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Trimetazidine%20HCl" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Valacyclovir Hcl</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Valacyclovir%20Hcl" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Valganciclovir Hcl</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Valganciclovir%20Hcl" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Vancomycin</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Vancomycin" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Vigabatrin</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Vigabatrin" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <div class="ingredient-item">
+        <h3>Vildagliptin</h3>
+        <a href="https://pubchem.ncbi.nlm.nih.gov/#query=Vildagliptin" target="_blank">
+          <i class="fas fa-search search-icon"></i>
+        </a>
+      </div>
+      <!-- End of full API list -->
+    </div>
+  </section>
+
+  <section class="why-choose-section">
+    <div class="why-choose-image">
+      <img src="images/pathology.jpg" alt="Pathology Image">
+    </div>
+    <div class="why-choose-content">
+      <h2>Why Choose Our APIs?</h2>
+      <ul>
+        <li><i class="fas fa-check-circle"></i> High-quality documentation for regulatory submissions</li>
+        <li><i class="fas fa-check-circle"></i> GMP-compliant production processes</li>
+        <li><i class="fas fa-check-circle"></i> Consistent supply backed by strong distribution channels</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container mx-auto footer-container">
+      <div class="footer-section">
+        <h3>Our Services</h3>
+        <ul>
+          <li><a href="#">Pharmaceutical Ingredients</a></li>
+          <li><a href="#">Excipients</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Connect with Us</h3>
+        <div class="footer-icons">
+          <a href="https://wa.me/+971505050505" target="_blank" class="hover:text-green-400">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+          <a href="mailto:contact@starkint.com" class="hover:text-red-400">
+            <i class="fas fa-envelope icon"></i>
+          </a>
+          <a href="tel:+971505050505" class="hover:text-blue-400">
+            <i class="fas fa-phone"></i>
+          </a>
+          <a href="https://www.linkedin.com" target="_blank" class="hover:text-blue-500">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="https://twitter.com" target="_blank" class="hover:text-blue-500">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="https://facebook.com" target="_blank" class="hover:text-blue-500">
+            <i class="fab fa-facebook"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

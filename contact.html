@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stark International - APIs</title>
+  <script>
+    // Device Detection Script
+    document.addEventListener('DOMContentLoaded', function() {
+      var userAgent = navigator.userAgent.toLowerCase();
+      // A basic check for common mobile keywords in the user agent
+      if (userAgent.includes('mobile') || userAgent.includes('android') || userAgent.includes('iphone') || userAgent.includes('ipad') || userAgent.includes('ipod')) {
+        window.location.href = 'aping1.html';
+      }
+    });
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f4f8;
+    }
+
+    /* Link hover underline animation */
+    .nav-link::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 3px;
+      background: #ffffff;
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* Header gradient */
+    header {
+      background: linear-gradient(to right, #0f609b, #118f9d);
+      padding: 1.5rem 2rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Logo Style */
+    .logo {
+      flex-shrink: 0;
+      margin-right: 2rem;
+      color: #ffffff;
+      font-size: 2.5rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* Navigation Links */
+    nav {
+      display: flex;
+      gap: 1.5rem;
+    }
+    .nav-link {
+      font-size: 1.2rem;
+      color: #ffffff;
+      transition: color 0.3s ease;
+    }
+    .nav-link:hover {
+      color: #cce7f0;
+    }
+
+    /* Icon Styles */
+    .controls {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+    .icon {
+      font-size: 1.5rem;
+      color: #ffffff;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+    .icon:hover {
+      transform: scale(1.1);
+      color: #67a955;
+    }
+
+    /* Contact Page Styling */
+    .contact-container {
+      max-width: 1200px;
+      margin: 4rem auto;
+      padding: 2rem;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    }
+
+    .contact-heading {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .contact-heading h1 {
+      font-size: 3rem;
+      color: #118f9d;
+      font-weight: bold;
+    }
+
+    .contact-info-block {
+      background: #f9fafb;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      margin-bottom: 3rem;
+    }
+    .contact-info-block h2 {
+      font-size: 2rem;
+      color: #0f609b;
+      margin-bottom: 1rem;
+    }
+    .contact-info-block p {
+      font-size: 1.1rem;
+      margin: 0.5rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #333;
+    }
+    .contact-info-block p i {
+      color: #118f9d;
+    }
+
+    /* Location & Additional Info */
+    .location-section {
+      margin-bottom: 3rem;
+    }
+    .location-section h2 {
+      font-size: 2rem;
+      color: #118f9d;
+      margin-bottom: 1.5rem;
+      text-align: left;
+    }
+
+    /* Fixed map size */
+    .map-container {
+      width: 800px;
+      height: 400px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+      margin: 0 auto;
+      display: block;
+    }
+    .map-container iframe {
+      width: 800px;
+      height: 400px;
+      border:0;
+      display:block;
+    }
+
+    .branch-offices {
+      margin-top: 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .office-card {
+      background: #f0f4f8;
+      padding: 1.5rem;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .office-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    }
+    .office-card h3 {
+      font-size: 1.5rem;
+      color: #0b3d91;
+      margin-bottom: 0.5rem;
+    }
+    .office-card p {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      color: #333;
+    }
+
+    /* Office Hours */
+    .office-hours {
+      background: #f9fafb;
+      padding: 2rem;
+      border-radius: 10px;
+      margin-bottom: 3rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    }
+    .office-hours h2 {
+      font-size: 2rem;
+      color: #0f609b;
+      margin-bottom: 1rem;
+    }
+    .office-hours ul {
+      list-style: none;
+      padding: 0;
+      font-size: 1.1rem;
+    }
+    .office-hours li {
+      margin-bottom: 0.5rem;
+    }
+
+    /* Contact Form */
+    .contact-form-section {
+      margin-bottom: 3rem;
+    }
+    .contact-form-section h2 {
+      font-size: 2rem;
+      color: #118f9d;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .contact-form input, .contact-form textarea {
+      padding: 1rem;
+      border: 2px solid #e0e8e5;
+      border-radius: 10px;
+      font-size: 1.1rem;
+    }
+    .contact-form input:focus, .contact-form textarea:focus {
+      outline: none;
+      border-color: #118f9d;
+    }
+    .contact-form button {
+      padding: 1rem;
+      background-color: #118f9d;
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    .contact-form button:hover {
+      background-color: #0f609b;
+      transform: translateY(-2px);
+    }
+
+    .contact-whatsapp-help {
+      text-align:center; 
+      font-size:1.1rem; 
+      margin-top:1rem;
+    }
+    .contact-whatsapp-help a {
+      color:#118f9d;
+      text-decoration:underline;
+    }
+
+    /* FAQ Section */
+    .faq-section {
+      background: #f9fafb;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      margin-bottom: 3rem;
+    }
+    .faq-section h2 {
+      font-size: 2rem;
+      color: #0f609b;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    .faq-item {
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #e0e8e5;
+    }
+    .faq-item h3 {
+      font-size: 1.2rem;
+      color: #118f9d;
+      margin-bottom: 0.5rem;
+      position: relative;
+      padding-left: 30px;
+    }
+    .faq-item h3::before {
+      content: 'Q';
+      font-weight: bold;
+      color: #0f609b;
+      background: #e0f4f7;
+      border-radius: 50%;
+      padding: 0.2rem 0.6rem;
+      position: absolute;
+      left: 0;
+      top: 0;
+      transform: translate(-120%, 0);
+    }
+    .faq-item p {
+      font-size: 1rem;
+      color: #333;
+      margin: 0;
+      padding-left: 30px;
+    }
+
+    /* Enhanced Footer Section */
+    .footer {
+      background: #118f9d;
+      color: white;
+      padding: 4rem 2rem;
+      box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .footer-section {
+      flex: 1;
+      margin-bottom: 2rem;
+      min-width: 200px;
+    }
+    .footer-section h3 {
+      color: #ffffff;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+    }
+    .footer-section ul li {
+      margin-bottom: 0.5rem;
+    }
+    .footer-section a {
+      color: #ffffff;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .footer-section a:hover {
+      color: #bdbdbd;
+    }
+    .footer-icons {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .footer-icons a:hover {
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+  <header class="text-white shadow-lg sticky top-0 z-50">
+    <div class="container mx-auto header-container">
+      <!-- Logo -->
+      <div class="logo">
+        Stark International
+      </div>
+
+      <!-- Navigation Links -->
+      <nav>
+        <a href="index.html" class="nav-link font-medium">Home</a>
+        <a href="about.html" class="nav-link font-medium">About</a>
+        <a href="products.html" class="nav-link font-medium">Products</a>
+        <a href="contact.html" class="nav-link font-medium">Contact</a>
+      </nav>
+
+      <!-- WhatsApp and Gmail Icons -->
+      <div class="controls">
+        <a href="https://wa.me/+1234567890" target="_blank">
+          <i class="fab fa-whatsapp icon"></i>
+        </a>
+        <a href="mailto:contact@starkint.com">
+          <i class="fas fa-envelope icon"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Contact Page Content -->
+    <div class="contact-container">
+      <div class="contact-heading">
+        <h1>Get in Touch with Us</h1>
+        <p style="font-size:1.2rem; color:#333;">We’re here to help with your inquiries, partnership requests, and product details.</p>
+      </div>
+
+      <div class="contact-info-block">
+        <h2>Our Main Contact Details</h2>
+        <p><i class="fas fa-phone"></i><strong>Phone:</strong> +1-555-555-5555</p>
+        <p><i class="fas fa-envelope"></i><strong>Email:</strong> contact@starkint.com</p>
+        <p><i class="fab fa-whatsapp"></i><strong>WhatsApp:</strong> +1234567890</p>
+        <p><i class="fas fa-globe"></i><strong>Website:</strong> <a href="https://www.starkint.com">www.starkint.com</a></p>
+        <p style="margin-top:1rem; font-size:1.1rem;">For business inquiries, please email us directly. For sales, reach out via phone or WhatsApp. For technical support, please email or call us, and we'll assist as soon as possible.</p>
+      </div>
+
+      <div class="location-section">
+        <h2>Our Main Office Location</h2>
+        <div class="map-container">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509869!2d144.95373631531746!3d-37.81627977975181!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf5777e129d03a5a9!2sStark%20Tower!5e0!3m2!1sen!2sau!4v1636728334695!5m2!1sen!2sau"
+            allowfullscreen="" loading="lazy"></iframe>
+        </div>
+        <p style="font-size:1.1rem;margin-bottom:1rem;">
+          <i class="fas fa-map-marker-alt" style="color:#118f9d;"></i> 
+          Stark International HQ, Stark Tower, 123 Innovation Drive, Dubai, UAE.
+        </p>
+        <p style="font-size:1.1rem;margin-bottom:2rem;">
+          <i class="fas fa-directions" style="color:#118f9d;"></i> 
+          <a href="https://maps.google.com" target="_blank" style="color:#118f9d;text-decoration:underline;">Get Directions</a>
+        </p>
+
+        <h2>Our Branch Offices</h2>
+        <div class="branch-offices">
+          <div class="office-card">
+            <h3>London Office</h3>
+            <p><i class="fas fa-map-marker-alt" style="color:#0f609b;"></i> 45 Regent St, London, UK</p>
+            <p><i class="fas fa-phone" style="color:#0f609b;"></i> +44 20 1234 5678</p>
+            <p><i class="fas fa-envelope" style="color:#0f609b;"></i> <a href="mailto:london@starkint.com">london@starkint.com</a></p>
+          </div>
+          <div class="office-card">
+            <h3>New York Office</h3>
+            <p><i class="fas fa-map-marker-alt" style="color:#0f609b;"></i> 789 Madison Ave, New York, USA</p>
+            <p><i class="fas fa-phone" style="color:#0f609b;"></i> +1-212-555-0123</p>
+            <p><i class="fas fa-envelope" style="color:#0f609b;"></i> <a href="mailto:ny@starkint.com">ny@starkint.com</a></p>
+          </div>
+          <div class="office-card">
+            <h3>Singapore Office</h3>
+            <p><i class="fas fa-map-marker-alt" style="color:#0f609b;"></i> 56 Orchard Rd, Singapore</p>
+            <p><i class="fas fa-phone" style="color:#0f609b;"></i> +65-3123-4567</p>
+            <p><i class="fas fa-envelope" style="color:#0f609b;"></i> <a href="mailto:sg@starkint.com">sg@starkint.com</a></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="office-hours">
+        <h2>Office Hours & Response Times</h2>
+        <ul>
+          <li><strong>Headquarters:</strong> Mon-Fri: 9am - 6pm (GST)</li>
+          <li><strong>Branches:</strong> Vary by location, generally Mon-Fri: 9am - 5pm (Local Time)</li>
+          <li><strong>Emails:</strong> Typically answered within 24 hours.</li>
+          <li><strong>WhatsApp & Phone:</strong> Immediate response during office hours.</li>
+        </ul>
+      </div>
+
+      <div class="contact-form-section">
+        <h2>Contact Form</h2>
+        <form class="contact-form">
+          <input type="text" name="name" placeholder="Your Name" required>
+          <input type="email" name="email" placeholder="Your Email" required>
+          <input type="text" name="subject" placeholder="Subject" required>
+          <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+        <p class="contact-whatsapp-help">
+          Need help right now? Contact us on <a href="https://wa.me/+1234567890" target="_blank">WhatsApp</a> for immediate assistance.
+        </p>
+      </div>
+
+      <div class="faq-section">
+        <h2>Frequently Asked Questions</h2>
+
+        <div class="faq-item">
+          <h3>How soon can I expect a response?</h3>
+          <p>We strive to respond to all inquiries within 24 hours. For urgent matters, please use our phone or WhatsApp line during business hours.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Can I schedule a meeting at your headquarters?</h3>
+          <p>Yes, please send us an email at least 48 hours in advance so we can arrange a suitable time and ensure a dedicated representative is available.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Do you offer technical support?</h3>
+          <p>Yes, please email or call us for technical support, and we’ll assist as quickly as possible.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Where can I find product documentation?</h3>
+          <p>Detailed product manuals, API documentation, and integration guides are available on our <a href="about.html">About Us</a> page and the <a href="products.html">Products</a> section.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Updated Footer Section -->
+  <footer class="footer">
+    <div class="container mx-auto footer-container">
+      <div class="footer-section">
+        <h3>Our Services</h3>
+        <ul>
+          <li><a href="#">Pharmaceutical Ingredients</a></li>
+          <li><a href="#">Excipients</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Connect with Us</h3>
+        <div class="footer-icons">
+          <a href="https://wa.me/+971505050505" target="_blank" class="hover:text-green-400">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+          <a href="mailto:contact@starkint.com" class="hover:text-red-400">
+            <i class="fas fa-envelope icon"></i>
+          </a>
+          <a href="tel:+971505050505" class="hover:text-blue-400">
+            <i class="fas fa-phone"></i>
+          </a>
+          <a href="https://www.linkedin.com" target="_blank" class="hover:text-blue-500">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="https://twitter.com" target="_blank" class="hover:text-blue-500">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="https://facebook.com" target="_blank" class="hover:text-blue-500">
+            <i class="fab fa-facebook"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

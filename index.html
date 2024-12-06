@@ -214,7 +214,7 @@
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     }
 
-    /* Why Choose Us and About Us Section Split Styling */
+    /* Split Section for Why Choose Us and About Stark International */
     .split-section {
       display: flex;
       flex-direction: row;
@@ -257,7 +257,6 @@
       padding: 0 1rem;
     }
 
-    /* Improved Vertical Line Separator */
     .vertical-line {
       position: absolute;
       top: 0;
@@ -269,7 +268,7 @@
       border-radius: 10px;
     }
 
-    /* Order Products Section Styling */
+    /* Order Products Section */
     .order-products-section {
       text-align: center;
       padding: 5rem 2rem;
@@ -310,7 +309,7 @@
       transform: translateY(-3px);
     }
 
-    /* Statistics section styling */
+    /* Statistics Section */
     .statistics-section {
       display: flex;
       flex-wrap: wrap;
@@ -347,7 +346,7 @@
       font-weight: bold;
     }
 
-    /* Enhanced Map Section Styling */
+    /* Contact & Map Section */
     .map-section-container { 
       display: flex; 
       align-items: flex-start; 
@@ -364,11 +363,11 @@
 
     .map-details {
       width: 40%;
-      background: #ffffff;
+      background: #f9fafb;
       border-radius: 20px;
       padding: 3rem;
       text-align: left;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
       display: flex;
       flex-direction: column;
       gap: 1.5rem;
@@ -376,9 +375,17 @@
 
     .map-details h2 {
       color: #118f9d;
-      font-weight: 600;
+      font-weight: 700;
       font-size: 2rem;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .map-details p {
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+      text-align: center;
+      color: #333;
     }
 
     .map-details ul {
@@ -389,18 +396,27 @@
     .map-details ul li {
       margin-bottom: 1.5rem;
       font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #333;
+    }
+
+    .map-details ul li i {
+      color: #118f9d;
+      font-size: 1.2rem;
     }
 
     .map-details ul li a {
       color: #118f9d;
       font-weight: 500;
       text-decoration: none;
-      display: flex;
-      align-items: center;
+      transition: color 0.3s ease;
     }
 
     .map-details ul li a:hover {
       text-decoration: underline;
+      color: #0f609b;
     }
 
     .map-section {
@@ -411,7 +427,7 @@
       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
     }
 
-    /* Enhanced Footer Section Styling */
+    /* Footer Section */
     .footer {
       background: #118f9d;
       color: white;
@@ -435,8 +451,13 @@
       margin-bottom: 1rem;
     }
 
-    .footer-section p {
-      line-height: 1.8;
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-section ul li {
+      margin-bottom: 0.5rem;
     }
 
     .footer-section a {
@@ -456,19 +477,26 @@
   </style>
 </head>
 <body>
+  <script>
+    // Redirect to mobile version if on mobile
+    if (/Mobi|Android/i.test(navigator.userAgent)) {
+      window.location.href = 'index1.html';
+    }
+  </script>
+
   <header class="text-white shadow-lg sticky top-0 z-50">
     <div class="container mx-auto header-container">
       <!-- Logo -->
       <div class="text-3xl font-bold cursor-pointer logo">
-        Stark International
+        <a href="index.html">Stark International</a>
       </div>
 
       <!-- Navigation Links -->
       <nav>
-        <a href="#" class="nav-link font-medium">Home</a>
-        <a href="#about" class="nav-link font-medium">About</a>
-        <a href="#products" class="nav-link font-medium">Products</a>
-        <a href="#contact" class="nav-link font-medium">Contact</a>
+        <a href="index.html" class="nav-link font-medium">Home</a>
+        <a href="about.html" class="nav-link font-medium">About</a>
+        <a href="products.html" class="nav-link font-medium">Products</a>
+        <a href="contact.html" class="nav-link font-medium">Contact</a>
       </nav>
 
       <!-- WhatsApp and Gmail Icons -->
@@ -492,18 +520,18 @@
     <div class="fullscreen-content">
       <h1 class="text-5xl font-bold">Stark International</h1>
       <p class="text-2xl mt-4">A Partner to Trust</p>
-      <a href="#about" class="learn-more-btn">Learn More</a>
+      <a href="about.html" class="learn-more-btn">Learn More</a>
     </div>
     <button class="arrow right" onclick="changeSlide(1)">&#8250;</button>
   </section>
 
   <!-- Content Section for Introducing Stark International -->
-  <section id="about" class="content-section">
+  <section class="content-section">
     <div class="text-content">
       <h2>Pioneering Healthcare Solutions</h2>
       <h1>Transforming lives through innovation</h1>
       <p>Stark International stands as a trusted leader in pharmaceutical raw materials sourcing and distribution, committed to a customer-centric approach. We are on a mission to revolutionize the pharmaceutical landscape in the Middle East, enhancing health and well-being for all. Our dedicated Stark family continuously strives to elevate the industry, unlock new potential, and transform lives, ensuring that we meet the evolving needs of our customers and partners.</p>
-      <a href="#contact">Get in touch</a>
+      <a href="contact.html">Get in touch</a>
     </div>
     
     <!-- Image Section -->
@@ -531,7 +559,7 @@
   <section class="order-products-section">
     <h2>Order Our Products</h2>
     <p>Since 2005, we have specialized in the field of pharmaceutical ingredients and cosmetic raw materials. Our customer base encompasses multi-national pharmaceutical corporations, generic pharmaceutical companies, biotech, and virtual companies, as well as others at the forefront of healthcare and personal care industries.</p>
-    <a href="#contact">Contact Us and Order</a>
+    <a href="contact.html">Contact Us and Order</a>
   </section>
 
   <!-- Statistics Section -->
@@ -561,10 +589,10 @@
         <h2>Get in Touch</h2>
         <p>For inquiries and support, connect with us:</p>
         <ul>
-          <li>Email: <a href="mailto:contact@starkint.com" class="hover:text-blue-500">contact@starkint.com</a></li>
-          <li>WhatsApp: <a href="https://wa.me/+971505050505" target="_blank" class="hover:text-green-500">Click here to chat with us on WhatsApp</a></li>
-          <li>Phone: <a href="tel:+971505050505" class="hover:text-blue-500">+971 50 505 0505</a></li>
-          <li>Address: Stark International, Ras Al Khaimah, UAE</li>
+          <li><i class="fas fa-envelope"></i> Email: <a href="mailto:contact@starkint.com">contact@starkint.com</a></li>
+          <li><i class="fab fa-whatsapp"></i> WhatsApp: <a href="https://wa.me/+971505050505" target="_blank">Chat with us</a></li>
+          <li><i class="fas fa-phone"></i> Phone: <a href="tel:+971505050505">+971 50 505 0505</a></li>
+          <li><i class="fas fa-map-marker-alt"></i> Address: Stark International, Ras Al Khaimah, UAE</li>
         </ul>
       </div>
       <!-- Embedded Map Section -->
@@ -574,24 +602,22 @@
     </div>
   </section>
 
-  <!-- Enhanced Footer Section -->
+  <!-- Simplified Footer Section -->
   <footer class="footer">
     <div class="container mx-auto footer-container">
       <div class="footer-section">
         <h3>Our Services</h3>
         <ul>
           <li><a href="#">Pharmaceutical Ingredients</a></li>
-          <li><a href="#">Chemical Raw Material Sourcing</a></li>
-          <li><a href="#">Distribution and Supply Chain Management</a></li>
-          <li><a href="#">Consulting Services</a></li>
+          <li><a href="#">Excipients</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h3>Quick Links</h3>
         <ul>
-          <li><a href="#about">About Us</a></li>
-          <li><a href="#products">Products</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="contact.html">Contact</a></li>
           <li><a href="#">Privacy Policy</a></li>
           <li><a href="#">Terms of Service</a></li>
         </ul>
@@ -611,8 +637,11 @@
           <a href="https://www.linkedin.com" target="_blank" class="hover:text-blue-500">
             <i class="fab fa-linkedin"></i>
           </a>
-          <a href="https://twitter.com" target="_blank" class="hover:text-blue-400">
+          <a href="https://twitter.com" target="_blank" class="hover:text-blue-500">
             <i class="fab fa-twitter"></i>
+          </a>
+          <a href="https://facebook.com" target="_blank" class="hover:text-blue-500">
+            <i class="fab fa-facebook"></i>
           </a>
         </div>
       </div>
@@ -666,11 +695,6 @@
       });
       animateCounter("items-stock", 0, 5000, 50);
     };
-
-    // Redirect to mobile version if on mobile
-    if (/Mobi|Android/i.test(navigator.userAgent)) {
-      window.location.href = 'index1.html';
-    }
   </script>
 </body>
 </html>

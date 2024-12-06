@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stark International - Home</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f4f8;
+      scroll-behavior: smooth;
+    }
+
+    /* Link hover underline animation */
+    .nav-link::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 3px;
+      background: #ffffff;
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* Header gradient */
+    header {
+      background: linear-gradient(to right, #0f609b, #118f9d);
+      padding: 1.5rem 2rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    /* Header container adjustments */
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Logo Style */
+    .logo {
+      flex-shrink: 0;
+      margin-right: 2rem;
+      color: #ffffff;
+      font-size: 2.5rem;
+      font-weight: 700;
+    }
+
+    /* Navigation Links */
+    nav {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .nav-link {
+      font-size: 1.2rem;
+      color: #ffffff;
+      transition: color 0.3s ease;
+    }
+
+    /* Icon Styles */
+    .icon {
+      font-size: 1.5rem;
+      transition: transform 0.3s ease;
+      color: #ffffff;
+    }
+
+    .icon:hover {
+      transform: scale(1.1);
+      /* Removed custom color on hover, reverting to original behavior */
+    }
+
+    /* Flexbox fixes for spacing */
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    /* About Section Styling */
+    .about-section {
+      text-align: center;
+      padding: 5rem 2rem;
+      background: linear-gradient(to bottom, #ffffff, #eef3f6);
+      border-radius: 20px;
+      margin-top: 4rem;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+      max-width: 1200px;
+      margin: 4rem auto;
+    }
+
+    .about-section h1 {
+      font-size: 3rem;
+      font-weight: bold;
+      color: #118f9d;
+      margin-bottom: 1.5rem;
+    }
+
+    .about-section p {
+      font-size: 1.5rem;
+      line-height: 1.8;
+      max-width: 800px;
+      margin: 0 auto 2rem;
+      color: #333;
+    }
+
+    .about-values {
+      display: flex;
+      flex-direction: row;
+      gap: 2rem;
+      justify-content: center;
+      align-items: stretch;
+      flex-wrap: wrap;
+      margin-top: 3rem;
+    }
+
+    .value-card {
+      flex: 1;
+      max-width: 300px;
+      background: #ffffff;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .value-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .value-card i {
+      font-size: 3rem;
+      color: #118f9d;
+      margin-bottom: 1rem;
+    }
+
+    .value-card h3 {
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      color: #0f609b;
+    }
+
+    .value-card p {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    /* Vision, Mission, Focus Section Styling */
+    .vision-mission-section {
+      display: flex;
+      align-items: flex-start;
+      gap: 3rem;
+      padding: 5rem 2rem;
+      max-width: 1200px;
+      margin: 4rem auto;
+      background: #ffffff;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .vision-mission-details {
+      flex: 1;
+    }
+
+    .vision-mission-details h2 {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #118f9d;
+      margin-bottom: 1rem;
+    }
+
+    .vision-mission-details p {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      color: #333;
+      margin-bottom: 1.5rem;
+    }
+
+    .vision-icons {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .vision-icon-card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: #f0f4f8;
+      padding: 1.5rem;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+      transition: transform 0.3s ease;
+    }
+
+    .vision-icon-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .vision-icon-card i {
+      font-size: 3rem;
+      color: #67a955;
+    }
+
+    .vision-icon-card div {
+      flex: 1;
+    }
+
+    .vision-icon-card h3 {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      color: #0f609b;
+    }
+
+    .vision-icon-card p {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    /* Contact Section Styling */
+    #contact {
+      background: linear-gradient(to bottom, #eef3f6, #f9f9f9);
+      padding: 5rem 2rem;
+    }
+
+    .contact-section h2 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #118f9d;
+      margin-bottom: 2rem;
+      text-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .contact-info, .contact-form {
+      background: #ffffff;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 500px;
+    }
+
+    .contact-info h3 {
+      color: #0f609b;
+      margin-bottom: 1rem;
+    }
+
+    .contact-info p a {
+      color: #118f9d;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .contact-info p a:hover {
+      text-decoration: underline;
+    }
+
+    .contact-form h3 {
+      color: #0f609b;
+      margin-bottom: 1rem;
+    }
+
+    .contact-form button:hover {
+      background-color: #0f609b;
+      transform: translateY(-2px);
+    }
+
+    /* Footer Section */
+    .footer {
+      background: #118f9d;
+      color: white;
+      padding: 4rem 2rem;
+      box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .footer-section {
+      flex: 1;
+      margin-bottom: 2rem;
+      min-width: 200px;
+    }
+
+    .footer-section h3 {
+      color: #ffffff;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-section ul li {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-section a {
+      color: #ffffff;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-section a:hover {
+      color: #bdbdbd;
+    }
+
+    .footer-icons {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .footer-icons a:hover {
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container mx-auto header-container">
+      <!-- Logo -->
+      <div class="logo">
+        <a href="index.html">Stark International</a>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav>
+        <a href="index.html" class="nav-link font-medium">Home</a>
+        <a href="about.html" class="nav-link font-medium">About</a>
+        <a href="products.html" class="nav-link font-medium">Products</a>
+        <a href="#contact" class="nav-link font-medium">Contact</a>
+      </nav>
+
+      <!-- WhatsApp and Gmail Icons -->
+      <div class="controls">
+        <a href="https://wa.me/+1234567890" target="_blank" class="transition">
+          <i class="fab fa-whatsapp icon"></i>
+        </a>
+        <!-- Gmail Icon -->
+        <a href="mailto:contact@starkint.com" class="transition">
+          <i class="fas fa-envelope icon"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- About Section -->
+  <section class="about-section">
+    <h1>About Stark International</h1>
+    <p>Stark International is a global leader in the sourcing and distribution of pharmaceutical raw materials. We are dedicated to transforming healthcare by providing high-quality ingredients to pharmaceutical companies worldwide. Our commitment is to improve health outcomes and promote innovation in the pharmaceutical industry through excellence and reliability.</p>
+    <div class="about-values">
+      <div class="value-card">
+        <i class="fas fa-hand-holding-heart"></i>
+        <h3>Our Vision</h3>
+        <p>To be the most trusted partner in pharmaceutical sourcing, recognized for our commitment to quality and innovation.</p>
+      </div>
+      <div class="value-card">
+        <i class="fas fa-leaf"></i>
+        <h3>Sustainability</h3>
+        <p>We ensure a sustainable supply chain to build a healthier future for generations to come.</p>
+      </div>
+      <div class="value-card">
+        <i class="fas fa-users"></i>
+        <h3>Our Team</h3>
+        <p>Experienced professionals dedicated to providing unparalleled service and solutions.</p>
+      </div>
+      <div class="value-card">
+        <i class="fas fa-cogs"></i>
+        <h3>Innovation</h3>
+        <p>Leveraging cutting-edge technology to tackle healthcare's most pressing challenges.</p>
+      </div>
+      <div class="value-card">
+        <i class="fas fa-handshake"></i>
+        <h3>Customer Commitment</h3>
+        <p>Personalized solutions and exceptional support to forge lasting partnerships.</p>
+      </div>
+      <div class="value-card">
+        <i class="fas fa-balance-scale"></i>
+        <h3>Integrity</h3>
+        <p>Honesty and accountability form the cornerstone of our business practices.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vision, Mission, Focus Section -->
+  <section class="vision-mission-section">
+    <div class="vision-mission-details">
+      <h2>Our Vision</h2>
+      <p>To be the largest supplier of pharmaceutical, cosmetics, food, and industrial ingredients, driven by innovation and excellence.</p>
+      <h2>Our Mission</h2>
+      <p>To deliver high-quality products to our clients at competitive prices, building a reputation synonymous with quality, competitiveness, and reliability.</p>
+      <h2>Our Focus</h2>
+      <p>To provide technical expertise, helping our customers achieve optimal solutions while ensuring sustainability and continual improvement.</p>
+    </div>
+    <div class="vision-icons">
+      <div class="vision-icon-card">
+        <i class="fas fa-eye"></i>
+        <div>
+          <h3>Our Vision</h3>
+          <p>Be the leading, most trusted supplier in pharma-related fields.</p>
+        </div>
+      </div>
+      <div class="vision-icon-card">
+        <i class="fas fa-bullseye"></i>
+        <div>
+          <h3>Our Mission</h3>
+          <p>Deliver top-quality products with transparency and reliability.</p>
+        </div>
+      </div>
+      <div class="vision-icon-card">
+        <i class="fas fa-lightbulb"></i>
+        <div>
+          <h3>Our Focus</h3>
+          <p>Provide expertise that ensures customers get the best possible solutions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact-section">
+    <div class="container mx-auto">
+      <h2 class="text-3xl font-bold text-center text-green-600 mb-8">Get in Touch with Us</h2>
+      <div class="flex justify-center items-center flex-wrap gap-6">
+        <div class="contact-info">
+          <h3 class="text-xl font-bold text-green-800 mb-4">Our Office</h3>
+          <p>Stark International HQ</p>
+          <p>123 Business Avenue, Dubai, UAE</p>
+          <p class="mt-4">Phone: <a href="tel:+971505050505">+971 50 5050 505</a></p>
+          <p>Email: <a href="mailto:contact@starkint.com">contact@starkint.com</a></p>
+        </div>
+        <div class="contact-form">
+          <h3 class="text-xl font-bold text-green-800 mb-4">Contact Us</h3>
+          <form action="#" method="post">
+            <div class="mb-4">
+              <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+              <input type="text" id="name" name="name" class="mt-1 block w-full border border-gray-300 rounded-md p-2" required>
+            </div>
+            <div class="mb-4">
+              <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+              <input type="email" id="email" name="email" class="mt-1 block w-full border border-gray-300 rounded-md p-2" required>
+            </div>
+            <div class="mb-4">
+              <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+              <textarea id="message" name="message" rows="4" class="mt-1 block w-full border border-gray-300 rounded-md p-2" required></textarea>
+            </div>
+            <button type="submit" class="w-full bg-green-600 text-white py-2 rounded-md hover:bg-green-700 transition">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Enhanced Footer Section -->
+  <footer class="footer">
+    <div class="container mx-auto footer-container">
+      <div class="footer-section">
+        <h3>Our Services</h3>
+        <ul>
+          <li><a href="products.html#pharmaceutical-ingredients">Pharmaceutical Ingredients</a></li>
+          <li><a href="products.html#chemical-raw-materials">Chemical Raw Material Sourcing</a></li>
+          <!-- Removed Distribution and Consulting Services as requested -->
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Connect with Us</h3>
+        <div class="footer-icons">
+          <a href="https://wa.me/+971505050505" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+          <a href="mailto:contact@starkint.com">
+            <i class="fas fa-envelope icon"></i>
+          </a>
+          <a href="tel:+971505050505">
+            <i class="fas fa-phone"></i>
+          </a>
+          <a href="https://www.linkedin.com" target="_blank">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="https://twitter.com" target="_blank">
+            <i class="fab fa-twitter"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
