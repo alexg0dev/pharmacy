@@ -44,11 +44,11 @@
       transform: scale(1.1);
     }
 
-    /* Smooth fade-in on scroll styles */
+    /* Fade-in on scroll */
     .fade-section {
-      transition: opacity 0.8s ease, transform 0.8s ease;
       opacity: 0;
       transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
     }
     .fade-in {
       opacity: 1 !important;
@@ -75,6 +75,13 @@
 </head>
 <body class="overflow-x-hidden bg-white">
 
+  <script>
+    // Redirect to mobile version if on mobile
+    if (/Mobi|Android/i.test(navigator.userAgent)) {
+      // Already on mobile version, no redirect needed
+    }
+  </script>
+
   <!-- Header -->
   <header class="bg-gradient-to-r from-[#0f609b] to-[#118f9d] text-white sticky top-0 z-50">
     <div class="flex items-center justify-between px-4 py-3">
@@ -90,6 +97,7 @@
       <nav class="hidden md:flex space-x-4">
         <a href="index.html" class="nav-link font-medium text-white">Home</a>
         <a href="about.html" class="nav-link font-medium text-white">About</a>
+        <a href="products.html" class="nav-link font-medium text-white">Products</a>
         <a href="contact.html" class="nav-link font-medium text-white">Contact</a>
       </nav>
       <!-- Icons (hidden on mobile) -->
@@ -103,10 +111,11 @@
       </div>
     </div>
     <!-- Mobile dropdown with transparent background -->
-    <div id="mobileMenu" class="hidden backdrop-blur-lg bg-black/40">
+    <div id="mobileMenu" class="hidden backdrop-blur-md bg-black/40">
       <nav class="flex flex-col space-y-2 p-4 text-white">
         <a href="index.html" class="font-medium">Home</a>
         <a href="about.html" class="font-medium">About</a>
+        <a href="products.html" class="font-medium">Products</a>
         <a href="contact.html" class="font-medium">Contact</a>
         <div class="flex items-center space-x-4 pt-2">
           <a href="https://wa.me/+1234567890" target="_blank">
@@ -130,23 +139,78 @@
     </div>
   </section>
 
-  <!-- About / Intro Section -->
-  <section class="py-8 px-4 fade-section">
+  <!-- Intro Section -->
+  <section class="py-8 px-4 fade-section text-center">
     <h2 class="text-xl font-semibold text-[#67a955]">Pioneering Healthcare Solutions</h2>
     <h1 class="text-2xl font-bold mt-2">Transforming lives through innovation</h1>
     <p class="text-sm mt-4 text-gray-700 leading-relaxed">
-      Stark International stands as a trusted leader in pharmaceutical raw materials sourcing and distribution, committed to a customer-centric approach, revolutionizing the pharmaceutical landscape in the Middle East, and enhancing health for all.
+      Stark International stands as a trusted leader in pharmaceutical raw materials sourcing and distribution, committed to a customer-centric approach. We are on a mission to revolutionize the pharmaceutical landscape in the Middle East, enhancing health for all.
     </p>
     <a href="contact.html" class="inline-block mt-4 px-4 py-2 bg-[#118f9d] text-white rounded text-sm font-semibold">Get in Touch</a>
+    <div class="mt-6 flex justify-center">
+      <img src="images/medicine.jpg" alt="Pharmaceutical Supplies" class="max-w-[80%] rounded shadow">
+    </div>
   </section>
 
-  <!-- Simple Contact Section -->
-  <section class="py-8 px-4 bg-white fade-section">
-    <h2 class="text-2xl font-bold text-[#118f9d] text-center">Get in Touch</h2>
-    <p class="text-sm text-gray-700 mt-2 text-center leading-relaxed max-w-md mx-auto">
+  <!-- Why Choose Us & About Stark (stacked) -->
+  <section class="py-8 px-4 fade-section text-center">
+    <h2 class="text-xl font-bold text-[#0f609b] mb-6">Why Choose Us & About Stark International</h2>
+    <div class="space-y-8">
+      <div class="bg-white p-4 rounded shadow mx-auto max-w-sm">
+        <img src="images/chemistry.jpg" alt="Chemistry Icon" class="w-32 h-32 mx-auto mb-4 rounded-full shadow">
+        <h2 class="text-lg font-bold text-[#118f9d] mb-2">Why Choose Stark International</h2>
+        <p class="text-sm text-gray-700 leading-relaxed">
+          Skilled professionals, innovative solutions, and exceptional quality make us a reliable partner in the pharmaceutical sector.
+        </p>
+      </div>
+      <div class="bg-white p-4 rounded shadow mx-auto max-w-sm">
+        <img src="images/chemistry.jpg" alt="Pharmaceutical Icon" class="w-32 h-32 mx-auto mb-4 rounded-full shadow">
+        <h2 class="text-lg font-bold text-[#118f9d] mb-2">About Stark International</h2>
+        <p class="text-sm text-gray-700 leading-relaxed">
+          We revolutionize the pharmaceutical industry with top-quality raw materials, meeting evolving needs and providing unparalleled service.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Order Products Section -->
+  <section class="py-8 px-4 bg-[#f0f0f0] text-center fade-section">
+    <h2 class="text-2xl font-bold">Order Our Products</h2>
+    <p class="text-sm text-gray-700 mt-4 leading-relaxed max-w-md mx-auto">
+      Since 2005, we have specialized in pharmaceutical ingredients and cosmetic raw materials, supporting top healthcare and personal care companies.
+    </p>
+    <a href="contact.html" class="inline-block mt-4 px-4 py-2 bg-[#118f9d] text-white rounded text-sm font-semibold">Contact Us and Order</a>
+  </section>
+
+  <!-- Statistics Section -->
+  <section class="py-8 px-4 fade-section">
+    <h2 class="text-xl font-bold text-[#0f609b] text-center mb-6">Our Impact</h2>
+    <div class="space-y-4 text-center">
+      <div class="bg-white p-4 rounded shadow mx-auto max-w-sm">
+        <i class="fas fa-shopping-cart text-[#118f9d] text-2xl mb-2"></i>
+        <h3 class="text-lg font-semibold text-[#118f9d]">Users Bought This Month</h3>
+        <div class="text-2xl font-bold text-[#118f9d]" id="users-bought">0</div>
+      </div>
+      <div class="bg-white p-4 rounded shadow mx-auto max-w-sm">
+        <i class="fas fa-users text-[#118f9d] text-2xl mb-2"></i>
+        <h3 class="text-lg font-semibold text-[#118f9d]">Trust This</h3>
+        <div class="text-2xl font-bold text-[#118f9d]" id="users-trust">0</div>
+      </div>
+      <div class="bg-white p-4 rounded shadow mx-auto max-w-sm">
+        <i class="fas fa-box text-[#118f9d] text-2xl mb-2"></i>
+        <h3 class="text-lg font-semibold text-[#118f9d]">Items in Stock</h3>
+        <div class="text-2xl font-bold text-[#118f9d]" id="items-stock">0</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact & Map Section -->
+  <section id="contact" class="py-8 px-4 fade-section text-center">
+    <h2 class="text-2xl font-bold text-[#118f9d]">Get in Touch</h2>
+    <p class="text-sm text-gray-700 mt-2 leading-relaxed max-w-md mx-auto">
       For inquiries and support, connect with us:
     </p>
-    <ul class="mt-4 space-y-2 text-gray-700 text-sm">
+    <ul class="mt-4 space-y-2 text-gray-700 text-sm text-left max-w-xs mx-auto">
       <li class="flex items-center space-x-2">
         <i class="fas fa-envelope text-[#118f9d]"></i>
         <span>Email: <a href="mailto:contact@starkint.com" class="text-[#118f9d]">contact@starkint.com</a></span>
@@ -164,6 +228,9 @@
         <span>Address: Stark International, Ras Al Khaimah, UAE</span>
       </li>
     </ul>
+    <div class="mt-6 rounded overflow-hidden shadow mx-auto max-w-xs">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d55269.14114684963!2d31.192423826495394!3d30.033333001765642!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x145840c4d14a3881%3A0xd93d6a13bc3f0980!2sRas%20Al%20Khaimah%2C%20UAE!5e0!3m2!1sen!2s!4v1698791234567!5m2!1sen!2s" width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
   </section>
 
   <!-- Footer -->
@@ -172,14 +239,15 @@
       <div>
         <h3 class="font-bold text-lg mb-2">Our Services</h3>
         <ul class="space-y-1 text-sm">
-          <li><a href="aping.html">Pharmaceutical Ingredients</a></li>
-          <li><a href="excipients.html">Excipients</a></li>
+          <li><a href="#">Pharmaceutical Ingredients</a></li>
+          <li><a href="#">Excipients</a></li>
         </ul>
       </div>
       <div>
         <h3 class="font-bold text-lg mb-2">Quick Links</h3>
         <ul class="space-y-1 text-sm">
           <li><a href="about.html">About Us</a></li>
+          <li><a href="products.html">Products</a></li>
           <li><a href="contact.html">Contact</a></li>
           <li><a href="#">Privacy Policy</a></li>
           <li><a href="#">Terms of Service</a></li>
@@ -202,6 +270,9 @@
           </a>
           <a href="https://twitter.com" target="_blank">
             <i class="fab fa-twitter icon"></i>
+          </a>
+          <a href="https://facebook.com" target="_blank">
+            <i class="fab fa-facebook icon"></i>
           </a>
         </div>
       </div>
@@ -228,6 +299,31 @@
     setInterval(() => {
       changeSlide(1);
     }, 5000);
+
+    // Counters
+    function animateCounter(id, start, end, duration, callback) {
+      let obj = document.getElementById(id);
+      let range = end - start;
+      let increment = end > start ? 1 : -1;
+      let stepTime = Math.abs(Math.floor(duration / range));
+      let current = start;
+      let timer = setInterval(function () {
+        current += increment;
+        obj.textContent = current;
+        if (current == end) {
+          clearInterval(timer);
+          if (callback) callback();
+        }
+      }, stepTime);
+    }
+
+    window.onload = function() {
+      animateCounter("users-bought", 0, 1000, 50);
+      animateCounter("users-trust", 0, 4000000, 100, function() {
+        document.getElementById("users-trust").textContent = "It's endless!";
+      });
+      animateCounter("items-stock", 0, 5000, 50);
+    };
 
     // Mobile menu toggle
     const menuButton = document.getElementById('menuButton');
