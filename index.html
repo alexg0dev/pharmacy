@@ -1,14 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stark International Header</title>
+  <meta charset="UTF-8" />
+  <!-- Disable zooming -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0"/>
+  <title>Stark International - Desktop</title>
+  
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+    @font-face {
+      font-family: 'Bodoniferraposter-extra';
+      src: url('fonts/Bodoniferraposter-extra.woff2') format('woff2'),
+           url('fonts/Bodoniferraposter-extra.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }
+
     body {
       font-family: 'Poppins', sans-serif;
       margin: 0;
@@ -16,7 +30,6 @@
       background-color: #ffffff;
     }
 
-    /* Link hover underline animation */
     .nav-link::after {
       content: '';
       display: block;
@@ -25,31 +38,26 @@
       background: #ffffff;
       transition: width 0.3s ease;
     }
-
     .nav-link:hover::after {
       width: 100%;
     }
 
-    /* Header gradient */
     header {
       background: linear-gradient(to right, #0f609b, #118f9d);
       padding: 2rem;
     }
 
-    /* Header container adjustments */
     .header-container {
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
 
-    /* Logo Style */
     .logo {
       flex-shrink: 0;
       margin-right: 2rem;
     }
 
-    /* Navigation Links */
     nav {
       display: flex;
       gap: 1.2rem;
@@ -61,7 +69,6 @@
       color: #ffffff;
     }
 
-    /* Icon Styles */
     .icon {
       font-size: 1.5rem;
       transition: transform 0.3s ease, color 0.3s ease;
@@ -72,14 +79,12 @@
       color: #67a955;
     }
 
-    /* Flexbox fixes for spacing */
     .controls {
       display: flex;
       align-items: center;
       gap: 1.5rem;
     }
 
-    /* Fullscreen section styling */
     .fullscreen-section {
       position: relative;
       width: 100%;
@@ -104,13 +109,16 @@
     }
 
     .fullscreen-content h1 {
+      font-family: 'Bodoniferraposter-extra', serif;
       text-shadow: 4px 4px 20px rgba(0, 0, 0, 1);
       font-size: 4rem;
     }
 
     .fullscreen-content p {
+      font-family: 'Bodoniferraposter-extra', serif;
       text-shadow: 4px 4px 20px rgba(0, 0, 0, 1);
       font-size: 1.8rem;
+      margin-top: 1rem;
     }
 
     .learn-more-btn {
@@ -130,7 +138,6 @@
       transform: translateY(-3px);
     }
 
-    /* Fullscreen Section Arrow Buttons */
     .arrow {
       position: absolute;
       top: 50%;
@@ -156,7 +163,6 @@
       right: 2rem;
     }
 
-    /* Content Section Styling */
     .content-section {
       display: flex;
       justify-content: space-between;
@@ -214,7 +220,6 @@
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     }
 
-    /* Split Section for Why Choose Us and About Stark International */
     .split-section {
       display: flex;
       flex-direction: row;
@@ -268,7 +273,6 @@
       border-radius: 10px;
     }
 
-    /* Order Products Section */
     .order-products-section {
       text-align: center;
       padding: 5rem 2rem;
@@ -300,8 +304,8 @@
       font-weight: 600;
       border-radius: 30px;
       transition: background-color 0.3s ease, transform 0.3s ease;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
       text-decoration: none;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     }
 
     .order-products-section a:hover {
@@ -309,7 +313,6 @@
       transform: translateY(-3px);
     }
 
-    /* Statistics Section */
     .statistics-section {
       display: flex;
       flex-wrap: wrap;
@@ -346,7 +349,6 @@
       font-weight: bold;
     }
 
-    /* Contact & Map Section */
     .map-section-container { 
       display: flex; 
       align-items: flex-start; 
@@ -427,9 +429,8 @@
       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
     }
 
-    /* Footer Section */
     .footer {
-      background: #118f9d;
+      background: linear-gradient(to right, #118f9d, #0f609b);
       color: white;
       padding: 4rem 2rem;
     }
@@ -443,6 +444,7 @@
     .footer-section {
       flex: 1;
       margin-bottom: 2rem;
+      min-width: 200px;
     }
 
     .footer-section h3 {
@@ -463,6 +465,7 @@
     .footer-section a {
       color: #ffffff;
       text-decoration: none;
+      transition: color 0.3s;
     }
 
     .footer-section a:hover {
@@ -473,6 +476,17 @@
       display: flex;
       gap: 1rem;
       margin-top: 1rem;
+    }
+    
+    /* Fade-in on scroll classes */
+    .fade-section {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .fade-in {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
     }
   </style>
 </head>
@@ -514,8 +528,8 @@
     </div>
   </header>
 
-  <!-- Fullscreen Section for Pictures and Text -->
-  <section id="medicine-section" class="fullscreen-section">
+  <!-- Fullscreen Section -->
+  <section id="medicine-section" class="fullscreen-section fade-section">
     <button class="arrow left" onclick="changeSlide(-1)">&#8249;</button>
     <div class="fullscreen-content">
       <h1 class="text-5xl font-bold">Stark International</h1>
@@ -525,8 +539,8 @@
     <button class="arrow right" onclick="changeSlide(1)">&#8250;</button>
   </section>
 
-  <!-- Content Section for Introducing Stark International -->
-  <section class="content-section">
+  <!-- Intro Content Section -->
+  <section class="content-section fade-section">
     <div class="text-content">
       <h2>Pioneering Healthcare Solutions</h2>
       <h1>Transforming lives through innovation</h1>
@@ -534,14 +548,13 @@
       <a href="contact.html">Get in touch</a>
     </div>
     
-    <!-- Image Section -->
     <div class="image-container">
       <img src="images/medicine.jpg" alt="Pharmaceutical Supplies">
     </div>
   </section>
 
-  <!-- Split Section for Why Choose Us and About Stark International -->
-  <section class="split-section">
+  <!-- Split Section -->
+  <section class="split-section fade-section">
     <div class="split-content">
       <img src="images/chemistry.jpg" alt="Chemistry Icon">
       <h2>Why Choose Stark International</h2>
@@ -556,14 +569,14 @@
   </section>
 
   <!-- Order Products Section -->
-  <section class="order-products-section">
+  <section class="order-products-section fade-section">
     <h2>Order Our Products</h2>
     <p>Since 2005, we have specialized in the field of pharmaceutical ingredients and cosmetic raw materials. Our customer base encompasses multi-national pharmaceutical corporations, generic pharmaceutical companies, biotech, and virtual companies, as well as others at the forefront of healthcare and personal care industries.</p>
     <a href="contact.html">Contact Us and Order</a>
   </section>
 
   <!-- Statistics Section -->
-  <section class="statistics-section">
+  <section class="statistics-section fade-section">
     <div class="stat-box">
       <i class="fas fa-shopping-cart icon"></i>
       <h3>Users Bought This Month</h3>
@@ -581,10 +594,9 @@
     </div>
   </section>
 
-  <!-- Contact Section -->
-  <section id="contact" class="content-section">
+  <!-- Contact & Map Section -->
+  <section id="contact" class="content-section fade-section">
     <div class="map-section-container">
-      <!-- Contact Details -->
       <div class="map-details">
         <h2>Get in Touch</h2>
         <p>For inquiries and support, connect with us:</p>
@@ -595,21 +607,22 @@
           <li><i class="fas fa-map-marker-alt"></i> Address: Stark International, Ras Al Khaimah, UAE</li>
         </ul>
       </div>
-      <!-- Embedded Map Section -->
+      
       <div class="map-section">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d55269.14114684963!2d31.192423826495394!3d30.033333001765642!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x145840c4d14a3881%3A0xd93d6a13bc3f0980!2sRas%20Al%20Khaimah%2C%20UAE!5e0!3m2!1sen!2s!4v1698791234567!5m2!1sen!2s" width="100%" height="500" style="border:0; border-radius: 15px;" allowfullscreen="" loading="lazy"></iframe>
+        <!-- Ras Al Khaimah, UAE coordinates -->
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d27633.677972788263!2d55.914676021507394!3d25.800690467583277!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ef6761e1ed9b66f%3A0xcdf0edafa84cbb6f!2sRas%20al-Khaimah!5e0!3m2!1sen!2sae!4v1699112234567!5m2!1sen!2sae" width="100%" height="500" style="border:0; border-radius: 15px;" allowfullscreen="" loading="lazy"></iframe>
       </div>
     </div>
   </section>
 
-  <!-- Simplified Footer Section -->
+  <!-- Footer -->
   <footer class="footer">
     <div class="container mx-auto footer-container">
       <div class="footer-section">
         <h3>Our Services</h3>
         <ul>
-          <li><a href="#">Pharmaceutical Ingredients</a></li>
-          <li><a href="#">Excipients</a></li>
+          <li><a href="aping.html">Pharmaceutical Ingredients</a></li>
+          <li><a href="excipients.html">Excipients</a></li>
         </ul>
       </div>
       <div class="footer-section">
@@ -695,6 +708,21 @@
       });
       animateCounter("items-stock", 0, 5000, 50);
     };
+
+    // Fade-in on scroll
+    document.addEventListener('DOMContentLoaded', function() {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('fade-in');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.fade-section').forEach(el => {
+        observer.observe(el);
+      });
+    });
   </script>
 </body>
 </html>
