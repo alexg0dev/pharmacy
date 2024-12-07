@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Stark International - Home</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
     body {
@@ -78,7 +78,6 @@
 
     .icon:hover {
       transform: scale(1.1);
-      /* Removed custom color on hover, reverting to original behavior */
     }
 
     /* Flexbox fixes for spacing */
@@ -90,29 +89,62 @@
 
     /* About Section Styling */
     .about-section {
-      text-align: center;
       padding: 5rem 2rem;
       background: linear-gradient(to bottom, #ffffff, #eef3f6);
       border-radius: 20px;
-      margin-top: 4rem;
+      margin: 4rem auto;
       box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
       max-width: 1200px;
-      margin: 4rem auto;
     }
 
-    .about-section h1 {
-      font-size: 3rem;
+    .about-section h2 {
+      font-size: 2rem;
       font-weight: bold;
       color: #118f9d;
       margin-bottom: 1.5rem;
+      text-align: center;
     }
 
-    .about-section p {
-      font-size: 1.5rem;
+    /* Enhanced About Content Layout */
+    .about-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    @media (min-width: 768px) {
+      .about-content {
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-between;
+      }
+    }
+
+    .about-content p {
+      flex: 1;
+      font-size: 1.2rem;
       line-height: 1.8;
       max-width: 800px;
-      margin: 0 auto 2rem;
+      margin: 0;
       color: #333;
+    }
+
+    /* Enhanced Chemistry Image Styling */
+    .about-content img {
+      flex: 1;
+      width: 100%;
+      max-width: 600px;
+      height: auto;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, filter 0.3s ease;
+      display: block;
+    }
+
+    .about-content img:hover {
+      transform: scale(1.05);
+      filter: brightness(95%);
     }
 
     .about-values {
@@ -249,6 +281,7 @@
       color: #118f9d;
       margin-bottom: 2rem;
       text-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      text-align: center;
     }
 
     .contact-info, .contact-form {
@@ -285,9 +318,9 @@
       transform: translateY(-2px);
     }
 
-    /* Footer Section */
+    /* Footer Section with Gradient */
     .footer {
-      background: #118f9d;
+      background: linear-gradient(to right, #0f609b, #118f9d);
       color: white;
       padding: 4rem 2rem;
       box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
@@ -359,7 +392,7 @@
 
       <!-- WhatsApp and Gmail Icons -->
       <div class="controls">
-        <a href="https://wa.me/+1234567890" target="_blank" class="transition">
+        <a href="https://wa.me/971518007643" target="_blank" class="transition">
           <i class="fab fa-whatsapp icon"></i>
         </a>
         <!-- Gmail Icon -->
@@ -372,35 +405,48 @@
 
   <!-- About Section -->
   <section class="about-section">
-    <h1>About Stark International</h1>
-    <p>Stark International is a global leader in the sourcing and distribution of pharmaceutical raw materials. We are dedicated to transforming healthcare by providing high-quality ingredients to pharmaceutical companies worldwide. Our commitment is to improve health outcomes and promote innovation in the pharmaceutical industry through excellence and reliability.</p>
-    <div class="about-values">
-      <div class="value-card">
+    <h2 data-aos="fade-up">About Stark International</h2>
+    <div class="about-content flex flex-col md:flex-row items-center md:items-start gap-8">
+      <!-- Text Content -->
+      <div class="flex-1" data-aos="fade-right">
+        <p>
+          Stark International is a global leader in the sourcing and distribution of pharmaceutical raw materials. We are dedicated to transforming healthcare by providing high-quality ingredients to pharmaceutical companies worldwide. Our commitment is to improve health outcomes and promote innovation in the pharmaceutical industry through excellence and reliability.
+        </p>
+      </div>
+      <!-- Image Content -->
+      <div class="flex-1 flex justify-center" data-aos="fade-left">
+        <img src="images/chemistry.webp" alt="Chemistry Overview" class="rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+      </div>
+    </div>
+
+    <!-- Values Section -->
+    <div class="about-values flex flex-wrap justify-center gap-8 mt-12">
+      <div class="value-card" data-aos="zoom-in">
         <i class="fas fa-hand-holding-heart"></i>
         <h3>Our Vision</h3>
         <p>To be the most trusted partner in pharmaceutical sourcing, recognized for our commitment to quality and innovation.</p>
       </div>
-      <div class="value-card">
+      <div class="value-card" data-aos="zoom-in" data-aos-delay="100">
         <i class="fas fa-leaf"></i>
         <h3>Sustainability</h3>
         <p>We ensure a sustainable supply chain to build a healthier future for generations to come.</p>
       </div>
-      <div class="value-card">
+      <div class="value-card" data-aos="zoom-in" data-aos-delay="200">
         <i class="fas fa-users"></i>
         <h3>Our Team</h3>
         <p>Experienced professionals dedicated to providing unparalleled service and solutions.</p>
       </div>
-      <div class="value-card">
+      <div class="value-card" data-aos="zoom-in" data-aos-delay="300">
         <i class="fas fa-cogs"></i>
         <h3>Innovation</h3>
         <p>Leveraging cutting-edge technology to tackle healthcare's most pressing challenges.</p>
       </div>
-      <div class="value-card">
+      <div class="value-card" data-aos="zoom-in" data-aos-delay="400">
         <i class="fas fa-handshake"></i>
         <h3>Customer Commitment</h3>
         <p>Personalized solutions and exceptional support to forge lasting partnerships.</p>
       </div>
-      <div class="value-card">
+      <div class="value-card" data-aos="zoom-in" data-aos-delay="500">
         <i class="fas fa-balance-scale"></i>
         <h3>Integrity</h3>
         <p>Honesty and accountability form the cornerstone of our business practices.</p>
@@ -419,21 +465,21 @@
       <p>To provide technical expertise, helping our customers achieve optimal solutions while ensuring sustainability and continual improvement.</p>
     </div>
     <div class="vision-icons">
-      <div class="vision-icon-card">
+      <div class="vision-icon-card" data-aos="zoom-in">
         <i class="fas fa-eye"></i>
         <div>
           <h3>Our Vision</h3>
           <p>Be the leading, most trusted supplier in pharma-related fields.</p>
         </div>
       </div>
-      <div class="vision-icon-card">
+      <div class="vision-icon-card" data-aos="zoom-in" data-aos-delay="100">
         <i class="fas fa-bullseye"></i>
         <div>
           <h3>Our Mission</h3>
           <p>Deliver top-quality products with transparency and reliability.</p>
         </div>
       </div>
-      <div class="vision-icon-card">
+      <div class="vision-icon-card" data-aos="zoom-in" data-aos-delay="200">
         <i class="fas fa-lightbulb"></i>
         <div>
           <h3>Our Focus</h3>
@@ -448,14 +494,14 @@
     <div class="container mx-auto">
       <h2 class="text-3xl font-bold text-center text-green-600 mb-8">Get in Touch with Us</h2>
       <div class="flex justify-center items-center flex-wrap gap-6">
-        <div class="contact-info">
+        <div class="contact-info" data-aos="fade-right">
           <h3 class="text-xl font-bold text-green-800 mb-4">Our Office</h3>
           <p>Stark International HQ</p>
-          <p>123 Business Avenue, Dubai, UAE</p>
-          <p class="mt-4">Phone: <a href="tel:+971505050505">+971 50 5050 505</a></p>
+          <p>FBC50274 Compass Building, Al Shohada Road, AL Hamra Industrial Zone-FZ, Ras Al Khaimah, United Arab Emirates</p>
+          <p class="mt-4">Phone: <a href="tel:+971518007643">+971 51 8007 643</a></p>
           <p>Email: <a href="mailto:contact@starkint.com">contact@starkint.com</a></p>
         </div>
-        <div class="contact-form">
+        <div class="contact-form" data-aos="fade-left">
           <h3 class="text-xl font-bold text-green-800 mb-4">Contact Us</h3>
           <form action="#" method="post">
             <div class="mb-4">
@@ -483,41 +529,65 @@
       <div class="footer-section">
         <h3>Our Services</h3>
         <ul>
-          <li><a href="products.html#pharmaceutical-ingredients">Pharmaceutical Ingredients</a></li>
-          <li><a href="products.html#chemical-raw-materials">Chemical Raw Material Sourcing</a></li>
-          <!-- Removed Distribution and Consulting Services as requested -->
+          <li><a href="aping.html">Active Pharmaceutical Ingredients</a></li>
+          <li><a href="excipients.html">Excipients</a></li>
+          <!-- Updated links to aping.html and excipients.html -->
         </ul>
       </div>
       <div class="footer-section">
         <h3>Quick Links</h3>
         <ul>
           <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About Us</a></li>
+          <!-- Removed About Us from Quick Links as requested -->
+          <li><a href="contact.html">Contact</a></li>
+          <!-- Updated Contact link to contact.html -->
           <li><a href="products.html">Products</a></li>
-          <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h3>Connect with Us</h3>
         <div class="footer-icons">
-          <a href="https://wa.me/+971505050505" target="_blank">
+          <a href="https://wa.me/971518007643" target="_blank">
             <i class="fab fa-whatsapp"></i>
           </a>
           <a href="mailto:contact@starkint.com">
             <i class="fas fa-envelope icon"></i>
           </a>
-          <a href="tel:+971505050505">
+          <a href="tel:+971518007643">
             <i class="fas fa-phone"></i>
           </a>
-          <a href="https://www.linkedin.com" target="_blank">
+          <a href="https://www.linkedin.com/company/starkintl?trk=blended-typeahead" target="_blank">
             <i class="fab fa-linkedin"></i>
           </a>
-          <a href="https://twitter.com" target="_blank">
-            <i class="fab fa-twitter"></i>
-          </a>
+          <!-- Removed Twitter icon as requested -->
         </div>
       </div>
     </div>
   </footer>
+
+  <!-- AOS JS and Initialization -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 800, // Animation duration in milliseconds
+      once: true,    // Whether animation should happen only once - while scrolling down
+      mirror: false, // Whether elements should animate out while scrolling past them
+    });
+  </script>
+
+  <!-- Mobile Redirect Script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Function to detect mobile devices
+      function isMobileDevice() {
+        return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      }
+
+      // Redirect to about1.html if accessed from a mobile device
+      if (isMobileDevice()) {
+        window.location.href = "about1.html";
+      }
+    });
+  </script>
 </body>
 </html>

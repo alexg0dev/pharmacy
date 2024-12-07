@@ -10,7 +10,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   
   <!-- Fonts & Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Organetto&display=swap" rel="stylesheet"/>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   
@@ -23,13 +23,16 @@
       font-style: normal;
     }
 
+    /* Body Styling */
     body {
       font-family: 'Poppins', sans-serif;
       margin: 0;
-      padding: 0;
+      padding: 5rem 0 0 0; /* Added top padding for fixed header */
       background-color: #ffffff;
+      scroll-behavior: smooth;
     }
 
+    /* Navigation Link Hover Underline */
     .nav-link::after {
       content: '';
       display: block;
@@ -38,13 +41,20 @@
       background: #ffffff;
       transition: width 0.3s ease;
     }
+
     .nav-link:hover::after {
       width: 100%;
     }
 
+    /* Header Styling */
     header {
       background: linear-gradient(to right, #0f609b, #118f9d);
-      padding: 2rem;
+      padding: 1.5rem 2rem; /* Adjusted padding */
+      position: fixed; /* Make header fixed */
+      top: 0;
+      width: 100%; /* Span full width */
+      z-index: 1000; /* Stay above other elements */
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Optional shadow for depth */
     }
 
     .header-container {
@@ -56,17 +66,21 @@
     .logo {
       flex-shrink: 0;
       margin-right: 2rem;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #ffffff;
     }
 
     nav {
       display: flex;
       gap: 1.2rem;
-      margin-left: -1rem;
+      /* Removed margin-left: -1rem; */
     }
 
     .nav-link {
       font-size: 1.2rem;
       color: #ffffff;
+      position: relative; /* For ::after */
     }
 
     .icon {
@@ -85,11 +99,11 @@
       gap: 1.5rem;
     }
 
+    /* Fullscreen Section */
     .fullscreen-section {
       position: relative;
       width: 100%;
       height: 90vh;
-      background-image: url('images/medicine.jpg');
       background-size: cover;
       background-position: center;
       display: flex;
@@ -99,10 +113,33 @@
       text-align: center;
       overflow: hidden;
       box-shadow: inset 0 0 400px rgba(0, 0, 0, 0.8);
+      margin-top: 0; /* No margin since header is fixed */
+    }
+
+    /* Slideshow Container */
+    .slides-container {
+      display: flex;
+      width: 300%;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .slide {
+      width: 100%;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 90vh;
+      object-fit: cover;
     }
 
     .fullscreen-content {
-      position: relative;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       z-index: 2;
       padding: 3rem;
       max-width: 70%;
@@ -112,10 +149,11 @@
       font-family: 'Bodoniferraposter-extra', serif;
       text-shadow: 4px 4px 20px rgba(0, 0, 0, 1);
       font-size: 4rem;
+      text-transform: uppercase;
     }
 
     .fullscreen-content p {
-      font-family: 'Bodoniferraposter-extra', serif;
+      font-family: 'Organetto', sans-serif;
       text-shadow: 4px 4px 20px rgba(0, 0, 0, 1);
       font-size: 1.8rem;
       margin-top: 1rem;
@@ -131,6 +169,7 @@
       border-radius: 30px;
       transition: background-color 0.3s ease, transform 0.3s ease;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      text-decoration: none; /* Ensure no underline */
     }
 
     .learn-more-btn:hover {
@@ -163,6 +202,7 @@
       right: 2rem;
     }
 
+    /* Content Sections */
     .content-section {
       display: flex;
       justify-content: space-between;
@@ -220,6 +260,7 @@
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     }
 
+    /* Split Section */
     .split-section {
       display: flex;
       flex-direction: row;
@@ -273,6 +314,7 @@
       border-radius: 10px;
     }
 
+    /* Order Products Section */
     .order-products-section {
       text-align: center;
       padding: 5rem 2rem;
@@ -313,6 +355,7 @@
       transform: translateY(-3px);
     }
 
+    /* Statistics Section */
     .statistics-section {
       display: flex;
       flex-wrap: wrap;
@@ -349,6 +392,7 @@
       font-weight: bold;
     }
 
+    /* Contact & Map Section */
     .map-section-container { 
       display: flex; 
       align-items: flex-start; 
@@ -429,6 +473,7 @@
       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
     }
 
+    /* Footer Styling */
     .footer {
       background: linear-gradient(to right, #118f9d, #0f609b);
       color: white;
@@ -498,10 +543,11 @@
     }
   </script>
 
-  <header class="text-white shadow-lg sticky top-0 z-50">
+  <!-- Fixed Header -->
+  <header>
     <div class="container mx-auto header-container">
       <!-- Logo -->
-      <div class="text-3xl font-bold cursor-pointer logo">
+      <div class="logo">
         <a href="index.html">Stark International</a>
       </div>
 
@@ -510,32 +556,45 @@
         <a href="index.html" class="nav-link font-medium">Home</a>
         <a href="about.html" class="nav-link font-medium">About</a>
         <a href="products.html" class="nav-link font-medium">Products</a>
-        <a href="contact.html" class="nav-link font-medium">Contact</a>
+        <a href="#contact" class="nav-link font-medium">Contact</a>
       </nav>
 
       <!-- WhatsApp and Gmail Icons -->
       <div class="controls">
-        <!-- WhatsApp Icon -->
-        <a href="https://wa.me/+1234567890" target="_blank" class="hover:text-green-400 transition">
+        <a href="https://wa.me/971518007643" target="_blank" class="transition text-white">
           <i class="fab fa-whatsapp icon"></i>
         </a>
-
         <!-- Gmail Icon -->
-        <a href="mailto:contact@starkint.com" class="hover:text-red-400 transition">
+        <a href="mailto:contact@starkint.com" class="transition text-white">
           <i class="fas fa-envelope icon"></i>
         </a>
       </div>
     </div>
   </header>
 
-  <!-- Fullscreen Section -->
+  <!-- Fullscreen Section with Slideshow -->
   <section id="medicine-section" class="fullscreen-section fade-section">
-    <button class="arrow left" onclick="changeSlide(-1)">&#8249;</button>
+    <!-- Slideshow Container -->
+    <div class="slides-container">
+      <div class="slide">
+        <img src="images/medicine.jpg" alt="Medicine Slide 1">
+      </div>
+      <div class="slide">
+        <img src="images/beakers.jpg" alt="Medicine Slide 2">
+      </div>
+      <div class="slide">
+        <img src="images/formulas.png" alt="Medicine Slide 3">
+      </div>
+    </div>
+
     <div class="fullscreen-content">
-      <h1 class="text-5xl font-bold">Stark International</h1>
+      <h1 class="text-5xl font-bold">STARK INTERNATIONAL</h1>
       <p class="text-2xl mt-4">A Partner to Trust</p>
       <a href="about.html" class="learn-more-btn">Learn More</a>
     </div>
+
+    <!-- Navigation Arrows -->
+    <button class="arrow left" onclick="changeSlide(-1)">&#8249;</button>
     <button class="arrow right" onclick="changeSlide(1)">&#8250;</button>
   </section>
 
@@ -544,7 +603,7 @@
     <div class="text-content">
       <h2>Pioneering Healthcare Solutions</h2>
       <h1>Transforming lives through innovation</h1>
-      <p>Stark International stands as a trusted leader in pharmaceutical raw materials sourcing and distribution, committed to a customer-centric approach. We are on a mission to revolutionize the pharmaceutical landscape in the Middle East, enhancing health and well-being for all. Our dedicated Stark family continuously strives to elevate the industry, unlock new potential, and transform lives, ensuring that we meet the evolving needs of our customers and partners.</p>
+      <p>We are focused on imparting knowledge and technical expertise to assist our clients in achieving optimal solutions. We regularly evaluate and refine our management processes, operational methods, practices, controls, and resources to ensure continuous improvement in our systems, products, and services.</p>
       <a href="contact.html">Get in touch</a>
     </div>
     
@@ -571,7 +630,7 @@
   <!-- Order Products Section -->
   <section class="order-products-section fade-section">
     <h2>Order Our Products</h2>
-    <p>Since 2005, we have specialized in the field of pharmaceutical ingredients and cosmetic raw materials. Our customer base encompasses multi-national pharmaceutical corporations, generic pharmaceutical companies, biotech, and virtual companies, as well as others at the forefront of healthcare and personal care industries.</p>
+    <p>Since 1989, we have specialized in the field of pharmaceutical ingredients and cosmetic raw materials. Our customer base encompasses multi-national pharmaceutical corporations, generic pharmaceutical companies, biotech, and virtual companies, as well as others at the forefront of healthcare and personal care industries.</p>
     <a href="contact.html">Contact Us and Order</a>
   </section>
 
@@ -601,16 +660,23 @@
         <h2>Get in Touch</h2>
         <p>For inquiries and support, connect with us:</p>
         <ul>
-          <li><i class="fas fa-envelope"></i> Email: <a href="mailto:contact@starkint.com">contact@starkint.com</a></li>
-          <li><i class="fab fa-whatsapp"></i> WhatsApp: <a href="https://wa.me/+971505050505" target="_blank">Chat with us</a></li>
-          <li><i class="fas fa-phone"></i> Phone: <a href="tel:+971505050505">+971 50 505 0505</a></li>
-          <li><i class="fas fa-map-marker-alt"></i> Address: Stark International, Ras Al Khaimah, UAE</li>
+          <li><i class="fas fa-envelope"></i> Email: <a href="mailto:info@starkintl.com">info@starkintl.com</a></li>
+          <li><i class="fab fa-whatsapp"></i> WhatsApp: <a href="https://wa.me/971518007643" target="_blank">Click me to message</a></li>
+          <li><i class="fas fa-phone"></i> Phone: <a href="tel:00971518007643">Call here</a></li>
+          <li><i class="fas fa-map-marker-alt"></i> Address: FBC50274 Compass Building, Al Shohada Road, AL Hamra Industrial Zone-FZ, Ras Al Khaimah, United Arab Emirates</li>
         </ul>
       </div>
       
       <div class="map-section">
-        <!-- Ras Al Khaimah, UAE coordinates -->
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d27633.677972788263!2d55.914676021507394!3d25.800690467583277!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ef6761e1ed9b66f%3A0xcdf0edafa84cbb6f!2sRas%20al-Khaimah!5e0!3m2!1sen!2sae!4v1699112234567!5m2!1sen!2sae" width="100%" height="500" style="border:0; border-radius: 15px;" allowfullscreen="" loading="lazy"></iframe>
+        <!-- Updated Google Maps Embed for the new address -->
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3450.123456789!2d55.978100!3d25.800690!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ef6761e1ed9b66f%3A0xabcdef123456789!2sFBC50274%20Compass%20Building%2C%20Al%20Shohada%20Road%2C%20AL%20Hamra%20Industrial%20Zone-FZ%2C%20Ras%20Al%20Khaimah%2C%20United%20Arab%20Emirates!5e0!3m2!1sen!2sae!4v1700000000000!5m2!1sen!2sae" 
+          width="100%" 
+          height="500" 
+          style="border:0; border-radius: 15px;" 
+          allowfullscreen="" 
+          loading="lazy">
+        </iframe>
       </div>
     </div>
   </section>
@@ -618,70 +684,88 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="container mx-auto footer-container">
+      <!-- Our Services Section -->
       <div class="footer-section">
         <h3>Our Services</h3>
         <ul>
-          <li><a href="aping.html">Pharmaceutical Ingredients</a></li>
+          <li><a href="aping.html">Active Pharmaceutical Ingredients</a></li>
           <li><a href="excipients.html">Excipients</a></li>
         </ul>
       </div>
+
+      <!-- Quick Links Section -->
       <div class="footer-section">
         <h3>Quick Links</h3>
         <ul>
           <li><a href="about.html">About Us</a></li>
           <li><a href="products.html">Products</a></li>
           <li><a href="contact.html">Contact</a></li>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Terms of Service</a></li>
+          <!-- Removed Privacy Policy and Terms of Service -->
         </ul>
       </div>
+
+      <!-- Connect with Us Section -->
       <div class="footer-section">
         <h3>Connect with Us</h3>
         <div class="footer-icons">
-          <a href="https://wa.me/+971505050505" target="_blank" class="hover:text-green-400">
+          <a href="https://wa.me/971518007643" target="_blank" class="hover:text-green-400">
             <i class="fab fa-whatsapp"></i>
           </a>
-          <a href="mailto:contact@starkint.com" class="hover:text-red-400">
+          <a href="mailto:info@starkintl.com" class="hover:text-red-400">
             <i class="fas fa-envelope icon"></i>
           </a>
-          <a href="tel:+971505050505" class="hover:text-blue-400">
+          <a href="tel:00971518007643" class="hover:text-blue-400">
             <i class="fas fa-phone"></i>
           </a>
-          <a href="https://www.linkedin.com" target="_blank" class="hover:text-blue-500">
+          <a href="https://www.linkedin.com/company/starkintl?trk=blended-typeahead" target="_blank" class="hover:text-blue-500">
             <i class="fab fa-linkedin"></i>
           </a>
-          <a href="https://twitter.com" target="_blank" class="hover:text-blue-500">
-            <i class="fab fa-twitter"></i>
-          </a>
-          <a href="https://facebook.com" target="_blank" class="hover:text-blue-500">
-            <i class="fab fa-facebook"></i>
-          </a>
+          <!-- Removed Twitter and Facebook icons -->
         </div>
       </div>
     </div>
   </footer>
 
+  <!-- Scripts -->
   <script>
+    // Slideshow functionality
     const images = [
       'images/medicine.jpg',
       'images/medicine2.jpg',
       'images/medicine3.jpg'
     ];
     let currentImageIndex = 0;
+    let slideInterval;
 
     function changeSlide(direction) {
       currentImageIndex = (currentImageIndex + direction + images.length) % images.length;
-      const section = document.getElementById('medicine-section');
-      $(section).fadeOut(300, function() {
-        section.style.backgroundImage = `url(${images[currentImageIndex]})`;
-        $(section).fadeIn(300);
-      });
+      const slidesContainer = document.querySelector('.slides-container');
+      slidesContainer.style.transform = `translateX(-${currentImageIndex * 100}%)`;
+      resetInterval();
     }
 
-    // Automatic slideshow
-    setInterval(() => {
-      changeSlide(1);
-    }, 5000);
+    function startSlideshow() {
+      slideInterval = setInterval(() => {
+        changeSlide(1);
+      }, 6000); // Changed from 5000ms to 6000ms
+    }
+
+    function resetInterval() {
+      clearInterval(slideInterval);
+      startSlideshow();
+    }
+
+    // Start the slideshow on page load
+    window.onload = function() {
+      startSlideshow();
+
+      // Counter animations
+      animateCounter("users-bought", 0, 150, 1500); // Animate to 150
+      animateCounter("users-trust", 0, 150, 1500); // Animate to 150
+      animateCounter("items-stock", 0, 200, 1500, function() {
+        document.getElementById("items-stock").textContent += "+";
+      }); // Animate to 200 and append "+"
+    };
 
     // Counter animations
     function animateCounter(id, start, end, duration, callback) {
@@ -693,21 +777,12 @@
       let timer = setInterval(function () {
         current += increment;
         obj.textContent = current;
-        if (current == end) {
+        if (current === end) {
           clearInterval(timer);
           if (callback) callback();
         }
       }, stepTime);
     }
-
-    // Run counters on page load
-    window.onload = function() {
-      animateCounter("users-bought", 0, 1000, 50);
-      animateCounter("users-trust", 0, 4000000, 100, function() {
-        document.getElementById("users-trust").textContent = "It's endless!";
-      });
-      animateCounter("items-stock", 0, 5000, 50);
-    };
 
     // Fade-in on scroll
     document.addEventListener('DOMContentLoaded', function() {

@@ -1,0 +1,105 @@
+  <footer class="footer">
+    <div class="container mx-auto footer-container">
+      <div class="footer-section">
+        <h3>Our Services</h3>
+        <ul>
+          <li><a href="excipients.html">Excipients</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Connect with Us</h3>
+        <div class="footer-icons">
+          <a href="https://wa.me/+971518007643" target="_blank" class="hover:text-green-400">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+          <a href="mailto:info@starkintl.com" class="hover:text-red-400">
+            <i class="fas fa-envelope icon"></i>
+          </a>
+          <a href="tel:+971505050505" class="hover:text-blue-400">
+            <i class="fas fa-phone"></i>
+          </a>
+          <a href="https://www.linkedin.com/company/starkintl?trk=blended-typeahead" target="_blank" class="hover:text-blue-500">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
+
+
+
+these are icons and links
+
+
+second: css: .footer {
+    background: linear-gradient(to right, #0f609b, #118f9d); /* Same gradient as About Us */
+    color: white;
+    padding: 4rem 2rem;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .footer-section {
+    flex: 1;
+    margin-bottom: 2rem;
+    min-width: 200px; /* Ensures responsiveness */
+  }
+  
+  .footer-section h3 {
+    color: #ffffff;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  .footer-section ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .footer-section ul li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .footer-section a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  
+  .footer-section a:hover {
+    color: #bdbdbd;
+  }
+  
+  .footer-icons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .footer-icons a {
+    font-size: 1.5rem; /* Adjust icon size as needed */
+    transition: transform 0.3s ease;
+  }
+  
+  .footer-icons a:hover {
+    transform: scale(1.1);
+  }
+  

@@ -3,30 +3,40 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Stark International - APIs</title>
-  <script>
-    // Device Detection Script
-    document.addEventListener('DOMContentLoaded', function() {
-      var userAgent = navigator.userAgent.toLowerCase();
-      // A basic check for common mobile keywords in the user agent
-      if (userAgent.includes('mobile') || userAgent.includes('android') || userAgent.includes('iphone') || userAgent.includes('ipad') || userAgent.includes('ipod')) {
-        window.location.href = 'aping1.html';
-      }
-    });
-  </script>
+  <title>Stark International - Contact</title>
+  
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome Icons -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
+  
+  <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+    
     body {
       font-family: 'Poppins', sans-serif;
       margin: 0;
       padding: 0;
       background-color: #f0f4f8;
+      scroll-behavior: smooth;
+      
+      /* Added for footer positioning */
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
 
-    /* Link hover underline animation */
+    /* Allow main to take available space */
+    main {
+      flex: 1;
+      padding-top: 6rem; /* Prevent overlapping with fixed header */
+    }
+
+    /* Navigation Link Hover Underline */
     .nav-link::after {
       content: '';
       display: block;
@@ -39,11 +49,15 @@
       width: 100%;
     }
 
-    /* Header gradient */
+    /* Header Gradient */
     header {
       background: linear-gradient(to right, #0f609b, #118f9d);
       padding: 1.5rem 2rem;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
     .header-container {
       display: flex;
@@ -52,12 +66,11 @@
     }
 
     /* Logo Style */
-    .logo {
-      flex-shrink: 0;
-      margin-right: 2rem;
+    .logo a {
       color: #ffffff;
       font-size: 2.5rem;
       font-weight: bold;
+      text-decoration: none;
       cursor: pointer;
     }
 
@@ -70,6 +83,7 @@
       font-size: 1.2rem;
       color: #ffffff;
       transition: color 0.3s ease;
+      text-decoration: none;
     }
     .nav-link:hover {
       color: #cce7f0;
@@ -81,20 +95,23 @@
       gap: 1rem;
       align-items: center;
     }
+    .controls a {
+      color: #ffffff; /* Ensure icons are white */
+      transition: color 0.3s ease, transform 0.3s ease;
+      text-decoration: none;
+    }
+    .controls a:hover {
+      color: #67a955;
+      transform: scale(1.1);
+    }
     .icon {
       font-size: 1.5rem;
-      color: #ffffff;
-      transition: transform 0.3s ease, color 0.3s ease;
-    }
-    .icon:hover {
-      transform: scale(1.1);
-      color: #67a955;
     }
 
     /* Contact Page Styling */
     .contact-container {
       max-width: 1200px;
-      margin: 4rem auto;
+      margin: 0 auto 4rem auto; /* Removed top margin */
       padding: 2rem;
       background: #fff;
       border-radius: 20px;
@@ -148,8 +165,8 @@
 
     /* Fixed map size */
     .map-container {
-      width: 800px;
-      height: 400px;
+      width: 100%;
+      height: 300px;
       border-radius: 20px;
       overflow: hidden;
       box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
@@ -157,8 +174,8 @@
       display: block;
     }
     .map-container iframe {
-      width: 800px;
-      height: 400px;
+      width: 100%;
+      height: 100%;
       border:0;
       display:block;
     }
@@ -311,59 +328,69 @@
       padding-left: 30px;
     }
 
-    /* Enhanced Footer Section */
+    /* Footer Section with Gradient */
     .footer {
-      background: #118f9d;
+      background: linear-gradient(to right, #0f609b, #118f9d);
       color: white;
       padding: 4rem 2rem;
       box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
     }
+
     .footer-container {
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
     }
+
     .footer-section {
       flex: 1;
       margin-bottom: 2rem;
       min-width: 200px;
     }
+
     .footer-section h3 {
       color: #ffffff;
       font-weight: bold;
       margin-bottom: 1rem;
     }
+
     .footer-section ul {
       list-style: none;
       padding: 0;
     }
+
     .footer-section ul li {
       margin-bottom: 0.5rem;
     }
+
     .footer-section a {
       color: #ffffff;
       text-decoration: none;
       transition: color 0.3s;
     }
+
     .footer-section a:hover {
       color: #bdbdbd;
     }
+
     .footer-icons {
       display: flex;
       gap: 1rem;
       margin-top: 1rem;
     }
+
     .footer-icons a:hover {
       transform: scale(1.1);
     }
   </style>
 </head>
 <body>
-  <header class="text-white shadow-lg sticky top-0 z-50">
+  <!-- Header -->
+  <header>
     <div class="container mx-auto header-container">
       <!-- Logo -->
       <div class="logo">
-        Stark International
+        <a href="index.html">Stark International</a>
       </div>
 
       <!-- Navigation Links -->
@@ -371,15 +398,15 @@
         <a href="index.html" class="nav-link font-medium">Home</a>
         <a href="about.html" class="nav-link font-medium">About</a>
         <a href="products.html" class="nav-link font-medium">Products</a>
-        <a href="contact.html" class="nav-link font-medium">Contact</a>
+        <a href="#contact" class="nav-link font-medium">Contact</a>
       </nav>
 
       <!-- WhatsApp and Gmail Icons -->
       <div class="controls">
-        <a href="https://wa.me/+1234567890" target="_blank">
+        <a href="https://wa.me/00971518007643" target="_blank" class="transition" aria-label="WhatsApp">
           <i class="fab fa-whatsapp icon"></i>
         </a>
-        <a href="mailto:contact@starkint.com">
+        <a href="mailto:info@starkint.com" class="transition" aria-label="Email">
           <i class="fas fa-envelope icon"></i>
         </a>
       </div>
@@ -389,72 +416,86 @@
   <main>
     <!-- Contact Page Content -->
     <div class="contact-container">
+      <!-- Contact Heading -->
       <div class="contact-heading">
         <h1>Get in Touch with Us</h1>
         <p style="font-size:1.2rem; color:#333;">We’re here to help with your inquiries, partnership requests, and product details.</p>
       </div>
 
+      <!-- Contact Information -->
       <div class="contact-info-block">
         <h2>Our Main Contact Details</h2>
-        <p><i class="fas fa-phone"></i><strong>Phone:</strong> +1-555-555-5555</p>
-        <p><i class="fas fa-envelope"></i><strong>Email:</strong> contact@starkint.com</p>
-        <p><i class="fab fa-whatsapp"></i><strong>WhatsApp:</strong> +1234567890</p>
+        <p><i class="fas fa-phone"></i><strong>Phone:</strong> <a href="tel:00971518007643">00971518007643</a></p>
+        <p><i class="fas fa-envelope"></i><strong>Email:</strong> <a href="mailto:info@starkint.com">info@starkint.com</a></p>
+        <p><i class="fab fa-whatsapp"></i><strong>WhatsApp:</strong> <a href="https://wa.me/00971518007643" aria-label="WhatsApp Link">00971518007643</a></p>
         <p><i class="fas fa-globe"></i><strong>Website:</strong> <a href="https://www.starkint.com">www.starkint.com</a></p>
-        <p style="margin-top:1rem; font-size:1.1rem;">For business inquiries, please email us directly. For sales, reach out via phone or WhatsApp. For technical support, please email or call us, and we'll assist as soon as possible.</p>
+        <p style="margin-top:1rem; font-size:1.1rem;">
+          For business inquiries, please email us directly. For sales, reach out via phone or WhatsApp. For technical support, please email or call us, and we'll assist as soon as possible.
+        </p>
       </div>
 
+      <!-- Location Section -->
       <div class="location-section">
         <h2>Our Main Office Location</h2>
         <div class="map-container">
+          <!-- Updated Google Maps Embed for UAE Address -->
           <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509869!2d144.95373631531746!3d-37.81627977975181!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf5777e129d03a5a9!2sStark%20Tower!5e0!3m2!1sen!2sau!4v1636728334695!5m2!1sen!2sau"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3450.123456789!2d55.978100!3d25.800690!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ef6761e1ed9b66f%3A0xabcdef123456789!2sFBC50274%20Compass%20Building%2C%20Al%20Shohada%20Road%2C%20AL%20Hamra%20Industrial%20Zone-FZ%2C%20Ras%20Al%20Khaimah%2C%20United%20Arab%20Emirates!5e0!3m2!1sen!2sae!4v1700000000000!5m2!1sen!2sae" 
             allowfullscreen="" loading="lazy"></iframe>
         </div>
         <p style="font-size:1.1rem;margin-bottom:1rem;">
           <i class="fas fa-map-marker-alt" style="color:#118f9d;"></i> 
-          Stark International HQ, Stark Tower, 123 Innovation Drive, Dubai, UAE.
+          FBC50274 Compass Building, Al Shohada Road, AL Hamra Industrial Zone-FZ, Ras Al Khaimah, United Arab Emirates
         </p>
         <p style="font-size:1.1rem;margin-bottom:2rem;">
           <i class="fas fa-directions" style="color:#118f9d;"></i> 
           <a href="https://maps.google.com" target="_blank" style="color:#118f9d;text-decoration:underline;">Get Directions</a>
         </p>
 
+        <!-- Branch Offices -->
         <h2>Our Branch Offices</h2>
         <div class="branch-offices">
+          <!-- UAE Branch -->
           <div class="office-card">
-            <h3>London Office</h3>
-            <p><i class="fas fa-map-marker-alt" style="color:#0f609b;"></i> 45 Regent St, London, UK</p>
-            <p><i class="fas fa-phone" style="color:#0f609b;"></i> +44 20 1234 5678</p>
-            <p><i class="fas fa-envelope" style="color:#0f609b;"></i> <a href="mailto:london@starkint.com">london@starkint.com</a></p>
+            <h3>UAE Branch</h3>
+            <p><i class="fas fa-map-marker-alt" style="color:#0f609b;"></i> FBC50274 Compass Building, Al Shohada Road, AL Hamra Industrial Zone-FZ, Ras Al Khaimah, United Arab Emirates</p>
+            <p><i class="fas fa-phone" style="color:#0f609b;"></i> <a href="tel:00971518007643">00971518007643</a></p>
+            <p><i class="fas fa-envelope" style="color:#0f609b;"></i> <a href="mailto:info@starkint.com">info@starkint.com</a></p>
           </div>
+
+          <!-- Saudi Arabia Branch (Coming Soon) -->
           <div class="office-card">
-            <h3>New York Office</h3>
-            <p><i class="fas fa-map-marker-alt" style="color:#0f609b;"></i> 789 Madison Ave, New York, USA</p>
-            <p><i class="fas fa-phone" style="color:#0f609b;"></i> +1-212-555-0123</p>
-            <p><i class="fas fa-envelope" style="color:#0f609b;"></i> <a href="mailto:ny@starkint.com">ny@starkint.com</a></p>
+            <h3>Saudi Arabia Branch</h3>
+            <p><i class="fas fa-map-marker-alt" style="color:#0f609b;"></i> Jeddah, Saudi Arabia (Coming Soon)</p>
+            <p><i class="fas fa-phone" style="color:#0f609b;"></i> +966-XXXXXXXXX</p>
+            <p><i class="fas fa-envelope" style="color:#0f609b;"></i> <a href="mailto:saudi@starkint.com">saudi@starkint.com</a></p>
           </div>
+
+          <!-- China Sourcing Office (Coming Soon) -->
           <div class="office-card">
-            <h3>Singapore Office</h3>
-            <p><i class="fas fa-map-marker-alt" style="color:#0f609b;"></i> 56 Orchard Rd, Singapore</p>
-            <p><i class="fas fa-phone" style="color:#0f609b;"></i> +65-3123-4567</p>
-            <p><i class="fas fa-envelope" style="color:#0f609b;"></i> <a href="mailto:sg@starkint.com">sg@starkint.com</a></p>
+            <h3>China Sourcing Office</h3>
+            <p><i class="fas fa-map-marker-alt" style="color:#0f609b;"></i> Room 402, No.63 Huancheng North Road, Hangzhou, China. Post code:310003 (Coming Soon)</p>
+            <p><i class="fas fa-phone" style="color:#0f609b;"></i> +86-XXXXXXXXX</p>
+            <p><i class="fas fa-envelope" style="color:#0f609b;"></i> <a href="mailto:china@starkint.com">china@starkint.com</a></p>
           </div>
         </div>
       </div>
 
+      <!-- Office Hours & Response Times -->
       <div class="office-hours">
-        <h2>Office Hours & Response Times</h2>
+        <h2>Office Hours &amp; Response Times</h2>
         <ul>
-          <li><strong>Headquarters:</strong> Mon-Fri: 9am - 6pm (GST)</li>
-          <li><strong>Branches:</strong> Vary by location, generally Mon-Fri: 9am - 5pm (Local Time)</li>
-          <li><strong>Emails:</strong> Typically answered within 24 hours.</li>
-          <li><strong>WhatsApp & Phone:</strong> Immediate response during office hours.</li>
+          <li><strong>Headquarters:</strong> Mon-Fri 9am - 5pm</li>
+          <li><strong>Branches:</strong> 2 (Ras el Kheima &amp; Jeddah soon)</li>
+          <li><strong>Emails:</strong> Answered within 24 hours</li>
+          <li><strong>WhatsApp &amp; Phone:</strong> within 2 hours</li>
         </ul>
       </div>
 
+      <!-- Contact Form -->
       <div class="contact-form-section">
         <h2>Contact Form</h2>
-        <form class="contact-form">
+        <form class="contact-form" action="https://formspree.io/f/your-form-id" method="POST"> <!-- Update Form Action -->
           <input type="text" name="name" placeholder="Your Name" required>
           <input type="email" name="email" placeholder="Your Email" required>
           <input type="text" name="subject" placeholder="Subject" required>
@@ -462,10 +503,11 @@
           <button type="submit">Send Message</button>
         </form>
         <p class="contact-whatsapp-help">
-          Need help right now? Contact us on <a href="https://wa.me/+1234567890" target="_blank">WhatsApp</a> for immediate assistance.
+          Need help right now? Contact us on <a href="https://wa.me/00971518007643" target="_blank">WhatsApp</a> for immediate assistance.
         </p>
       </div>
 
+      <!-- FAQ Section -->
       <div class="faq-section">
         <h2>Frequently Asked Questions</h2>
 
@@ -492,50 +534,124 @@
     </div>
   </main>
 
-  <!-- Updated Footer Section -->
+  <!-- Enhanced Footer Section -->
   <footer class="footer">
     <div class="container mx-auto footer-container">
       <div class="footer-section">
         <h3>Our Services</h3>
         <ul>
-          <li><a href="#">Pharmaceutical Ingredients</a></li>
-          <li><a href="#">Excipients</a></li>
+          <li><a href="aping.html">Active Pharmaceutical Ingredients</a></li>
+          <li><a href="excipients.html">Excipients</a></li>
+          <!-- Updated links to aping.html and excipients.html -->
         </ul>
       </div>
       <div class="footer-section">
         <h3>Quick Links</h3>
         <ul>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="#products">Products</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Terms of Service</a></li>
+          <li><a href="index.html">Home</a></li>
+          <!-- Removed About Us from Quick Links as requested -->
+          <li><a href="about.html">About</a></li>
+          <!-- Updated Contact link to contact.html -->
+          <li><a href="products.html">Products</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h3>Connect with Us</h3>
         <div class="footer-icons">
-          <a href="https://wa.me/+971505050505" target="_blank" class="hover:text-green-400">
+          <a href="https://wa.me/971518007643" target="_blank">
             <i class="fab fa-whatsapp"></i>
           </a>
-          <a href="mailto:contact@starkint.com" class="hover:text-red-400">
+          <a href="mailto:contact@starkint.com">
             <i class="fas fa-envelope icon"></i>
           </a>
-          <a href="tel:+971505050505" class="hover:text-blue-400">
+          <a href="tel:+971518007643">
             <i class="fas fa-phone"></i>
           </a>
-          <a href="https://www.linkedin.com" target="_blank" class="hover:text-blue-500">
+          <a href="https://www.linkedin.com/company/starkintl?trk=blended-typeahead" target="_blank">
             <i class="fab fa-linkedin"></i>
           </a>
-          <a href="https://twitter.com" target="_blank" class="hover:text-blue-500">
-            <i class="fab fa-twitter"></i>
-          </a>
-          <a href="https://facebook.com" target="_blank" class="hover:text-blue-500">
-            <i class="fab fa-facebook"></i>
-          </a>
+          <!-- Removed Twitter icon as requested -->
         </div>
       </div>
     </div>
   </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Optional: Remove or comment out unused scripts if not needed
+    /*
+    // Slideshow functionality (not used in contact page)
+    const images = [
+      'images/medicine.jpg',
+      'images/medicine2.jpg',
+      'images/medicine3.jpg'
+    ];
+    let currentImageIndex = 0;
+    let slideInterval;
+
+    function changeSlide(direction) {
+      currentImageIndex = (currentImageIndex + direction + images.length) % images.length;
+      const slidesContainer = document.querySelector('.slides-container');
+      slidesContainer.style.transform = `translateX(-${currentImageIndex * 100}%)`;
+      resetInterval();
+    }
+
+    function startSlideshow() {
+      slideInterval = setInterval(() => {
+        changeSlide(1);
+      }, 6000); // Changed from 5000ms to 6000ms
+    }
+
+    function resetInterval() {
+      clearInterval(slideInterval);
+      startSlideshow();
+    }
+
+    // Start the slideshow on page load
+    window.onload = function() {
+      startSlideshow();
+
+      // Counter animations (if any)
+      animateCounter("users-bought", 0, 150, 1500); // Animate to 150
+      animateCounter("users-trust", 0, 150, 1500); // Animate to 150
+      animateCounter("items-stock", 0, 200, 1500, function() {
+        document.getElementById("items-stock").textContent += "+";
+      }); // Animate to 200 and append "+"
+    };
+
+    // Counter animations
+    function animateCounter(id, start, end, duration, callback) {
+      let obj = document.getElementById(id);
+      let range = end - start;
+      let increment = end > start ? 1 : -1;
+      let stepTime = Math.abs(Math.floor(duration / range));
+      let current = start;
+      let timer = setInterval(function () {
+        current += increment;
+        obj.textContent = current;
+        if (current === end) {
+          clearInterval(timer);
+          if (callback) callback();
+        }
+      }, stepTime);
+    }
+
+    // Fade-in on scroll
+    document.addEventListener('DOMContentLoaded', function() {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('fade-in');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.fade-section').forEach(el => {
+        observer.observe(el);
+      });
+    });
+    */
+    
+  </script>
 </body>
 </html>
