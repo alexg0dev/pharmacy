@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <!-- Mobile & Responsive Viewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stark International - Excipients (Mobile)</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts (Poppins) -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet"/>
+
+  <!-- Font Awesome Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
+
+  <!-- Detect Desktop and Redirect to excipients.html if not mobile -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if (!/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        window.location.href = 'excipients.html';
+      }
+    });
+  </script>
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background-color: #f9fafb;
+      scroll-behavior: smooth;
+      color: #333;
+    }
+
+    @font-face {
+      font-family: 'Murasuit';
+      src: url('fonts/Murasuit.woff2') format('woff2'),
+           url('fonts/Murasuit.woff') format('woff'),
+           url('fonts/Murasuit.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    .font-Murasuit {
+      font-family: 'Murasuit', sans-serif;
+    }
+
+    header {
+      background: linear-gradient(to right, #0f609b, #118f9d);
+      padding: 1rem;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo a {
+      color: #ffffff;
+      text-decoration: none;
+      font-family: 'Murasuit', sans-serif;
+      font-size: 1.5rem;
+    }
+
+    .hamburger {
+      font-size: 1.5rem;
+      color: #ffffff;
+      cursor: pointer;
+    }
+
+    .mobile-nav {
+      background: #0f609b;
+      border-radius: 10px;
+      padding: 1rem;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.3s ease, opacity 0.3s ease;
+    }
+
+    .nav-open {
+      max-height: 300px;
+      opacity: 1;
+    }
+
+    .mobile-nav a {
+      display: block;
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 1rem;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .mobile-nav a:last-child {
+      border-bottom: none;
+    }
+
+    .hero-banner {
+      background: linear-gradient(to right, #118f9d, #0f609b);
+      padding: 3rem 1rem;
+      border-radius: 20px;
+      text-align: center;
+      color: #fff;
+      max-width: 95%;
+      margin: 5rem auto 2rem auto;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    }
+
+    .hero-banner h1 {
+      font-size: 1.8rem;
+      font-weight: bold;
+      font-family: 'Murasuit', sans-serif;
+      margin-bottom: 1rem;
+    }
+
+    .hero-banner p {
+      font-size: 1rem;
+      line-height: 1.6;
+      max-width: 600px;
+      margin:0 auto;
+    }
+
+    .search-bar {
+      width: 90%;
+      padding: 0.7rem;
+      font-size: 0.9rem;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      margin: 0 auto 1.5rem auto;
+      display: block;
+    }
+
+    /* Classification heading */
+    .classification-heading {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #118f9d;
+      margin: 2rem 0 1rem 0;
+      text-align: center;
+    }
+
+    /* Card layout */
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      padding: 1rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    .card .item-name {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #0b3d91;
+      margin-bottom: 0.5rem;
+    }
+
+    .card p {
+      font-size: 0.9rem;
+      color: #333;
+      margin: 0.3rem 0;
+    }
+
+    .card p strong {
+      color: #118f9d;
+      margin-right: 0.5rem;
+    }
+
+    footer {
+      background: linear-gradient(to right, #118f9d, #0f609b);
+      color: white;
+      padding: 2rem 1rem;
+      margin-top:auto;
+      text-align:center;
+    }
+
+    .footer-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .footer-section h3 {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      font-size:1rem;
+    }
+
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-section ul li {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-section a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size:0.9rem;
+      transition: color 0.3s;
+    }
+
+    .footer-section a:hover {
+      color: #bdbdbd;
+    }
+
+    .footer-icons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+  <header>
+    <div class="header-container">
+      <div class="logo">
+        <a href="index1.html" class="font-Murasuit">Stark International</a>
+      </div>
+      <div class="hamburger" onclick="toggleNav()">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+    <div class="mobile-nav" id="mobile-nav">
+      <a href="index1.html">Home</a>
+      <a href="about1.html">About</a>
+      <a href="products1.html">Products</a>
+      <a href="contact1.html">Contact</a>
+      <div class="mt-2">
+        <a href="https://wa.me/971518007643" target="_blank" aria-label="WhatsApp" class="block mt-2 text-white">
+          <i class="fab fa-whatsapp mr-1"></i> WhatsApp
+        </a>
+        <a href="mailto:info@starkintl.com" aria-label="Email" class="block mt-2 text-white">
+          <i class="fas fa-envelope mr-1"></i> Email
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero-banner">
+    <h1>Excipients Stock List</h1>
+    <p>Use the search bar below to quickly find the excipients you need. Each classification is listed with item details.</p>
+  </section>
+
+  <div style="max-width:95%; margin: 0 auto;">
+    <input type="text" id="excipientSearch" class="search-bar" placeholder="Search for an excipient...">
+
+    <div id="excipientsContainer">
+      <!-- Classifications and cards will be injected by JavaScript -->
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>Our Services</h3>
+        <ul>
+          <li><a href="aping1.html">Active Pharmaceutical Ingredients</a></li>
+          <li><a href="excipients1.html">Excipients</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index1.html">Home</a></li>
+          <li><a href="products1.html">Products</a></li>
+          <li><a href="contact1.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Connect with Us</h3>
+        <div class="footer-icons">
+          <a href="https://wa.me/971518007643" target="_blank" aria-label="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+          <a href="mailto:info@starkintl.com" aria-label="Email">
+            <i class="fas fa-envelope icon"></i>
+          </a>
+          <a href="tel:+971518007643" aria-label="Phone">
+            <i class="fas fa-phone"></i>
+          </a>
+          <a href="https://www.linkedin.com/company/starkintl" target="_blank" aria-label="LinkedIn">
+            <i class="fab fa-linkedin"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleNav() {
+      const nav = document.getElementById('mobile-nav');
+      nav.classList.toggle('nav-open');
+    }
+
+    const excipientsData = [
+      {
+        classification: "Anti-caking",
+        items: [
+          {name: "Aerosil 200", origin: "USA", shipment: "Prompt"}
+        ]
+      },
+      {
+        classification: "Anti-oxidant / Preservative",
+        items: [
+          {name: "Ascorbic Acid", origin: "China", shipment: "Prompt"}
+        ]
+      },
+      {
+        classification: "Solvent",
+        items: [
+          {name: "Benzyl Alcohol", origin: "Europe", shipment: "Prompt"}
+        ]
+      },
+      {
+        classification: "Vitamin",
+        items: [
+          {name: "Biotin 2%", origin: "China", shipment: "Prompt"}
+        ]
+      },
+      {
+        classification: "Dietary Supplement",
+        items: [
+          {name: "Chondroitin Sulfate", origin: "China", shipment: "2 Weeks"}
+        ]
+      },
+      {
+        classification: "Superdisintegrant",
+        items: [
+          {name: "Crospovidone XL", origin: "China", shipment: "Prompt"},
+          {name: "Crospovidone XL 10", origin: "China", shipment: "Prompt"},
+          {name: "Crosscarmellose Sodium (CCS)", origin: "India", shipment: "Prompt"},
+          {name: "Sodium Starch Glycolate (SSG)", origin: "India", shipment: "Prompt"}
+        ]
+      },
+      {
+        classification: "Vitamin",
+        items: [
+          {name: "D Calcium Pantothenate", origin: "China", shipment: "2 Weeks"},
+          {name: "Folic Acid", origin: "China", shipment: "Prompt"},
+          {name: "Nicotinamide", origin: "China", shipment: "Prompt"},
+          {name: "PYRODOXINE (VIT B6)", origin: "China", shipment: "Prompt"},
+          {name: "Vitamin B 1 HCL", origin: "China", shipment: "Prompt"}
+        ]
+      },
+      {
+        classification: "Iron Supplement",
+        items: [
+          {name: "Ferrous Fumarate", origin: "China", shipment: "2 Weeks"}
+        ]
+      },
+      {
+        classification: "Herbal Supplement",
+        items: [
+          {name: "Ginkgo Biloba", origin: "China", shipment: "Prompt"}
+        ]
+      },
+      {
+        classification: "Solvent / Dietary Supplement",
+        items: [
+          {name: "Methylsulfonylmethane (MSM)", origin: "China", shipment: "2 Weeks"}
+        ]
+      },
+      {
+        classification: "Binder / Lubricant",
+        items: [
+          {name: "PEG 400", origin: "KSA", shipment: "Prompt"},
+          {name: "PEG 6000", origin: "INEOS", shipment: "Prompt"}
+        ]
+      },
+      {
+        classification: "Plastizer",
+        items: [
+          {name: "Pregelatinized Starch", origin: "China", shipment: "Prompt"}
+        ]
+      },
+      {
+        classification: "Binder / Disinfectant",
+        items: [
+          {name: "PVP K25", origin: "CHINA", shipment: "Prompt"},
+          {name: "PVP K30", origin: "CHINA", shipment: "Prompt"},
+          {name: "PVP K90", origin: "USA", shipment: "Prompt"}
+        ]
+      },
+      {
+        classification: "Vitamin / Anti-oxidant",
+        items: [
+          {name: "Vitamin E Acetate 98", origin: "China", shipment: "Prompt"}
+        ]
+      },
+      {
+        classification: "Coating Agent",
+        items: [
+          {name: "Zinc Oxide", origin: "KSA", shipment: "Prompt"}
+        ]
+      },
+      {
+        classification: "Dietary Supplement",
+        items: [
+          {name: "L-carnitine Hcl​", origin: "China", shipment: "Prompt"},
+          {name: "D-panthenol", origin: "China", shipment: "Prompt"},
+          {name: "Glucosamine k2SO4", origin: "China", shipment: "2 Weeks"},
+          {name: "Lactoferrin", origin: "China", shipment: "Prompt"},
+          {name: "Colstrum", origin: "China", shipment: "Prompt"}
+        ]
+      },
+      {
+        classification: "Viscosity Regulator",
+        items: [
+          {name: "Xanthan gum", origin: "China", shipment: "Prompt"}
+        ]
+      },
+      {
+        classification: "Preservative / Chelating agent",
+        items: [
+          {name: "Di Sodium EDTA", origin: "China", shipment: "Prompt"},
+          {name: "Tetra Sodium EDTA", origin: "China", shipment: "Prompt"}
+        ]
+      },
+      {
+        classification: "Iron Supplement",
+        items: [
+          {name: "Ferrous bis-glycinate", origin: "China", shipment: "3 Weeks"}
+        ]
+      },
+      {
+        classification: "Herbal Supplement",
+        items: [
+          {name: "Ginger", origin: "China", shipment: "2 Weeks"}
+        ]
+      },
+      {
+        classification: "Solvent / Liquid Sweeteners",
+        items: [
+          {name: "Monopropylene glycol", origin: "China", shipment: "Prompt"}
+        ]
+      },
+      {
+        classification: "Lubricant",
+        items: [
+          {name: "Talc powder", origin: "China", shipment: "3 Weeks"}
+        ]
+      }
+    ];
+
+    const excipientsContainer = document.getElementById('excipientsContainer');
+    const searchField = document.getElementById('excipientSearch');
+
+    function renderExcipients(query = "") {
+      excipientsContainer.innerHTML = "";
+      // Filter all items by query
+      const filteredData = excipientsData.map(group => {
+        const filteredItems = group.items.filter(item => 
+          item.name.toLowerCase().includes(query.toLowerCase())
+        );
+        return { ...group, items: filteredItems };
+      }).filter(group => group.items.length > 0);
+
+      filteredData.forEach(group => {
+        const heading = document.createElement('h2');
+        heading.classList.add('classification-heading');
+        heading.textContent = group.classification;
+        excipientsContainer.appendChild(heading);
+
+        const cardGrid = document.createElement('div');
+        cardGrid.classList.add('card-grid');
+
+        group.items.forEach(item => {
+          const card = document.createElement('div');
+          card.classList.add('card');
+          card.innerHTML = `
+            <div class="item-name">${item.name}</div>
+            <p><strong>Origin:</strong> ${item.origin}</p>
+            <p><strong>Shipment:</strong> ${item.shipment}</p>
+          `;
+          cardGrid.appendChild(card);
+        });
+
+        excipientsContainer.appendChild(cardGrid);
+      });
+
+      if (filteredData.length === 0) {
+        const noResults = document.createElement('p');
+        noResults.style.textAlign = 'center';
+        noResults.style.marginTop = '2rem';
+        noResults.textContent = "No excipients found for your search.";
+        excipientsContainer.appendChild(noResults);
+      }
+    }
+
+    searchField.addEventListener('keyup', function() {
+      renderExcipients(this.value);
+    });
+
+    // Initial render with no query
+    renderExcipients();
+
+    function toggleNav() {
+      const nav = document.getElementById('mobile-nav');
+      nav.classList.toggle('nav-open');
+    }
+  </script>
+</body>
+</html>

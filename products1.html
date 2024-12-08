@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <!-- Mobile Viewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stark International - Products (Mobile)</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts (Poppins) -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet"/>
+
+  <!-- Font Awesome Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
+
+  <!-- AOS CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet"/>
+
+  <!-- Detect Desktop and Redirect to products.html if not mobile -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if (!/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        // If not mobile (i.e., desktop), redirect to the desktop products page
+        window.location.href = 'products.html';
+      }
+    });
+  </script>
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background-color: #f9fafb;
+      scroll-behavior: smooth;
+    }
+
+    @font-face {
+      font-family: 'Murasuit';
+      src: url('fonts/Murasuit.woff2') format('woff2'),
+           url('fonts/Murasuit.woff') format('woff'),
+           url('fonts/Murasuit.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    .font-Murasuit {
+      font-family: 'Murasuit', sans-serif;
+      font-weight: 400;
+    }
+
+    header {
+      background: linear-gradient(to right, #0f609b, #118f9d);
+      padding: 1rem;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo a {
+      color: #ffffff;
+      text-decoration: none;
+      font-family: 'Murasuit', sans-serif;
+      font-size: 1.5rem;
+    }
+
+    .hamburger {
+      font-size: 1.5rem;
+      color: #ffffff;
+      cursor: pointer;
+    }
+
+    /* Animated Dropdown Nav */
+    .mobile-nav {
+      background: #0f609b;
+      border-radius: 10px;
+      padding: 1rem;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.3s ease, opacity 0.3s ease;
+    }
+
+    .nav-open {
+      max-height: 300px;
+      opacity: 1;
+    }
+
+    .mobile-nav a {
+      display: block;
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 1rem;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .mobile-nav a:last-child {
+      border-bottom: none;
+    }
+
+    .products-section {
+      padding: 2rem 1rem;
+      margin-top: 5rem; /* space for fixed header */
+      background: #ffffff;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+      margin: 6rem 1rem 2rem 1rem;
+      text-align: center;
+    }
+
+    .products-section h1 {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #0f609b;
+      margin-bottom: 2rem;
+    }
+
+    .product-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .product-card {
+      padding: 1.5rem;
+      background: #ffffff;
+      border: 1px solid #e0f4f7;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    .product-image {
+      width: 100%;
+      max-width: 200px;
+      margin: 0 auto 1rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      transition: transform 0.3s, filter 0.3s;
+    }
+
+    .product-card:hover .product-image {
+      transform: scale(1.05);
+      filter: brightness(95%);
+    }
+
+    .product-card h2 {
+      font-size: 1.4rem;
+      color: #118f9d;
+      margin-bottom: 1rem;
+    }
+
+    .product-card p {
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: #555;
+      margin-bottom: 1.5rem;
+    }
+
+    .product-link {
+      display: inline-block;
+      background-color: #0f609b;
+      color: #ffffff;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      text-decoration: none;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      font-size: 0.9rem;
+    }
+
+    .product-link:hover {
+      background-color: #118f9d;
+      transform: translateY(-3px);
+    }
+
+    .footer {
+      background: linear-gradient(to right, #0f609b, #118f9d);
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .footer-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .footer-section h3 {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-section ul li {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-section a {
+      color: white;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.3s;
+    }
+
+    .footer-section a:hover {
+      color: #bdbdbd;
+    }
+
+    .footer-icons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+
+    .footer-icons i {
+      font-size: 1.2rem;
+      transition: transform 0.3s ease;
+    }
+
+    .footer-icons a:hover i {
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <div class="logo">
+        <a href="index1.html">Stark International</a>
+      </div>
+      <div class="hamburger" onclick="toggleNav()">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+    <div class="mobile-nav" id="mobile-nav">
+      <a href="index1.html">Home</a>
+      <a href="about1.html">About</a>
+      <a href="products1.html">Products</a>
+      <a href="contact1.html">Contact</a>
+      <div class="mt-2">
+        <a href="https://wa.me/971518007643" target="_blank" aria-label="WhatsApp" class="block mt-2 text-white">
+          <i class="fab fa-whatsapp mr-1"></i> WhatsApp
+        </a>
+        <a href="mailto:info@starkintl.com" aria-label="Email" class="block mt-2 text-white">
+          <i class="fas fa-envelope mr-1"></i> Email
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Products Section -->
+  <section class="products-section" data-aos="fade-up">
+    <h1>Our Products</h1>
+    <div class="product-grid">
+      <!-- Active Pharmaceutical Ingredients Section -->
+      <div class="product-card" data-aos="fade-up" data-aos-delay="100">
+        <img src="images/molecules.avif" alt="APIs" class="product-image">
+        <h2>Active Pharmaceutical Ingredients (APIs)</h2>
+        <p>We supply high-quality APIs compliant with international standards. Partner with us for a healthier future.</p>
+        <a href="aping1.html" class="product-link">Learn More</a>
+      </div>
+
+      <!-- Excipients Section -->
+      <div class="product-card" data-aos="fade-up" data-aos-delay="200">
+        <img src="images/molecules2.webp" alt="Excipients" class="product-image">
+        <h2>Excipients</h2>
+        <p>Our excipients ensure safety, accessibility, and top-tier functionality in drug formulations.</p>
+        <a href="excipients1.html" class="product-link">Learn More</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>Our Services</h3>
+        <ul>
+          <li><a href="aping1.html">Active Pharmaceutical Ingredients</a></li>
+          <li><a href="excipients1.html">Excipients</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index1.html">Home</a></li>
+          <li><a href="contact1.html">Contact</a></li>
+          <li><a href="products1.html">Products</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Connect with Us</h3>
+        <div class="footer-icons">
+          <a href="https://wa.me/971518007643" target="_blank" aria-label="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+          <a href="mailto:info@starkintl.com" aria-label="Email">
+            <i class="fas fa-envelope icon"></i>
+          </a>
+          <a href="tel:+971518007643" aria-label="Phone">
+            <i class="fas fa-phone"></i>
+          </a>
+          <a href="https://www.linkedin.com/company/starkintl?trk=blended-typeahead" target="_blank" aria-label="LinkedIn">
+            <i class="fab fa-linkedin"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- AOS JS and Init -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init({ duration: 800, once: true });
+  </script>
+
+  <script>
+    function toggleNav() {
+      const nav = document.getElementById('mobile-nav');
+      nav.classList.toggle('nav-open');
+    }
+  </script>
+</body>
+</html>

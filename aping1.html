@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <!-- Mobile Viewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stark International - APIs (Mobile)</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts (Poppins) -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet"/>
+
+  <!-- Font Awesome Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
+
+  <!-- Detect Desktop and Redirect to aping.html if not mobile -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if (!/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        window.location.href = 'aping.html';
+      }
+    });
+  </script>
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background-color: #f9fafb;
+      scroll-behavior: smooth;
+    }
+
+    @font-face {
+      font-family: 'Murasuit';
+      src: url('fonts/Murasuit.woff2') format('woff2'),
+           url('fonts/Murasuit.woff') format('woff'),
+           url('fonts/Murasuit.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    .font-Murasuit {
+      font-family: 'Murasuit', sans-serif;
+    }
+
+    header {
+      background: linear-gradient(to right, #0f609b, #118f9d);
+      padding: 1rem;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo a {
+      color: #ffffff;
+      text-decoration: none;
+      font-family: 'Murasuit', sans-serif;
+      font-size: 1.5rem;
+    }
+
+    .hamburger {
+      font-size: 1.5rem;
+      color: #ffffff;
+      cursor: pointer;
+    }
+
+    .mobile-nav {
+      background: #0f609b;
+      border-radius: 10px;
+      padding: 1rem;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.3s ease, opacity 0.3s ease;
+    }
+
+    .nav-open {
+      max-height: 300px;
+      opacity: 1;
+    }
+
+    .mobile-nav a {
+      display: block;
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 1rem;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .mobile-nav a:last-child {
+      border-bottom: none;
+    }
+
+    .hero-banner {
+      background: linear-gradient(to right, #118f9d, #0f609b);
+      padding: 3rem 1rem;
+      border-radius: 20px;
+      text-align: center;
+      color: #fff;
+      max-width: 95%;
+      margin: 5rem auto 2rem auto;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    }
+
+    .hero-banner h1 {
+      font-size: 1.8rem;
+      font-weight: bold;
+      font-family: 'Murasuit', sans-serif;
+      margin-bottom: 1rem;
+    }
+
+    .hero-banner p {
+      font-size: 1rem;
+      line-height: 1.6;
+      max-width: 600px;
+      margin:0 auto;
+    }
+
+    .api-section {
+      background: #ffffff;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+      max-width: 95%;
+      margin: 2rem auto;
+    }
+
+    .api-section h2 {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #0f609b;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    #apiSearch {
+      width: 90%;
+      padding: 0.7rem;
+      font-size: 0.9rem;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      margin: 0 auto 1.5rem auto;
+      display: block;
+    }
+
+    .api-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .api-item {
+      background: #f0f4f8;
+      padding: 0.8rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+      font-size:0.9rem;
+    }
+
+    .api-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    .api-item a {
+      color: #0b3d91;
+      text-decoration: none;
+      font-weight:600;
+    }
+
+    .api-item a:hover {
+      text-decoration: underline;
+      color:#118f9d;
+    }
+
+    #loadMoreBtn {
+      display: block;
+      margin: 1rem auto;
+      padding: 0.7rem 1.5rem;
+      background: #118f9d;
+      color: #fff;
+      font-weight:600;
+      border: none;
+      border-radius: 5px;
+      cursor:pointer;
+      transition: background-color 0.3s, transform 0.3s;
+      font-size:0.9rem;
+    }
+
+    #loadMoreBtn:hover {
+      background-color: #0f609b;
+      transform: translateY(-2px);
+    }
+
+    footer {
+      background: linear-gradient(to right, #118f9d, #0f609b);
+      color: white;
+      padding: 2rem 1rem;
+      margin-top:auto;
+      text-align:center;
+    }
+
+    .footer-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .footer-section h3 {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      font-size:1rem;
+    }
+
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-section ul li {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-section a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size:0.9rem;
+      transition: color 0.3s;
+    }
+
+    .footer-section a:hover {
+      color: #bdbdbd;
+    }
+
+    .footer-icons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <div class="logo">
+        <a href="index1.html" class="font-Murasuit">Stark International</a>
+      </div>
+      <div class="hamburger" onclick="toggleNav()">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+    <div class="mobile-nav" id="mobile-nav">
+      <a href="index1.html">Home</a>
+      <a href="about1.html">About</a>
+      <a href="products1.html">Products</a>
+      <a href="contact1.html">Contact</a>
+      <div class="mt-2">
+        <a href="https://wa.me/971518007643" target="_blank" aria-label="WhatsApp" class="block mt-2 text-white">
+          <i class="fab fa-whatsapp mr-1"></i> WhatsApp
+        </a>
+        <a href="mailto:info@starkintl.com" aria-label="Email" class="block mt-2 text-white">
+          <i class="fas fa-envelope mr-1"></i> Email
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Banner -->
+  <section class="hero-banner">
+    <h1>Active Pharmaceutical Ingredients</h1>
+    <p>Explore our extensive list of APIs. Use the search below to find what you need. Click on any API name to learn more.</p>
+  </section>
+
+  <!-- API Section -->
+  <section class="api-section">
+    <h2>Our APIs</h2>
+    <input type="text" id="apiSearch" placeholder="Search for an API...">
+
+    <div class="api-grid" id="apiGrid">
+      <!-- API items injected by JavaScript -->
+    </div>
+    <button id="loadMoreBtn">Load More</button>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>Our Services</h3>
+        <ul>
+          <li><a href="aping1.html">Active Pharmaceutical Ingredients</a></li>
+          <li><a href="excipients1.html">Excipients</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index1.html">Home</a></li>
+          <li><a href="products1.html">Products</a></li>
+          <li><a href="contact1.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Connect with Us</h3>
+        <div class="footer-icons">
+          <a href="https://wa.me/971518007643" target="_blank" aria-label="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+          <a href="mailto:info@starkintl.com" aria-label="Email">
+            <i class="fas fa-envelope icon"></i>
+          </a>
+          <a href="tel:+971518007643" aria-label="Phone">
+            <i class="fas fa-phone"></i>
+          </a>
+          <a href="https://www.linkedin.com/company/starkintl" target="_blank" aria-label="LinkedIn">
+            <i class="fab fa-linkedin"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- AOS JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init({ duration: 800, once: true });
+  </script>
+
+  <script>
+    function toggleNav() {
+      const nav = document.getElementById('mobile-nav');
+      nav.classList.toggle('nav-open');
+    }
+
+    // Full list of APIs as per the given snippet (just the names)
+    const apis = [
+"Abiraterone Acetate",
+"Amoxicillin Sodium",
+"Amoxicillin Trihydrate",
+"Ampicillin Lecithin",
+"Ampicillin Sodium Sterile",
+"Ampicillin Trihydrate",
+"Ampicillin+Sulbactam Sterile",
+"Amprolium",
+"Avibactam",
+"Aztreonam",
+"Beclomethasone Dipropionate",
+"Benzathine Pencillin G",
+"Benzocaine",
+"Betamethasone base",
+"Betamethasone Dipropionate",
+"Betamethasone Valerate",
+"Biperiden Hydrochloride",
+"Bisoprolol Fumarate",
+"Budesonide",
+"Calcium Sennosides",
+"Cefadroxil Monohydrate",
+"Cefdinir",
+"Cefepime",
+"Cefixime Trihydrate",
+"Cefoperazone Sodium and Sulbactam",
+"Cefotaxime Sodium",
+"Cefovecin Sodium (Vet.)",
+"Cefpodoxime Proxetil",
+"Cefradine L arginine",
+"Ceftazidime sodium sodium carbonate",
+"Ceftazidime with sodium carbonate",
+"Ceftiofur Hcl/Sodium (Vet.)",
+"Ceftriaxone Sodium",
+"Cefuroxime Axetil",
+"Cefuroxime Sodium",
+"Celecoxib",
+"Cephalexin",
+"Cephapirin Sodium (Vet.)",
+"Cephradine Benzathine (Vet.)",
+"Cinacalcet Hcl",
+"Ciprofloxacin",
+"Citicoline Sodium",
+"CITRIC ACID ANHYDROUS",
+"Clomiphene",
+"Cloxacillin Benzathine",
+"Cloxacillin Sodium",
+"Creatinine",
+"Cyproterone Acetate",
+"Dabigatran Etexitale",
+"Dapagliflozin",
+"Dapagliflozin Amorhpous",
+"Dapagliflozin Propanediol",
+"Dapoxetine Hydrochloride",
+"Desferasirox",
+"Desogestrel",
+"Desogestrel",
+"Di Iodo",
+"Diazepam injection grade",
+"Diclofenac Potassium",
+"Diclofenac Sodium",
+"Dicloxacillin Sodium",
+"Dicloxacillin Sodium Sterile",
+"Dienogest",
+"Diluted Nitroglycerin",
+"Domperidone Base/Maleate",
+"Doripenem",
+"Doripenem Monohydrate Sterile",
+"Doxazosin Mesylate",
+"Doxazosin Mesylate",
+"DOXICYCLINE HCL",
+"Drospirenone",
+"Duloxetine Hcl",
+"Dutasteride",
+"Dydrogesterone",
+"Empagliflozin",
+"Enoxaparin Sodium",
+"Enoxaparin Sodium",
+"Entacapone",
+"Entecavir Monohydrate",
+"Ertapenem Monosodium (NS)",
+"Ertugliflozin",
+"ERYTHROMYCIN THIOCYANATE",
+"Eslicarbazepine Acetate",
+"Estradiol",
+"Estradiol Valerate",
+"ETHINYL ESTRADIOL",
+"Ethinyl Estradiol",
+"ETHINYL Valirate",
+"Etilefrine HCL",
+"Ezetimibe",
+"FAMOTIDINE",
+"Famotidine",
+"Fexofenadine",
+"Fexofinadine Hcl",
+"Finasteride",
+"Flucloxacillin Magnesium",
+"Flucloxacillin Sodium",
+"Flucloxacillin Sodium Sterile",
+"FLUMEQUINE",
+"Fluvastatin Sodium",
+"Folic Acid",
+"Gestodene",
+"Heparin",
+"Homatropine Methylbromide",
+"Hydrocortisone Micronized",
+"Hydroxyprogesterone",
+"Imipenem + Cilastatin",
+"Imipenem+Cilastatin",
+"Insline",
+"Ketoprofen Lysinate",
+"Ketoprofen",
+"L-5-methyltetrahydrofolate- Calcium salt",
+"Levonorgestrel",
+"Lidocaine HCL/ Base",
+"Liraglutide",
+"Mebeverine HCl",
+"Mecobalamin",
+"Meloxicam",
+"Meropenem",
+"Meropenem Sterile",
+"Mesalamine",
+"Mesterolone",
+"Metformin Hcl",
+"Methylcellulose",
+"Mirtazapine",
+"Misoprostol HPMC",
+"Molnupiravir",
+"Mometasone Furote",
+"Montelukast",
+"Moxifloxacin Hcl",
+"Nafcillin",
+"NALBUPHINE HCL",
+"Nandrolon",
+"Nebivolol Hydrochloride",
+"Nicotinmide",
+"Nintedanib Esylate",
+"NORETHISTERONE (Micronized)",
+"Norethisterone Acetate",
+"Norethisterone Enanthate",
+"Norgestrel",
+"Olmesartan",
+"Omperazole",
+"Oxacillin Sodium",
+"Oxacillin Sodium Sterile",
+"Oxytetacycline",
+"Paracetamol",
+"Paracetamol",
+"Penicillin G-Benzathine",
+"Pentosan Polysulfate Sodium",
+"Perindopril Erbumine",
+"Phthalyl Sulfathiazole",
+"Pioglitazone Hcl",
+"Piperacillin + Tazobactam",
+"Piperacillin + Tazobactam",
+"Pivmecillinam Hcl",
+"Pramipexole Hcl",
+"Prasterone Enanthate",
+"Prasugrel Hcl",
+"Progesterone",
+"Quetiapine Fumarate",
+"Ramelteon",
+"Rifaximin",
+"Rifaximin",
+"Risedronate Sodium",
+"Rivaroxaban",
+"Rosuvastatin Calcium",
+"Sacubitril Valsartan",
+"Saxagliptin Monohydrate",
+"Semaglutide",
+"Sertraline Hcl",
+"Sesame oil",
+"Sevelamer Carbonate",
+"Sevelamer Hcl",
+"Sitagliptin Phosphate Monohydrate",
+"Sodium Hyaluronate",
+"Spiramycin",
+"Streptomycin Oral",
+"STREPTOMYCIN Sterile",
+"SUCCINIC ACID",
+"Sulbactam Sodium Sterile",
+"SULPHAQUINOXALINE  SODIUM",
+"Sultamicillin Tosylate",
+"Sumatriptan Succinate",
+"Tamsulosin Hcl",
+"Tazobactam",
+"Terazosin Hcl",
+"Terbinafine Hcl",
+"Testosterone Base",
+"Testosterone Decanoate",
+"Testosterone Enanthate",
+"Testosterone Isocaproate",
+"Testosterone Phenylpropionate",
+"Testosterone Propionate",
+"Testosterone undecanoate",
+"Testosterone Undecanoate",
+"Tetrahydrozoline HCL",
+"Tibolone",
+"Tirzepatide",
+"Tolterodine Tartrate",
+"Torasemide",
+"Triamcinolone Acetonide",
+"Trimetazidine HCl",
+"Valacyclovir Hcl",
+"Valganciclovir Hcl",
+"Vancomycin",
+"Vigabatrin",
+"Vildagliptin"
+    ];
+
+    const apiGrid = document.getElementById('apiGrid');
+    const loadMoreBtn = document.getElementById('loadMoreBtn');
+    let itemsToShow = 20;
+
+    function renderAPIs(query = "") {
+      apiGrid.innerHTML = "";
+      let filtered = apis.filter(api => api.toLowerCase().includes(query.toLowerCase()));
+      let displayed = filtered.slice(0, itemsToShow);
+
+      displayed.forEach(api => {
+        let apiLink = `https://pubchem.ncbi.nlm.nih.gov/#query=${encodeURIComponent(api)}`;
+        let item = document.createElement('div');
+        item.classList.add('api-item');
+        // Just a direct link, no brackets or h3, as requested
+        item.innerHTML = `<a href="${apiLink}" target="_blank">${api}</a>`;
+        apiGrid.appendChild(item);
+      });
+
+      if (filtered.length > itemsToShow) {
+        loadMoreBtn.style.display = "block";
+      } else {
+        loadMoreBtn.style.display = "none";
+      }
+    }
+
+    document.getElementById('apiSearch').addEventListener('keyup', function() {
+      itemsToShow = 20; 
+      renderAPIs(this.value);
+    });
+
+    loadMoreBtn.addEventListener('click', function() {
+      itemsToShow += 20;
+      let query = document.getElementById('apiSearch').value;
+      renderAPIs(query);
+    });
+
+    // Initial render
+    renderAPIs();
+
+    function toggleNav() {
+      const nav = document.getElementById('mobile-nav');
+      nav.classList.toggle('nav-open');
+    }
+  </script>
+</body>
+</html>

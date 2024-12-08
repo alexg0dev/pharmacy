@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- Mobile Viewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stark International - About (Mobile)</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet"/>
+
+  <!-- Detect Desktop and Redirect -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if (!/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        // If not mobile, redirect to desktop about page
+        window.location.href = 'about.html';
+      }
+    });
+  </script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background-color: #f9fafb;
+      scroll-behavior: smooth;
+    }
+
+    /* Preload 'Murasuit' Font Files */
+    @font-face {
+      font-family: 'Murasuit';
+      src: url('fonts/Murasuit.woff2') format('woff2'),
+           url('fonts/Murasuit.woff') format('woff'),
+           url('fonts/Murasuit.ttf') format('truetype');
+      font-weight: 400; 
+      font-style: normal;
+      font-display: swap;
+    }
+
+    .font-Murasuit {
+      font-family: 'Murasuit', sans-serif;
+      font-weight: 400;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(to right, #0f609b, #118f9d);
+      padding: 1rem;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .logo a {
+      color: #ffffff;
+      text-decoration: none;
+      font-family: 'Murasuit', sans-serif;
+      font-size: 1.5rem;
+    }
+
+    .hamburger {
+      font-size: 1.5rem;
+      color: #ffffff;
+      cursor: pointer;
+    }
+
+    /* Mobile Nav Dropdown */
+    .mobile-nav {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background: #0f609b;
+      border-radius: 10px;
+      padding: 1rem;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.3s ease, opacity 0.3s ease;
+    }
+
+    .nav-open {
+      max-height: 300px;
+      opacity: 1;
+    }
+
+    .mobile-nav a {
+      display: block;
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 1rem;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .mobile-nav a:last-child {
+      border-bottom: none;
+    }
+
+    /* Section Headings */
+    .section-heading {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #118f9d;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    /* About Section */
+    .about-section {
+      background: #ffffff;
+      padding: 2rem 1rem;
+      border-radius: 15px;
+      margin: 6rem 1rem 2rem 1rem;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+    }
+
+    .about-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      align-items: center;
+      text-align: center;
+    }
+
+    .about-content p {
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: #333;
+    }
+
+    .about-content img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      transition: transform 0.3s, filter 0.3s;
+    }
+
+    .about-content img:hover {
+      transform: scale(1.03);
+      filter: brightness(97%);
+    }
+
+    .about-values {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    .value-card {
+      background: #ffffff;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      text-align: center;
+      width: 100%;
+      max-width: 280px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .value-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    .value-card i {
+      font-size: 2rem;
+      color: #118f9d;
+      margin-bottom: 0.5rem;
+    }
+
+    .value-card h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #0f609b;
+      margin-bottom: 0.5rem;
+    }
+
+    .value-card p {
+      font-size: 0.85rem;
+      color: #333;
+      line-height: 1.5;
+    }
+
+    /* Vision, Mission, Focus Section */
+    .vision-mission-section {
+      background: #ffffff;
+      padding: 2rem 1rem;
+      margin: 2rem 1rem;
+      border-radius: 10px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+      text-align: center;
+    }
+
+    .vision-mission-section h2 {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #118f9d;
+      margin-bottom: 0.5rem;
+    }
+
+    .vision-mission-section p {
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: #333;
+      margin-bottom: 1rem;
+    }
+
+    .vision-icon-card {
+      background: #f0f4f8;
+      border-radius: 10px;
+      padding: 1rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      text-align: center;
+      margin-bottom: 1rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .vision-icon-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    .vision-icon-card i {
+      font-size: 2rem;
+      color: #67a955;
+      margin-bottom: 0.5rem;
+    }
+
+    .vision-icon-card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #0f609b;
+      margin-bottom: 0.5rem;
+    }
+
+    .vision-icon-card p {
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: #333;
+    }
+
+    /* Contact Section */
+    .contact-section {
+      background: linear-gradient(to bottom, #eef3f6, #f9f9f9);
+      padding: 2rem 1rem;
+      border-radius: 10px;
+      margin: 2rem 1rem;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+      text-align: center;
+    }
+
+    .contact-section h2 {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #118f9d;
+      margin-bottom: 1rem;
+    }
+
+    .contact-info {
+      background: #ffffff;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      margin-bottom: 1.5rem;
+      text-align: left;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .contact-info:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    .contact-info h3 {
+      color: #0f609b;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-info p {
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: #333;
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-info p a {
+      color: #118f9d;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .contact-info p a:hover {
+      text-decoration: underline;
+    }
+
+    .contact-btn {
+      display: inline-block;
+      background: #118f9d;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s, transform 0.3s;
+      margin-top: 1rem;
+    }
+
+    .contact-btn:hover {
+      background: #0f609b;
+      transform: translateY(-2px);
+    }
+
+    /* Footer */
+    .footer {
+      background: linear-gradient(to right, #0f609b, #118f9d);
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .footer-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .footer-section h3 {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-section ul li {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-section a {
+      color: white;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.3s;
+    }
+
+    .footer-section a:hover {
+      color: #bdbdbd;
+    }
+
+    .footer-icons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+
+    .footer-icons i {
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <div class="logo">
+        <a href="index1.html">Stark International</a>
+      </div>
+      <div class="hamburger" onclick="toggleNav()">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+    <div class="mobile-nav" id="mobile-nav">
+      <a href="index1.html">Home</a>
+      <a href="about1.html">About</a>
+      <a href="products1.html">Products</a>
+      <a href="contact1.html">Contact</a>
+      <div class="mt-2">
+        <a href="https://wa.me/971518007643" target="_blank" aria-label="WhatsApp" class="block mt-2 text-white">
+          <i class="fab fa-whatsapp mr-1"></i> WhatsApp
+        </a>
+        <a href="mailto:info@starkintl.com" aria-label="Email" class="block mt-2 text-white">
+          <i class="fas fa-envelope mr-1"></i> Email
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- About Section -->
+  <section class="about-section" data-aos="fade-up">
+    <h2 class="section-heading">Who We Are</h2>
+    <div class="about-content">
+      <p>
+        Stark International is a global leader in sourcing and distributing high-quality pharmaceutical raw materials. Our mission is to uplift healthcare standards worldwide by bridging the gap between cutting-edge research and reliable, accessible ingredients.
+      </p>
+      <img src="images/chemistry.webp" alt="Chemistry Overview">
+    </div>
+
+    <!-- Values Section -->
+    <div class="about-values mt-8">
+      <div class="value-card" data-aos="fade-up" data-aos-delay="100">
+        <i class="fas fa-hand-holding-heart"></i>
+        <h3>Our Vision</h3>
+        <p>To be the most trusted partner in pharmaceutical sourcing, recognized for quality and innovation.</p>
+      </div>
+      <div class="value-card" data-aos="fade-up" data-aos-delay="200">
+        <i class="fas fa-leaf"></i>
+        <h3>Sustainability</h3>
+        <p>Ensuring a sustainable supply chain for a healthier future.</p>
+      </div>
+      <div class="value-card" data-aos="fade-up" data-aos-delay="300">
+        <i class="fas fa-users"></i>
+        <h3>Our Team</h3>
+        <p>Experts dedicated to offering unparalleled solutions.</p>
+      </div>
+      <div class="value-card" data-aos="fade-up" data-aos-delay="400">
+        <i class="fas fa-cogs"></i>
+        <h3>Innovation</h3>
+        <p>Using technology to address healthcare's greatest challenges.</p>
+      </div>
+      <div class="value-card" data-aos="fade-up" data-aos-delay="500">
+        <i class="fas fa-handshake"></i>
+        <h3>Customer Commitment</h3>
+        <p>Building lasting partnerships through exceptional support.</p>
+      </div>
+      <div class="value-card" data-aos="fade-up" data-aos-delay="600">
+        <i class="fas fa-balance-scale"></i>
+        <h3>Integrity</h3>
+        <p>Honesty and accountability at the core of our actions.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vision, Mission, Focus Section -->
+  <section class="vision-mission-section" data-aos="fade-up">
+    <h2>Our Vision</h2>
+    <p>To become the leading supplier of pharma, cosmetics, food, and industrial ingredients, propelled by innovation and excellence.</p>
+
+    <h2>Our Mission</h2>
+    <p>Delivering high-quality, competitively priced products that foster a reputation of trust, reliability, and excellence.</p>
+
+    <h2>Our Focus</h2>
+    <p>Providing technical expertise to help customers achieve optimal solutions, ensuring continuous improvement and sustainability.</p>
+
+    <div class="vision-icon-card" data-aos="fade-up" data-aos-delay="100">
+      <i class="fas fa-eye"></i>
+      <h3>Our Vision</h3>
+      <p>Be the most trusted supplier in pharma-related fields.</p>
+    </div>
+
+    <div class="vision-icon-card" data-aos="fade-up" data-aos-delay="200">
+      <i class="fas fa-bullseye"></i>
+      <h3>Our Mission</h3>
+      <p>Offer top-quality products with transparency and dependability.</p>
+    </div>
+
+    <div class="vision-icon-card" data-aos="fade-up" data-aos-delay="300">
+      <i class="fas fa-lightbulb"></i>
+      <h3>Our Focus</h3>
+      <p>Ensure the best solutions through ongoing expertise and support.</p>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact-section" data-aos="fade-up">
+    <h2>Contact Us</h2>
+    <div class="contact-info" data-aos="fade-up" data-aos-delay="100">
+      <h3>Get in Touch</h3>
+      <p>FBC50274 Compass Building, Al Shohada Road,<br>AL Hamra Industrial Zone-FZ,<br>Ras Al Khaimah, UAE</p>
+      <p>Phone: <a href="tel:+971518007643">+971 51 8007 643</a></p>
+      <p>Email: <a href="mailto:info@starkintl.com">info@starkintl.com</a></p>
+      <a href="contact1.html" class="contact-btn">Get in Touch</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>Our Services</h3>
+        <ul>
+          <li><a href="aping1.html">Active Pharmaceutical Ingredients</a></li>
+          <li><a href="excipients1.html">Excipients</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index1.html">Home</a></li>
+          <li><a href="contact1.html">Contact</a></li>
+          <li><a href="products1.html">Products</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Connect with Us</h3>
+        <div class="footer-icons">
+          <a href="https://wa.me/971518007643" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+          <a href="mailto:info@starkintl.com">
+            <i class="fas fa-envelope icon"></i>
+          </a>
+          <a href="tel:+971518007643">
+            <i class="fas fa-phone"></i>
+          </a>
+          <a href="https://www.linkedin.com/company/starkintl?trk=blended-typeahead" target="_blank">
+            <i class="fab fa-linkedin"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- AOS JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init({ duration: 800, once: true });
+  </script>
+
+  <script>
+    function toggleNav() {
+      const nav = document.getElementById('mobile-nav');
+      nav.classList.toggle('nav-open');
+    }
+  </script>
+</body>
+</html>
