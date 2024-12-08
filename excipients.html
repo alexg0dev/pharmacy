@@ -16,505 +16,864 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet"/>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+    /* Preload 'Murasuit' Font Files */
+    @font-face {
+      font-family: 'Murasuit';
+      src: url('fonts/Murasuit.woff2') format('woff2'),
+           url('fonts/Murasuit.woff') format('woff'),
+           url('fonts/Murasuit.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    .font-Murasuit {
+      font-family: 'Murasuit', sans-serif;
+      font-weight: 400;
+    }
+
     body {
       font-family: 'Poppins', sans-serif;
       scroll-behavior: smooth;
+      background-color: #f0f4f8;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    /* Navigation link underline animation */
+    .nav-link::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 3px;
+      background: #ffffff;
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* Header gradient */
+    header {
+      background: linear-gradient(to right, #0f609b, #118f9d);
+      padding: 1.5rem 2rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Logo */
+    .logo a {
+      color: #ffffff;
+      text-decoration: none;
+      cursor: pointer;
+      font-family: 'Murasuit', sans-serif;
+      font-weight: 400;
+      font-size: 2.5rem;
+    }
+
+    .logo a:hover {
+      opacity: 0.9;
+    }
+
+    nav {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .nav-link {
+      font-size: 1.2rem;
+      color: #ffffff;
+      text-decoration: none;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: #bdbdbd;
+    }
+
+    .icon {
+      font-size: 1.5rem;
+      transition: transform 0.3s ease, color 0.3s ease;
+      color: #ffffff;
+    }
+
+    .icon:hover {
+      transform: scale(1.1);
+      color: #bdbdbd;
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    /* Mobile Menu */
+    #mobileMenu {
+      background: #118f9d;
+    }
+
+    #mobileMenu nav a {
+      font-size: 1rem;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #0f609b;
+    }
+
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav {
+        display: none;
+      }
+      .controls {
+        width: 100%;
+        justify-content: flex-end;
+      }
+    }
+
+    /* Section headings */
+    .section-heading {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #118f9d;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      margin-top: 4rem;
+    }
+
+    /* Table styling */
+    .classification-table {
+      width: 100%;
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+      margin-bottom: 2rem;
+      border-collapse: separate;
+      border-spacing: 0;
+    }
+
+    .classification-table thead th {
+      background-color: #118f9d;
+      color: #ffffff;
+      padding: 0.75rem 1rem;
+      text-align: left;
+      font-weight: 600;
+    }
+
+    .classification-table th, .classification-table td {
+      padding: 0.75rem 1rem;
+      text-align: left;
+    }
+
+    .classification-table tbody tr:hover {
+      background-color: #f7fafc;
+    }
+
+    .classification-table tbody tr td {
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    @media (max-width: 768px) {
+      .classification-table thead {
+        display: none;
+      }
+
+      .classification-table, .classification-table tbody, .classification-table tr, .classification-table td {
+        display: block;
+        width: 100%;
+      }
+
+      .classification-table tr {
+        margin-bottom: 1rem;
+        border-bottom: 2px solid #118f9d;
+      }
+
+      .classification-table td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+      }
+
+      .classification-table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 1rem;
+        width: 45%;
+        padding-right: 1rem;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: 600;
+        color: #118f9d;
+      }
+    }
+
+    main {
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    main h1 {
+      font-size: 3rem;
+      font-weight: bold;
+      color: #118f9d;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    main p {
+      font-size: 1.2rem;
+      color: #333;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 4rem;
+    }
+
+    /* Footer Section with Gradient */
+    .footer {
+      background: linear-gradient(to right, #0f609b, #118f9d);
+      color: white;
+      padding: 4rem 2rem;
+      box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+      margin-top: 4rem;
+    }
+
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-section {
+      flex: 1;
+      margin-bottom: 2rem;
+      min-width: 200px;
+    }
+
+    .footer-section h3 {
+      color: #ffffff;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-section ul li {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-section a {
+      color: #ffffff;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-section a:hover {
+      color: #bdbdbd;
+    }
+
+    .footer-icons {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+      font-size: 1.5rem;
+    }
+
+    .footer-icons a:hover {
+      transform: scale(1.1);
     }
   </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
 
   <!-- Header -->
-  <header class="sticky top-0 z-50 bg-gradient-to-r from-[#0f609b] to-[#118f9d] shadow">
-    <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+  <header>
+    <div class="header-container">
       <!-- Logo -->
-      <div class="text-white text-2xl md:text-3xl font-bold">
-        <a href="index.html" class="hover:opacity-90 transition">Stark International</a>
+      <div class="logo">
+        <!-- Applying Murasuit font and similar styling as other pages -->
+        <a href="index.html" class="font-Murasuit text-5xl md:text-6xl lg:text-5xl">Stark International</a>
       </div>
-      <!-- Desktop Nav -->
-      <nav class="hidden md:flex space-x-6">
-        <a href="index.html" class="text-white text-lg font-medium hover:text-gray-100 transition">Home</a>
-        <a href="about.html" class="text-white text-lg font-medium hover:text-gray-100 transition">About</a>
-        <a href="products.html" class="text-white text-lg font-medium hover:text-gray-100 transition">Products</a>
-        <a href="#contact" class="text-white text-lg font-medium hover:text-gray-100 transition">Contact</a>
+      <!-- Navigation Links -->
+      <nav class="hidden md:flex">
+        <a href="index.html" class="nav-link font-medium">Home</a>
+        <a href="about.html" class="nav-link font-medium">About</a>
+        <a href="products.html" class="nav-link font-medium">Products</a>
+        <a href="contact.html" class="nav-link font-medium">Contact</a>
       </nav>
       <!-- Controls -->
-      <div class="flex items-center space-x-4">
-        <a href="https://wa.me/+1234567890" target="_blank" class="text-white text-xl hover:text-gray-100 transition">
-          <i class="fab fa-whatsapp"></i>
+      <div class="controls">
+        <a href="https://wa.me/971518007643" target="_blank" class="transition" aria-label="WhatsApp">
+          <i class="fab fa-whatsapp icon"></i>
         </a>
-        <a href="mailto:contact@starkint.com" class="text-white text-xl hover:text-gray-100 transition">
-          <i class="fas fa-envelope"></i>
+        <a href="mailto:info@starkintl.com" class="transition" aria-label="Email">
+          <i class="fas fa-envelope icon"></i>
         </a>
-        <button class="text-white text-xl md:hidden focus:outline-none" onclick="document.getElementById('mobileMenu').classList.toggle('hidden')">
-          <i class="fas fa-bars"></i>
-        </button>
+        <!-- Mobile Menu Toggle Button (if needed in the future) -->
       </div>
-    </div>
-    <!-- Mobile Menu -->
-    <div id="mobileMenu" class="md:hidden hidden bg-[#118f9d]">
-      <nav class="flex flex-col space-y-2 p-4">
-        <a href="index.html" class="text-white text-base font-medium hover:text-gray-100 transition">Home</a>
-        <a href="about.html" class="text-white text-base font-medium hover:text-gray-100 transition">About</a>
-        <a href="products.html" class="text-white text-base font-medium hover:text-gray-100 transition">Products</a>
-        <a href="#contact" class="text-white text-base font-medium hover:text-gray-100 transition">Contact</a>
-      </nav>
     </div>
   </header>
 
-  <main class="py-12 px-4">
-    <div class="max-w-5xl mx-auto text-center mb-10">
-      <h1 class="text-3xl md:text-4xl font-bold text-[#118f9d] mb-4">Excipients Stock List</h1>
-      <p class="text-lg text-gray-700">
-        Below is our current stock list of excipients, grouped by classifications. Each table shows item details, including origin and shipment timeline.
-      </p>
-    </div>
+  <main>
+    <h1>Excipients Stock List</h1>
+    <p>Below is our current stock list of excipients, grouped by classifications. Each table shows item details, including origin and shipment timeline.</p>
 
-    <!-- Utility classes for tables -->
-    <style>
-      .classification-table thead th {
-        background-color: #118f9d;
-        color: #ffffff;
-      }
-    </style>
+    <!-- Classification Tables -->
+    <!-- Anti-caking -->
+    <h2 class="section-heading">Anti-caking</h2>
+    <table class="classification-table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Origin</th>
+          <th>Shipment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Item">Aerosil 200</td>
+          <td data-label="Origin">USA</td>
+          <td data-label="Shipment">Prompt</td>
+        </tr>
+      </tbody>
+    </table>
 
-    <div class="max-w-6xl mx-auto">
-      <!-- Section headings -->
-      <!-- A helper class to style classification headings uniformly -->
-      <style>
-        .section-heading {
-          @apply text-2xl font-bold text-[#118f9d] text-center mb-6;
-        }
-      </style>
+    <!-- Anti-oxidant / Preservative -->
+    <h2 class="section-heading">Anti-oxidant / Preservative</h2>
+    <table class="classification-table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Origin</th>
+          <th>Shipment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Item">Ascorbic Acid</td>
+          <td data-label="Origin">China</td>
+          <td data-label="Shipment">Prompt</td>
+        </tr>
+      </tbody>
+    </table>
 
-      <!-- A reusable pattern for tables -->
-      <!-- We'll use hover states, rounded borders, and subtle shadows -->
-      <!-- Remember to repeat all tables as in original code -->
+    <!-- Solvent -->
+    <h2 class="section-heading">Solvent</h2>
+    <table class="classification-table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Origin</th>
+          <th>Shipment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Item">Benzyl Alcohol</td>
+          <td data-label="Origin">Europe</td>
+          <td data-label="Shipment">Prompt</td>
+        </tr>
+      </tbody>
+    </table>
 
-      <!-- Anti-caking -->
-      <h2 class="section-heading">Anti-caking</h2>
-      <table class="classification-table w-full mb-12 bg-white rounded-lg overflow-hidden shadow">
-        <thead>
-          <tr>
-            <th class="py-3 px-4 text-left">No</th>
-            <th class="py-3 px-4 text-left">Item</th>
-            <th class="py-3 px-4 text-left">Origin</th>
-            <th class="py-3 px-4 text-left">Shipment</th>
-          </tr>
-        </thead>
-        <tbody class="divide-y divide-gray-100">
-          <tr class="hover:bg-gray-50 transition">
-            <td class="py-3 px-4">1</td><td class="py-3 px-4">Aerosil 200</td><td class="py-3 px-4">USA</td><td class="py-3 px-4">Prompt</td>
-          </tr>
-        </tbody>
-      </table>
+    <!-- Vitamin -->
+    <h2 class="section-heading">Vitamin</h2>
+    <table class="classification-table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Origin</th>
+          <th>Shipment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Item">Biotin 2%</td>
+          <td data-label="Origin">China</td>
+          <td data-label="Shipment">Prompt</td>
+        </tr>
+      </tbody>
+    </table>
 
-      <!-- Anti-oxidant /Preservative -->
-      <h2 class="section-heading">Anti-oxidant / Preservative</h2>
-      <table class="classification-table w-full mb-12 bg-white rounded-lg overflow-hidden shadow">
-        <thead>
-          <tr>
-            <th class="py-3 px-4 text-left">No</th>
-            <th class="py-3 px-4 text-left">Item</th>
-            <th class="py-3 px-4 text-left">Origin</th>
-            <th class="py-3 px-4 text-left">Shipment</th>
-          </tr>
-        </thead>
-        <tbody class="divide-y divide-gray-100">
-          <tr class="hover:bg-gray-50">
-            <td class="py-3 px-4">2</td><td class="py-3 px-4">Ascorbic Acid</td><td class="py-3 px-4">China</td><td class="py-3 px-4">Prompt</td>
-          </tr>
-        </tbody>
-      </table>
+    <!-- Dietary Supplement -->
+    <h2 class="section-heading">Dietary Supplement</h2>
+    <table class="classification-table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Origin</th>
+          <th>Shipment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Item">Chondroitin Sulfate</td>
+          <td data-label="Origin">China</td>
+          <td data-label="Shipment">2 Weeks</td>
+        </tr>
+      </tbody>
+    </table>
 
-      <!-- Solvent -->
-      <h2 class="section-heading">Solvent</h2>
-      <table class="classification-table w-full mb-12 bg-white rounded-lg overflow-hidden shadow">
-        <thead>
-          <tr>
-            <th class="py-3 px-4">No</th><th class="py-3 px-4">Item</th><th class="py-3 px-4">Origin</th><th class="py-3 px-4">Shipment</th>
-          </tr>
-        </thead>
-        <tbody class="divide-y divide-gray-100">
-          <tr class="hover:bg-gray-50">
-            <td class="py-3 px-4">3</td><td class="py-3 px-4">Benzyl Alcohol</td><td class="py-3 px-4">Europe</td><td class="py-3 px-4">Prompt</td>
-          </tr>
-        </tbody>
-      </table>
+    <!-- Superdisintegrant -->
+    <h2 class="section-heading">Superdisintegrant</h2>
+    <table class="classification-table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Origin</th>
+          <th>Shipment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Item">Crospovidone XL</td>
+          <td data-label="Origin">China</td>
+          <td data-label="Shipment">Prompt</td>
+        </tr>
+        <tr>
+          <td data-label="Item">Crospovidone XL 10</td>
+          <td data-label="Origin">China</td>
+          <td data-label="Shipment">Prompt</td>
+        </tr>
+        <tr>
+          <td data-label="Item">Crosscarmellose Sodium (CCS)</td>
+          <td data-label="Origin">India</td>
+          <td data-label="Shipment">Prompt</td>
+        </tr>
+        <tr>
+          <td data-label="Item">Sodium Starch Glycolate (SSG)</td>
+          <td data-label="Origin">India</td>
+          <td data-label="Shipment">Prompt</td>
+        </tr>
+      </tbody>
+    </table>
 
-      <!-- Vitamin -->
-      <h2 class="section-heading">Vitamin</h2>
-      <table class="classification-table w-full mb-12 bg-white rounded-lg overflow-hidden shadow">
-        <thead>
-          <tr>
-            <th>No</th><th>Item</th><th>Origin</th><th>Shipment</th>
-          </tr>
-        </thead>
-        <tbody class="divide-y divide-gray-100">
-          <tr class="hover:bg-gray-50">
-            <td class="py-3 px-4">4</td><td class="py-3 px-4">Biotin 2%</td><td class="py-3 px-4">China</td><td class="py-3 px-4">Prompt</td>
-          </tr>
-        </tbody>
-      </table>
+    <!-- Vitamin (Another Set) -->
+    <h2 class="section-heading">Vitamin</h2>
+    <table class="classification-table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Origin</th>
+          <th>Shipment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Item">D Calcium Pantothenate</td>
+          <td data-label="Origin">China</td>
+          <td data-label="Shipment">2 Weeks</td>
+        </tr>
+        <tr>
+          <td data-label="Item">Folic Acid</td>
+          <td data-label="Origin">China</td>
+          <td data-label="Shipment">Prompt</td>
+        </tr>
+        <tr>
+          <td data-label="Item">Nicotinamide</td>
+          <td data-label="Origin">China</td>
+          <td data-label="Shipment">Prompt</td>
+        </tr>
+        <tr>
+          <td data-label="Item">PYRODOXINE (VIT B6)</td>
+          <td data-label="Origin">China</td>
+          <td data-label="Shipment">Prompt</td>
+        </tr>
+        <tr>
+          <td data-label="Item">Vitamin B 1 HCL</td>
+          <td data-label="Origin">China</td>
+          <td data-label="Shipment">Prompt</td>
+        </tr>
+      </tbody>
+    </table>
 
-      <!-- Dietary supplement -->
-      <h2 class="section-heading">Dietary supplement</h2>
-      <table class="classification-table w-full mb-12 bg-white rounded-lg overflow-hidden shadow">
-        <thead><tr><th>No</th><th>Item</th><th>Origin</th><th>Shipment</th></tr></thead>
-        <tbody class="divide-y divide-gray-100">
-          <tr class="hover:bg-gray-50"><td class="py-3 px-4">5</td><td class="py-3 px-4">Chondroitin Sulfate</td><td class="py-3 px-4">China</td><td class="py-3 px-4">2 Weeks</td></tr>
-        </tbody>
-      </table>
+    <!-- Iron Supplement -->
+    <h2 class="section-heading">Iron Supplement</h2>
+    <table class="classification-table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Origin</th>
+          <th>Shipment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Item">Ferrous Fumarate</td>
+          <td data-label="Origin">China</td>
+          <td data-label="Shipment">2 Weeks</td>
+        </tr>
+      </tbody>
+    </table>
 
-      <!-- Superdisintegrant -->
-      <h2 class="section-heading">Superdisintegrant</h2>
-      <table class="classification-table w-full mb-12 bg-white rounded-lg overflow-hidden shadow">
-        <thead><tr><th>No</th><th>Item</th><th>Origin</th><th>Shipment</th></tr></thead>
-        <tbody class="divide-y divide-gray-100">
-          <tr class="hover:bg-gray-50"><td class="py-3 px-4">6</td><td class="py-3 px-4">Crospovidone XL</td><td class="py-3 px-4">China</td><td class="py-3 px-4">Prompt</td></tr>
-          <tr class="hover:bg-gray-50"><td class="py-3 px-4">7</td><td class="py-3 px-4">Crospovidone XL 10</td><td class="py-3 px-4">China</td><td class="py-3 px-4">Prompt</td></tr>
-          <tr class="hover:bg-gray-50"><td class="py-3 px-4">8</td><td class="py-3 px-4">Crosscarmellose Sodium (CCS)</td><td class="py-3 px-4">India</td><td class="py-3 px-4">Prompt</td></tr>
-          <tr class="hover:bg-gray-50"><td class="py-3 px-4">49</td><td class="py-3 px-4">Sodium Starch Glycolate (SSG)</td><td class="py-3 px-4">India</td><td class="py-3 px-4">Prompt</td></tr>
-        </tbody>
-      </table>
+    <!-- Herbal Supplement -->
+    <h2 class="section-heading">Herbal Supplement</h2>
+    <table class="classification-table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Origin</th>
+          <th>Shipment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Item">Ginkgo Biloba</td>
+          <td data-label="Origin">China</td>
+          <td data-label="Shipment">Prompt</td>
+        </tr>
+      </tbody>
+    </table>
 
-      <!-- Another set: Vitamin -->
-      <h2 class="section-heading">Vitamin</h2>
-      <table class="classification-table w-full mb-12 bg-white rounded-lg overflow-hidden shadow">
-        <thead>
-          <tr><th>No</th><th>Item</th><th>Origin</th><th>Shipment</th></tr>
-        </thead>
-        <tbody class="divide-y divide-gray-100">
-          <tr class="hover:bg-gray-50"><td class="py-3 px-4">9</td><td class="py-3 px-4">D Calcium Pantothenate</td><td class="py-3 px-4">China</td><td class="py-3 px-4">2 Weeks</td></tr>
-          <tr class="hover:bg-gray-50"><td class="py-3 px-4">11</td><td class="py-3 px-4">Folic Acid</td><td class="py-3 px-4">China</td><td class="py-3 px-4">Prompt</td></tr>
-          <tr class="hover:bg-gray-50"><td class="py-3 px-4">38</td><td class="py-3 px-4">Nicotinamide</td><td class="py-3 px-4">China</td><td class="py-3 px-4">Prompt</td></tr>
-          <tr class="hover:bg-gray-50"><td class="py-3 px-4">47</td><td class="py-3 px-4">PYRODOXINE (VIT B6)</td><td class="py-3 px-4">China</td><td class="py-3 px-4">Prompt</td></tr>
-          <tr class="hover:bg-gray-50"><td class="py-3 px-4">52</td><td class="py-3 px-4">Vitamin B 1 HCL</td><td class="py-3 px-4">China</td><td class="py-3 px-4">Prompt</td></tr>
-        </tbody>
-      </table>
+    <!-- Solvent / Dietary Supplement -->
+    <h2 class="section-heading">Solvent / Dietary Supplement</h2>
+    <table class="classification-table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Origin</th>
+          <th>Shipment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Item">Methylsulfonylmethane (MSM)</td>
+          <td data-label="Origin">China</td>
+          <td data-label="Shipment">2 Weeks</td>
+        </tr>
+      </tbody>
+    </table>
 
-      <!-- Iron supplement -->
-      <h2 class="section-heading">Iron supplement</h2>
-      <table class="classification-table w-full mb-12 bg-white rounded-lg overflow-hidden shadow">
-        <thead><tr><th>No</th><th>Item</th><th>Origin</th><th>Shipment</th></tr></thead>
-        <tbody class="divide-y divide-gray-100">
-          <tr class="hover:bg-gray-50"><td class="py-3 px-4">10</td><td class="py-3 px-4">Ferrous Fumarate</td><td class="py-3 px-4">China</td><td class="py-3 px-4">2 Weeks</td></tr>
-        </tbody>
-      </table>
+    <!-- Binder / Lubricant -->
+    <h2 class="section-heading">Binder / Lubricant</h2>
+    <table class="classification-table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Origin</th>
+          <th>Shipment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Item">PEG 400</td>
+          <td data-label="Origin">KSA</td>
+          <td data-label="Shipment">Prompt</td>
+        </tr>
+        <tr>
+          <td data-label="Item">PEG 6000</td>
+          <td data-label="Origin">INEOS</td>
+          <td data-label="Shipment">Prompt</td>
+        </tr>
+      </tbody>
+    </table>
 
-      <!-- herbal supplement -->
-      <h2 class="section-heading">Herbal supplement</h2>
-      <table class="classification-table w-full mb-12 bg-white rounded-lg overflow-hidden shadow">
-        <thead><tr><th>No</th><th>Item</th><th>Origin</th><th>Shipment</th></tr></thead>
-        <tbody class="divide-y divide-gray-100">
-          <tr class="hover:bg-gray-50"><td class="py-3 px-4">12</td><td class="py-3 px-4">Ginkgo Biloba</td><td class="py-3 px-4">China</td><td class="py-3 px-4">Prompt</td></tr>
-        </tbody>
-      </table>
+    <!-- Plastizer -->
+    <h2 class="section-heading">Plastizer</h2>
+    <table class="classification-table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Origin</th>
+          <th>Shipment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Item">Pregelatinized Starch</td>
+          <td data-label="Origin">China</td>
+          <td data-label="Shipment">Prompt</td>
+        </tr>
+      </tbody>
+    </table>
 
-      <!-- Emulsifier / Coating Agent -->
-      <h2 class="section-heading">Emulsifier / Coating Agent</h2>
-      <table class="classification-table w-full mb-12 bg-white rounded-lg overflow-hidden shadow">
-        <thead><tr><th>No</th><th>Item</th><th>Origin</th><th>Shipment</th></tr></thead>
-        <tbody class="divide-y divide-gray-100">
-          <tr class="hover:bg-gray-50"><td>15</td><td>HPMC E15</td><td>China</td><td>Prompt</td></tr>
-          <tr class="hover:bg-gray-50"><td>16</td><td>HPMC E4M</td><td>China</td><td>Prompt</td></tr>
-          <tr class="hover:bg-gray-50"><td>17</td><td>HPMC E5</td><td>China</td><td>Prompt</td></tr>
-          <tr class="hover:bg-gray-50"><td>18</td><td>HPMC E6</td><td>China</td><td>Prompt</td></tr>
-          <tr class="hover:bg-gray-50"><td>19</td><td>HPMC K100M</td><td>China</td><td>Prompt</td></tr>
-          <tr class="hover:bg-gray-50"><td>20</td><td>HPMC K15</td><td>China</td><td>4 Weeks</td></tr>
-          <tr class="hover:bg-gray-50"><td>21</td><td>HPMC K4M</td><td>China</td><td>Prompt</td></tr>
-        </tbody>
-      </table>
+    <!-- Binder / Disinfectant -->
+    <h2 class="section-heading">Binder / Disinfectant</h2>
+    <table class="classification-table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Origin</th>
+          <th>Shipment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Item">PVP K25</td>
+          <td data-label="Origin">CHINA</td>
+          <td data-label="Shipment">Prompt</td>
+        </tr>
+        <tr>
+          <td data-label="Item">PVP K30</td>
+          <td data-label="Origin">CHINA</td>
+          <td data-label="Shipment">Prompt</td>
+        </tr>
+        <tr>
+          <td data-label="Item">PVP K90</td>
+          <td data-label="Origin">USA</td>
+          <td data-label="Shipment">Prompt</td>
+        </tr>
+      </tbody>
+    </table>
 
-      <!-- Surfactant / Food Additive -->
-      <h2 class="section-heading">Surfactant / Food Additive</h2>
-      <table class="classification-table w-full mb-12 bg-white rounded-lg overflow-hidden shadow">
-        <thead><tr><th>No</th><th>Item</th><th>Origin</th><th>Shipment</th></tr></thead>
-        <tbody class="divide-y divide-gray-100">
-          <tr class="hover:bg-gray-50"><td>22</td><td>Sodium Lauryl Sulfate</td><td>China</td><td>Prompt</td></tr>
-        </tbody>
-      </table>
+    <!-- Vitamin / Anti-oxidant -->
+    <h2 class="section-heading">Vitamin / Anti-oxidant</h2>
+    <table class="classification-table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Origin</th>
+          <th>Shipment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Item">Vitamin E Acetate 98</td>
+          <td data-label="Origin">China</td>
+          <td data-label="Shipment">Prompt</td>
+        </tr>
+      </tbody>
+    </table>
 
-      <!-- Carrier / filler / Sweetener -->
-      <h2 class="section-heading">Carrier / Filler / Sweetener</h2>
-      <table class="classification-table w-full mb-12 bg-white rounded-lg overflow-hidden shadow">
-        <thead><tr><th>No</th><th>Item</th><th>Origin</th><th>Shipment</th></tr></thead>
-        <tbody class="divide-y divide-gray-100">
-          <tr class="hover:bg-gray-50"><td>23</td><td>Lactose Monohydrate 200 Mesh</td><td>France</td><td>Prompt</td></tr>
-        </tbody>
-      </table>
+    <!-- Coating Agent -->
+    <h2 class="section-heading">Coating Agent</h2>
+    <table class="classification-table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Origin</th>
+          <th>Shipment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Item">Zinc Oxide</td>
+          <td data-label="Origin">KSA</td>
+          <td data-label="Shipment">Prompt</td>
+        </tr>
+      </tbody>
+    </table>
 
-      <!-- Lubricant / Releasing Agent -->
-      <h2 class="section-heading">Lubricant / Releasing Agent</h2>
-      <table class="classification-table w-full mb-12 bg-white rounded-lg overflow-hidden shadow">
-        <thead><tr><th>No</th><th>Item</th><th>Origin</th><th>Shipment</th></tr></thead>
-        <tbody class="divide-y divide-gray-100">
-          <tr class="hover:bg-gray-50"><td>24</td><td>Magnesium Stearate</td><td>India</td><td>Prompt</td></tr>
-        </tbody>
-      </table>
+    <!-- Dietary Supplement (Additional) -->
+    <h2 class="section-heading">Dietary Supplement</h2>
+    <table class="classification-table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Origin</th>
+          <th>Shipment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Item">L-carnitine Hcl​</td>
+          <td data-label="Origin">China</td>
+          <td data-label="Shipment">Prompt</td>
+        </tr>
+        <tr>
+          <td data-label="Item">D-panthenol</td>
+          <td data-label="Origin">China</td>
+          <td data-label="Shipment">Prompt</td>
+        </tr>
+        <tr>
+          <td data-label="Item">Glucosamine k2SO4</td>
+          <td data-label="Origin">China</td>
+          <td data-label="Shipment">2 Weeks</td>
+        </tr>
+        <tr>
+          <td data-label="Item">Lactoferrin</td>
+          <td data-label="Origin">China</td>
+          <td data-label="Shipment">Prompt</td>
+        </tr>
+        <tr>
+          <td data-label="Item">Colstrum</td>
+          <td data-label="Origin">China</td>
+          <td data-label="Shipment">Prompt</td>
+        </tr>
+      </tbody>
+    </table>
 
-      <!-- Adhesive -->
-      <h2 class="section-heading">Adhesive</h2>
-      <table class="classification-table w-full mb-12 bg-white rounded-lg overflow-hidden shadow">
-        <thead><tr><th>No</th><th>Item</th><th>Origin</th><th>Shipment</th></tr></thead>
-        <tbody class="divide-y divide-gray-100">
-          <tr class="hover:bg-gray-50"><td>25</td><td>Maize Starch</td><td>China</td><td>Prompt</td></tr>
-        </tbody>
-      </table>
+    <!-- Viscosity Regulator -->
+    <h2 class="section-heading">Viscosity Regulator</h2>
+    <table class="classification-table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Origin</th>
+          <th>Shipment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Item">Xanthan gum</td>
+          <td data-label="Origin">China</td>
+          <td data-label="Shipment">Prompt</td>
+        </tr>
+      </tbody>
+    </table>
 
-      <!-- Sweetener -->
-      <h2 class="section-heading">Sweetener</h2>
-      <table class="classification-table w-full mb-12 bg-white rounded-lg overflow-hidden shadow">
-        <thead><tr><th>No</th><th>Item</th><th>Origin</th><th>Shipment</th></tr></thead>
-        <tbody class="divide-y divide-gray-100">
-          <tr class="hover:bg-gray-50"><td>26</td><td>Mannitol Powder</td><td>China</td><td>3 Weeks</td></tr>
-          <tr class="hover:bg-gray-50"><td>51</td><td>SUCRALOSE</td><td>China</td><td>Prompt</td></tr>
-          <tr class="hover:bg-gray-50"><td>55</td><td>Xylitol</td><td>China</td><td>Prompt</td></tr>
-          <tr class="hover:bg-gray-50"><td>63</td><td>Dextrose (mono/anhydrous)</td><td>China</td><td>Prompt</td></tr>
-        </tbody>
-      </table>
+    <!-- Preservative / Chelating agent -->
+    <h2 class="section-heading">Preservative / Chelating agent</h2>
+    <table class="classification-table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Origin</th>
+          <th>Shipment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Item">Di Sodium EDTA</td>
+          <td data-label="Origin">China</td>
+          <td data-label="Shipment">Prompt</td>
+        </tr>
+        <tr>
+          <td data-label="Item">Tetra Sodium EDTA</td>
+          <td data-label="Origin">China</td>
+          <td data-label="Shipment">Prompt</td>
+        </tr>
+      </tbody>
+    </table>
 
-      <!-- Anti-sticking / Filler / Emulsifier -->
-      <h2 class="section-heading">Anti-sticking / Filler / Emulsifier</h2>
-      <table class="classification-table w-full mb-12 bg-white rounded-lg overflow-hidden shadow">
-        <thead><tr><th>No</th><th>Item</th><th>Origin</th><th>Shipment</th></tr></thead>
-        <tbody class="divide-y divide-gray-100">
-          <tr class="hover:bg-gray-50"><td>27</td><td>MCC 101</td><td>India</td><td>Prompt</td></tr>
-          <tr class="hover:bg-gray-50"><td>28</td><td>MCC 102</td><td>India</td><td>Prompt</td></tr>
-          <tr class="hover:bg-gray-50"><td>29</td><td>MCC 112</td><td>India</td><td>3 Weeks</td></tr>
-          <tr class="hover:bg-gray-50"><td>30</td><td>MCC 200</td><td>India</td><td>Prompt</td></tr>
-        </tbody>
-      </table>
+    <!-- Iron Supplement (Additional) -->
+    <h2 class="section-heading">Iron Supplement</h2>
+    <table class="classification-table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Origin</th>
+          <th>Shipment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Item">Ferrous bis-glycinate</td>
+          <td data-label="Origin">China</td>
+          <td data-label="Shipment">3 Weeks</td>
+        </tr>
+      </tbody>
+    </table>
 
-      <!-- Suspending agent -->
-      <h2 class="section-heading">Suspending agent</h2>
-      <table class="classification-table w-full mb-12 bg-white rounded-lg overflow-hidden shadow">
-        <thead><tr><th>No</th><th>Item</th><th>Origin</th><th>Shipment</th></tr></thead>
-        <tbody class="divide-y divide-gray-100">
-          <tr class="hover:bg-gray-50"><td>31</td><td>MCC RC 591</td><td>India</td><td>Prompt</td></tr>
-        </tbody>
-      </table>
+    <!-- Herbal Supplement (Additional) -->
+    <h2 class="section-heading">Herbal Supplement</h2>
+    <table class="classification-table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Origin</th>
+          <th>Shipment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Item">Ginger</td>
+          <td data-label="Origin">China</td>
+          <td data-label="Shipment">2 Weeks</td>
+        </tr>
+      </tbody>
+    </table>
 
-      <!-- Inhaling Agent -->
-      <h2 class="section-heading">Inhaling Agent</h2>
-      <table class="classification-table w-full mb-12 bg-white rounded-lg overflow-hidden shadow">
-        <thead><tr><th>No</th><th>Item</th><th>Origin</th><th>Shipment</th></tr></thead>
-        <tbody class="divide-y divide-gray-100">
-          <tr class="hover:bg-gray-50"><td>32</td><td>Menthol Crystals</td><td>China</td><td>Prompt</td></tr>
-        </tbody>
-      </table>
+    <!-- Solvent / Liquid Sweeteners -->
+    <h2 class="section-heading">Solvent / Liquid Sweeteners</h2>
+    <table class="classification-table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Origin</th>
+          <th>Shipment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Item">Monopropylene glycol</td>
+          <td data-label="Origin">China</td>
+          <td data-label="Shipment">Prompt</td>
+        </tr>
+      </tbody>
+    </table>
 
-      <!-- Dietary supplement (multiple) -->
-      <h2 class="section-heading">Dietary supplement</h2>
-      <table class="classification-table w-full mb-12 bg-white rounded-lg overflow-hidden shadow">
-        <thead><tr><th>No</th><th>Item</th><th>Origin</th><th>Shipment</th></tr></thead>
-        <tbody class="divide-y divide-gray-100">
-          <tr class="hover:bg-gray-50"><td>33</td><td>Evening primrose oil</td><td>China</td><td>4 weeks</td></tr>
-          <tr class="hover:bg-gray-50"><td>34</td><td>L-carnitine Tartrate</td><td>China</td><td>2 Weeks</td></tr>
-          <tr class="hover:bg-gray-50"><td>56</td><td>L-carnitine Hcl​</td><td>China</td><td>Prompt</td></tr>
-          <tr class="hover:bg-gray-50"><td>57</td><td>D-panthenol</td><td>China</td><td>Prompt</td></tr>
-          <tr class="hover:bg-gray-50"><td>59</td><td>Glucosamine k2SO4</td><td>China</td><td>2 Weeks</td></tr>
-          <tr class="hover:bg-gray-50"><td>71</td><td>Lactoferrin</td><td>China</td><td>Prompt</td></tr>
-          <tr class="hover:bg-gray-50"><td>72</td><td>Colstrum</td><td>China</td><td>Prompt</td></tr>
-        </tbody>
-      </table>
+    <!-- Lubricant -->
+    <h2 class="section-heading">Lubricant</h2>
+    <table class="classification-table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Origin</th>
+          <th>Shipment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Item">Talc powder</td>
+          <td data-label="Origin">China</td>
+          <td data-label="Shipment">3 Weeks</td>
+        </tr>
+      </tbody>
+    </table>
 
-      <!-- Preservative -->
-      <h2 class="section-heading">Preservative</h2>
-      <table class="classification-table w-full mb-12 bg-white rounded-lg overflow-hidden shadow">
-        <thead><tr><th>No</th><th>Item</th><th>Origin</th><th>Shipment</th></tr></thead>
-        <tbody class="divide-y divide-gray-100">
-          <tr class="hover:bg-gray-50"><td>35</td><td>Methyl Paraben Base</td><td>India</td><td>Prompt</td></tr>
-          <tr class="hover:bg-gray-50"><td>37</td><td>Methyl Paraben Sodium</td><td>India</td><td>Prompt</td></tr>
-          <tr class="hover:bg-gray-50"><td>41</td><td>Potassium Sorbate</td><td>China</td><td>Prompt</td></tr>
-          <tr class="hover:bg-gray-50"><td>43</td><td>Propyl Paraben Base</td><td>India</td><td>Prompt</td></tr>
-          <tr class="hover:bg-gray-50"><td>48</td><td>SODIUM BENZOATE</td><td>China</td><td>Prompt</td></tr>
-        </tbody>
-      </table>
-
-      <!-- Solvent / Dietary supplement -->
-      <h2 class="section-heading">Solvent / Dietary supplement</h2>
-      <table class="classification-table w-full mb-12 bg-white rounded-lg overflow-hidden shadow">
-        <thead><tr><th>No</th><th>Item</th><th>Origin</th><th>Shipment</th></tr></thead>
-        <tbody class="divide-y divide-gray-100">
-          <tr class="hover:bg-gray-50"><td>36</td><td>Methylsulfonylmethane (MSM)</td><td>China</td><td>2 Weeks</td></tr>
-        </tbody>
-      </table>
-
-      <!-- Binder / Lubricant -->
-      <h2 class="section-heading">Binder / Lubricant</h2>
-      <table class="classification-table w-full mb-12 bg-white rounded-lg overflow-hidden shadow">
-        <thead><tr><th>No</th><th>Item</th><th>Origin</th><th>Shipment</th></tr></thead>
-        <tbody class="divide-y divide-gray-100">
-          <tr class="hover:bg-gray-50"><td>39</td><td>PEG 400</td><td>KSA</td><td>Prompt</td></tr>
-          <tr class="hover:bg-gray-50"><td>40</td><td>PEG 6000</td><td>INEOS</td><td>Prompt</td></tr>
-        </tbody>
-      </table>
-
-      <!-- Plastizer -->
-      <h2 class="section-heading">Plastizer</h2>
-      <table class="classification-table w-full mb-12 bg-white rounded-lg overflow-hidden shadow">
-        <thead><tr><th>No</th><th>Item</th><th>Origin</th><th>Shipment</th></tr></thead>
-        <tbody class="divide-y divide-gray-100">
-          <tr class="hover:bg-gray-50"><td>42</td><td>Pregelatinized Starch</td><td>CHINA</td><td>Prompt</td></tr>
-        </tbody>
-      </table>
-
-      <!-- Binder / Disinfectant -->
-      <h2 class="section-heading">Binder / Disinfectant</h2>
-      <table class="classification-table w-full mb-12 bg-white rounded-lg overflow-hidden shadow">
-        <thead><tr><th>No</th><th>Item</th><th>Origin</th><th>Shipment</th></tr></thead>
-        <tbody class="divide-y divide-gray-100">
-          <tr class="hover:bg-gray-50"><td>44</td><td>PVP K25</td><td>CHINA</td><td>Prompt</td></tr>
-          <tr class="hover:bg-gray-50"><td>45</td><td>PVP K30</td><td>CHINA</td><td>Prompt</td></tr>
-          <tr class="hover:bg-gray-50"><td>46</td><td>PVP K90</td><td>USA</td><td>Prompt</td></tr>
-        </tbody>
-      </table>
-
-      <!-- Vitamin / Anti-oxidant -->
-      <h2 class="section-heading">Vitamin / Anti-oxidant</h2>
-      <table class="classification-table w-full mb-12 bg-white rounded-lg overflow-hidden shadow">
-        <thead><tr><th>No</th><th>Item</th><th>Origin</th><th>Shipment</th></tr></thead>
-        <tbody class="divide-y divide-gray-100">
-          <tr class="hover:bg-gray-50"><td>53</td><td>Vitamin E Acetate 98</td><td>China</td><td>Prompt</td></tr>
-        </tbody>
-      </table>
-
-      <!-- Coating Agent -->
-      <h2 class="section-heading">Coating Agent</h2>
-      <table class="classification-table w-full mb-12 bg-white rounded-lg overflow-hidden shadow">
-        <thead><tr><th>No</th><th>Item</th><th>Origin</th><th>Shipment</th></tr></thead>
-        <tbody class="divide-y divide-gray-100">
-          <tr class="hover:bg-gray-50"><td>54</td><td>Zinc Oxide</td><td>KSA</td><td>Prompt</td></tr>
-        </tbody>
-      </table>
-
-      <!-- Dietary Supplument (typo) -->
-      <h2 class="section-heading">Dietary Supplument</h2>
-      <table class="classification-table w-full mb-12 bg-white rounded-lg overflow-hidden shadow">
-        <thead><tr><th>No</th><th>Item</th><th>Origin</th><th>Shipment</th></tr></thead>
-        <tbody class="divide-y divide-gray-100">
-          <tr class="hover:bg-gray-50"><td>56</td><td>L-carnitine Hcl​</td><td>China</td><td>Prompt</td></tr>
-          <tr class="hover:bg-gray-50"><td>57</td><td>D-panthenol</td><td>China</td><td>Prompt</td></tr>
-          <tr class="hover:bg-gray-50"><td>59</td><td>Glucosamine k2SO4</td><td>China</td><td>2 Weeks</td></tr>
-          <tr class="hover:bg-gray-50"><td>71</td><td>Lactoferrin</td><td>China</td><td>Prompt</td></tr>
-          <tr class="hover:bg-gray-50"><td>72</td><td>Colstrum</td><td>China</td><td>Prompt</td></tr>
-        </tbody>
-      </table>
-
-      <!-- Viscosity Regulator -->
-      <h2 class="section-heading">Viscosity Regulator</h2>
-      <table class="classification-table w-full mb-12 bg-white rounded-lg overflow-hidden shadow">
-        <thead><tr><th>No</th><th>Item</th><th>Origin</th><th>Shipment</th></tr></thead>
-        <tbody class="divide-y divide-gray-100">
-          <tr class="hover:bg-gray-50"><td>58</td><td>Xanthan gum</td><td>China</td><td>Prompt</td></tr>
-        </tbody>
-      </table>
-
-      <!-- Anti Caking -->
-      <h2 class="section-heading">Anti Caking</h2>
-      <table class="classification-table w-full mb-12 bg-white rounded-lg overflow-hidden shadow">
-        <thead><tr><th>No</th><th>Item</th><th>Origin</th><th>Shipment</th></tr></thead>
-        <tbody class="divide-y divide-gray-100">
-          <tr class="hover:bg-gray-50"><td>60</td><td>Mg Oxide Heavy</td><td>China</td><td>2 Weeks</td></tr>
-          <tr class="hover:bg-gray-50"><td>67</td><td>Mg Oxide light</td><td>China</td><td>Prompt</td></tr>
-        </tbody>
-      </table>
-
-      <!-- Chelating agent / Flavoring -->
-      <h2 class="section-heading">Chelating agent / Flavoring</h2>
-      <table class="classification-table w-full mb-12 bg-white rounded-lg overflow-hidden shadow">
-        <thead><tr><th>No</th><th>Item</th><th>Origin</th><th>Shipment</th></tr></thead>
-        <tbody class="divide-y divide-gray-100">
-          <tr class="hover:bg-gray-50"><td>61</td><td>Citric Acid (mono/anhydrous)</td><td>China</td><td>Prompt</td></tr>
-        </tbody>
-      </table>
-
-      <!-- Thickener / Stabilize emulsion -->
-      <h2 class="section-heading">Thickener / Stabilize Emulsion</h2>
-      <table class="classification-table w-full mb-12 bg-white rounded-lg overflow-hidden shadow">
-        <thead><tr><th>No</th><th>Item</th><th>Origin</th><th>Shipment</th></tr></thead>
-        <tbody class="divide-y divide-gray-100">
-          <tr class="hover:bg-gray-50"><td>62</td><td>CMC 2000</td><td>China</td><td>Prompt</td></tr>
-        </tbody>
-      </table>
-
-      <!-- Preservative / Chelating agent -->
-      <h2 class="section-heading">Preservative / Chelating agent</h2>
-      <table class="classification-table w-full mb-12 bg-white rounded-lg overflow-hidden shadow">
-        <thead><tr><th>No</th><th>Item</th><th>Origin</th><th>Shipment</th></tr></thead>
-        <tbody class="divide-y divide-gray-100">
-          <tr class="hover:bg-gray-50"><td>64</td><td>Di Sodium EDTA</td><td>China</td><td>Prompt</td></tr>
-          <tr class="hover:bg-gray-50"><td>69</td><td>Tetra Sodium EDTA</td><td>China</td><td>Prompt</td></tr>
-        </tbody>
-      </table>
-
-      <!-- Iron Supplement -->
-      <h2 class="section-heading">Iron Supplement</h2>
-      <table class="classification-table w-full mb-12 bg-white rounded-lg overflow-hidden shadow">
-        <thead><tr><th>No</th><th>Item</th><th>Origin</th><th>Shipment</th></tr></thead>
-        <tbody class="divide-y divide-gray-100">
-          <tr class="hover:bg-gray-50"><td>65</td><td>Ferrous bis-glycinate</td><td>China</td><td>3 Weeks</td></tr>
-        </tbody>
-      </table>
-
-      <!-- Herbal Supplement -->
-      <h2 class="section-heading">Herbal Supplement</h2>
-      <table class="classification-table w-full mb-12 bg-white rounded-lg overflow-hidden shadow">
-        <thead><tr><th>No</th><th>Item</th><th>Origin</th><th>Shipment</th></tr></thead>
-        <tbody class="divide-y divide-gray-100">
-          <tr class="hover:bg-gray-50"><td>66</td><td>Ginger</td><td>China</td><td>2 Weeks</td></tr>
-        </tbody>
-      </table>
-
-      <!-- Solvent / Liquid sweeteners -->
-      <h2 class="section-heading">Solvent / Liquid Sweeteners</h2>
-      <table class="classification-table w-full mb-12 bg-white rounded-lg overflow-hidden shadow">
-        <thead><tr><th>No</th><th>Item</th><th>Origin</th><th>Shipment</th></tr></thead>
-        <tbody class="divide-y divide-gray-100">
-          <tr class="hover:bg-gray-50"><td>68</td><td>Monopropylene glycol</td><td>China</td><td>Prompt</td></tr>
-        </tbody>
-      </table>
-
-      <!-- Lubricant -->
-      <h2 class="section-heading">Lubricant</h2>
-      <table class="classification-table w-full mb-12 bg-white rounded-lg overflow-hidden shadow">
-        <thead><tr><th></th><th>Item</th><th>Origin</th><th>Shipment</th></tr></thead>
-        <tbody class="divide-y divide-gray-100">
-          <tr class="hover:bg-gray-50"><td>70</td><td>Talc powder</td><td>China</td><td>3 Weeks</td></tr>
-        </tbody>
-      </table>
-    </div>
   </main>
 
-  <footer class="bg-[#118f9d] text-white py-8 mt-12">
-    <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between space-y-8 md:space-y-0">
-      <div>
-        <h3 class="text-lg font-bold mb-4">Our Services</h3>
-        <ul class="space-y-2">
-          <li><a href="products.html#pharmaceutical-ingredients" class="hover:text-gray-200 transition">Pharmaceutical Ingredients</a></li>
-          <li><a href="products.html#chemical-raw-materials" class="hover:text-gray-200 transition">Chemical Raw Material Sourcing</a></li>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>Our Services</h3>
+        <ul>
+          <li><a href="aping.html">Active Pharmaceutical Ingredients</a></li>
+          <li><a href="excipients.html">Excipients</a></li>
         </ul>
       </div>
-      <div>
-        <h3 class="text-lg font-bold mb-4">Quick Links</h3>
-        <ul class="space-y-2">
-          <li><a href="index.html" class="hover:text-gray-200 transition">Home</a></li>
-          <li><a href="about.html" class="hover:text-gray-200 transition">About Us</a></li>
-          <li><a href="products.html" class="hover:text-gray-200 transition">Products</a></li>
-          <li><a href="#contact" class="hover:text-gray-200 transition">Contact</a></li>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="contact.html">Contact</a></li>
         </ul>
       </div>
-      <div>
-        <h3 class="text-lg font-bold mb-4">Connect with Us</h3>
-        <div class="flex space-x-4 text-2xl">
-          <a href="https://wa.me/+971505050505" target="_blank" class="hover:text-gray-200 transition"><i class="fab fa-whatsapp"></i></a>
-          <a href="mailto:contact@starkint.com" class="hover:text-gray-200 transition"><i class="fas fa-envelope"></i></a>
-          <a href="tel:+971505050505" class="hover:text-gray-200 transition"><i class="fas fa-phone"></i></a>
-          <a href="https://www.linkedin.com" target="_blank" class="hover:text-gray-200 transition"><i class="fab fa-linkedin"></i></a>
-          <a href="https://twitter.com" target="_blank" class="hover:text-gray-200 transition"><i class="fab fa-twitter"></i></a>
+      <div class="footer-section">
+        <h3>Connect with Us</h3>
+        <div class="footer-icons">
+          <a href="https://wa.me/971518007643" target="_blank" aria-label="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+          <a href="mailto:info@starkintl.com" aria-label="Email">
+            <i class="fas fa-envelope"></i>
+          </a>
+          <a href="tel:+971518007643" aria-label="Phone">
+            <i class="fas fa-phone"></i>
+          </a>
+          <a href="https://www.linkedin.com/company/starkintl?trk=blended-typeahead" target="_blank" aria-label="LinkedIn">
+            <i class="fab fa-linkedin"></i>
+          </a>
         </div>
       </div>
     </div>

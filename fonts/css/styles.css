@@ -1,0 +1,563 @@
+/* Define 'InaiMathi' Font - Regular */
+@font-face {
+    font-family: 'InaiMathi';
+    src: url('../fonts/InaiMathi-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; /* Ensures text remains visible during font loading */
+  }
+  
+  /* Define 'InaiMathi' Font - Bold */
+  @font-face {
+    font-family: 'InaiMathi';
+    src: url('../fonts/InaiMathi-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  /* Body Styling */
+  body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 5rem 0 0 0; /* Added top padding for fixed header */
+    background-color: #ffffff;
+    scroll-behavior: smooth;
+  }
+  
+  /* Navigation Link Hover Underline */
+  .nav-link::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 3px;
+    background: #ffffff;
+    transition: width 0.3s ease;
+  }
+  
+  .nav-link:hover::after {
+    width: 100%;
+  }
+  
+  /* Header Styling */
+  header {
+    background: linear-gradient(to right, #0f609b, #118f9d);
+    padding: 1.5rem 2rem; /* Adjusted padding */
+    position: fixed; /* Make header fixed */
+    top: 0;
+    width: 100%; /* Span full width */
+    z-index: 1000; /* Stay above other elements */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Optional shadow for depth */
+  }
+  
+  .header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  /* Apply 'InaiMathi' to the Logo */
+  .logo a {
+    font-family: 'InaiMathi', sans-serif; /* Applied 'InaiMathi' font */
+    flex-shrink: 0;
+    margin-right: 2rem;
+    font-size: 1.5rem; /* Adjust as needed */
+    font-weight: normal; /* Matches the 'InaiMathi-Regular' weight */
+    color: #ffffff;
+    text-decoration: none; /* Remove underline */
+  }
+  
+  nav {
+    display: flex;
+    gap: 1.2rem;
+  }
+  
+  .nav-link {
+    font-size: 1.2rem;
+    color: #ffffff;
+    position: relative; /* For ::after */
+  }
+  
+  .icon {
+    font-size: 1.5rem;
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+  
+  .icon:hover {
+    transform: scale(1.1);
+    color: #67a955;
+  }
+  
+  .controls {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  
+  /* Fullscreen Section */
+  .fullscreen-section {
+    position: relative;
+    width: 100%;
+    height: 90vh;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    overflow: hidden;
+    box-shadow: inset 0 0 400px rgba(0, 0, 0, 0.8);
+    margin-top: 0; /* No margin since header is fixed */
+  }
+  
+  /* Slideshow Container */
+  .slides-container {
+    display: flex;
+    width: 300%;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .slide {
+    width: 100%;
+    flex-shrink: 0;
+    position: relative;
+  }
+  
+  .slide img {
+    width: 100%;
+    height: 90vh;
+    object-fit: cover;
+  }
+  
+  .fullscreen-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    padding: 3rem;
+    max-width: 70%;
+  }
+  
+  /* Apply 'InaiMathi' to the Fullscreen Header Text */
+  .fullscreen-content h1 {
+    font-family: 'InaiMathi', sans-serif; /* Applied 'InaiMathi' font */
+    text-shadow: 4px 4px 20px rgba(0, 0, 0, 1);
+    font-size: 4rem;
+    text-transform: uppercase;
+  }
+  
+  /* Apply 'Organetto' with desired weight to Subtitle */
+  .fullscreen-content p {
+    font-family: 'Organetto', sans-serif;
+    text-shadow: 4px 4px 20px rgba(0, 0, 0, 1);
+    font-size: 1.8rem;
+    margin-top: 1rem;
+    font-weight: 500; /* Adjust based on desired weight */
+  }
+  
+  .learn-more-btn {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 1rem 2rem;
+    background-color: #118f9d;
+    color: white;
+    font-weight: 600;
+    border-radius: 30px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    text-decoration: none; /* Ensure no underline */
+  }
+  
+  .learn-more-btn:hover {
+    background-color: #67a955;
+    transform: translateY(-3px);
+  }
+  
+  .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    border: none;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    border-radius: 10%;
+    transition: background-color 0.3s ease;
+  }
+  
+  .arrow:hover {
+    background-color: #0f609b;
+  }
+  
+  .arrow.left {
+    left: 2rem;
+  }
+  
+  .arrow.right {
+    right: 2rem;
+  }
+  
+  /* Content Sections */
+  .content-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: 4rem auto;
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .text-content {
+    max-width: 600px;
+  }
+  
+  .text-content h2 {
+    color: #67a955;
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .text-content h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+  }
+  
+  .text-content p {
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+  }
+  
+  .text-content a {
+    color: #118f9d;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .text-content a:hover {
+    text-decoration: underline;
+  }
+  
+  .image-container {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .image-container img {
+    max-width: 400px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Split Section */
+  .split-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6rem;
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: 4rem auto;
+    position: relative;
+  }
+  
+  .split-content {
+    flex: 1;
+    text-align: center;
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    background: #ffffff;
+  }
+  
+  .split-content img {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 1.5rem;
+    border-radius: 50%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    display: block;
+  }
+  
+  .split-content h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #118f9d;
+    margin-bottom: 1rem;
+  }
+  
+  .split-content p {
+    font-size: 1rem;
+    line-height: 1.8;
+    padding: 0 1rem;
+  }
+  
+  .vertical-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 6px;
+    background: #118f9d;
+    transform: translateX(-50%);
+    border-radius: 10px;
+  }
+  
+  /* Order Products Section */
+  .order-products-section {
+    text-align: center;
+    padding: 5rem 2rem;
+    background: #f0f0f0;
+    margin-top: 4rem;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  }
+  
+  .order-products-section h2 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+  }
+  
+  .order-products-section p {
+    font-size: 1.5rem;
+    line-height: 1.8;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .order-products-section a {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 1rem 2rem;
+    background-color: #118f9d;
+    color: white;
+    font-weight: 600;
+    border-radius: 30px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .order-products-section a:hover {
+    background-color: #67a955;
+    transform: translateY(-3px);
+  }
+  
+  /* Statistics Section */
+  .statistics-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    margin-top: 3rem;
+  }
+  
+  .stat-box {
+    background: #fff;
+    border-radius: 15px;
+    padding: 2.5rem;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    flex: 1 1 30%;
+    text-align: center;
+    max-width: 300px;
+  }
+  
+  .stat-box h3 {
+    font-size: 1.5rem;
+    color: #118f9d;
+    margin-bottom: 1rem;
+  }
+  
+  .stat-box .icon {
+    font-size: 2.5rem;
+    color: #118f9d;
+    margin-bottom: 1rem;
+  }
+  
+  .stat-box .counter {
+    font-size: 2.5rem;
+    color: #118f9d;
+    font-weight: bold;
+  }
+  
+  /* Contact & Map Section */
+  .map-section-container { 
+    display: flex; 
+    align-items: flex-start; 
+    gap: 3rem; 
+    margin-top: 4rem; 
+    justify-content: space-between; 
+    max-width: 1200px;
+    margin: 4rem auto;
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .map-details {
+    width: 40%;
+    background: #f9fafb;
+    border-radius: 20px;
+    padding: 3rem;
+    text-align: left;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .map-details h2 {
+    color: #118f9d;
+    font-weight: 700;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  
+  .map-details p {
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    text-align: center;
+    color: #333;
+  }
+  
+  .map-details ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .map-details ul li {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #333;
+  }
+  
+  .map-details ul li i {
+    color: #118f9d;
+    font-size: 1.2rem;
+  }
+  
+  .map-details ul li a {
+    color: #118f9d;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .map-details ul li a:hover {
+    text-decoration: underline;
+    color: #0f609b;
+  }
+  
+  .map-section {
+    width: 55%;
+    height: 500px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Footer Styling */
+  .footer {
+    background: linear-gradient(to right, #118f9d, #0f609b);
+    color: white;
+    padding: 4rem 2rem;
+  }
+  
+  .footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .footer-section {
+    flex: 1;
+    margin-bottom: 2rem;
+    min-width: 200px;
+  }
+  
+  .footer-section h3 {
+    color: #ffffff;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  .footer-section ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .footer-section ul li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .footer-section a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  
+  .footer-section a:hover {
+    color: #bdbdbd;
+  }
+  
+  .footer-icons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  /* Fade-in on scroll classes */
+  .fade-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .fade-in {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .fullscreen-content h1 {
+      font-size: 2.5rem;
+    }
+  
+    .fullscreen-content p {
+      font-size: 1.2rem;
+    }
+  
+    .logo a {
+      font-size: 1.2rem;
+    }
+  
+    .content-section {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .map-section-container {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .map-details, .map-section {
+      width: 100%;
+    }
+  }
+  

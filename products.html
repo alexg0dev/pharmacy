@@ -18,7 +18,7 @@
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Google Fonts -->
+  <!-- Google Fonts (for Poppins) -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet"/>
 
   <!-- Font Awesome -->
@@ -31,11 +31,30 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet"/>
 
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
     body {
       font-family: 'Poppins', sans-serif;
       background-color: #f5f8fa;
       margin: 0;
       padding: 0;
+    }
+
+    /* Preload 'Murasuit' Font Files */
+    @font-face {
+      font-family: 'Murasuit';
+      src: url('fonts/Murasuit.woff2') format('woff2'),
+           url('fonts/Murasuit.woff') format('woff'),
+           url('fonts/Murasuit.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    /* Custom Class for Murasuit Font */
+    .font-Murasuit {
+      font-family: 'Murasuit', sans-serif;
+      font-weight: 400;
     }
 
     /* Navigation link underline animation */
@@ -47,7 +66,6 @@
       background: #ffffff;
       transition: width 0.3s ease;
     }
-
     .nav-link:hover::after {
       width: 100%;
     }
@@ -59,14 +77,13 @@
       position: sticky;
       top: 0;
       z-index: 50;
+      padding: 1.5rem 2rem;
     }
 
-    /* Header container adjustments */
     .header-container {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 1.5rem 2rem;
     }
 
     /* Logo Style */
@@ -77,7 +94,6 @@
       font-weight: 700;
     }
 
-    /* Navigation Links */
     nav {
       display: flex;
       gap: 1.5rem;
@@ -87,18 +103,16 @@
       font-size: 1.2rem;
       color: #ffffff;
       transition: color 0.3s ease;
+      text-decoration: none;
     }
 
-    /* Icon Styles */
     .icon {
       font-size: 1.5rem;
       transition: transform 0.3s ease, color 0.3s ease;
       color: #ffffff;
     }
-
     .icon:hover {
       transform: scale(1.1);
-      /* Optional: Add color change on hover */
       color: #67a955;
     }
 
@@ -125,7 +139,6 @@
       margin-bottom: 4rem;
       position: relative;
       display: inline-block;
-      /* Adding animation for the heading */
       animation: fadeInDown 1s ease-out;
     }
 
@@ -222,64 +235,63 @@
     }
 
     .footer {
-  background: linear-gradient(to right, #0f609b, #118f9d); /* Same gradient as About Us */
-  color: white;
-  padding: 4rem 2rem;
-  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
-}
+      background: linear-gradient(to right, #0f609b, #118f9d);
+      color: white;
+      padding: 4rem 2rem;
+      box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+    }
 
-.footer-container {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
 
-.footer-section {
-  flex: 1;
-  margin-bottom: 2rem;
-  min-width: 200px; /* Ensures responsiveness */
-}
+    .footer-section {
+      flex: 1;
+      margin-bottom: 2rem;
+      min-width: 200px;
+    }
 
-.footer-section h3 {
-  color: #ffffff;
-  font-weight: bold;
-  margin-bottom: 1rem;
-}
+    .footer-section h3 {
+      color: #ffffff;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
 
-.footer-section ul {
-  list-style: none;
-  padding: 0;
-}
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+    }
 
-.footer-section ul li {
-  margin-bottom: 0.5rem;
-}
+    .footer-section ul li {
+      margin-bottom: 0.5rem;
+    }
 
-.footer-section a {
-  color: #ffffff;
-  text-decoration: none;
-  transition: color 0.3s;
-}
+    .footer-section a {
+      color: #ffffff;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
 
-.footer-section a:hover {
-  color: #bdbdbd;
-}
+    .footer-section a:hover {
+      color: #bdbdbd;
+    }
 
-.footer-icons {
-  display: flex;
-  gap: 1rem;
-  margin-top: 1rem;
-}
+    .footer-icons {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
 
-.footer-icons a {
-  font-size: 1.5rem; /* Adjust icon size as needed */
-  transition: transform 0.3s ease;
-}
+    .footer-icons a {
+      font-size: 1.5rem;
+      transition: transform 0.3s ease;
+    }
 
-.footer-icons a:hover {
-  transform: scale(1.1);
-}
-
+    .footer-icons a:hover {
+      transform: scale(1.1);
+    }
 
     @media(max-width: 768px) {
       nav {
@@ -287,14 +299,12 @@
       }
     }
 
-    /* Icon Styling for Product Titles */
     .product-icon {
       font-size: 3rem;
       color: #67a955;
       margin-bottom: 1rem;
     }
 
-    /* Styling for Product Images */
     .product-image {
       width: 100%;
       max-width: 200px;
@@ -312,12 +322,12 @@
   </style>
 </head>
 <body>
-  <!-- Header Section -->
   <header>
     <div class="container mx-auto header-container">
       <!-- Logo -->
       <div class="logo">
-        <a href="index.html">Stark International</a>
+        <!-- Applied 'font-Murasuit' and customized size using Tailwind classes -->
+        <a href="index.html" class="font-Murasuit text-5xl md:text-6xl lg:text-5xl">Stark International</a>
       </div>
 
       <!-- Navigation Links -->
@@ -346,9 +356,7 @@
     <div class="product-grid">
       <!-- Active Pharmaceutical Ingredients Section -->
       <div class="product-card">
-        <!-- Product Image -->
         <img src="images/molecules.avif" alt="Active Pharmaceutical Ingredients" class="product-image">
-
         <h2>Active Pharmaceutical Ingredients (APIs)</h2>
         <p>We supply high-quality APIs compliant with international standards. Our offerings come with full documentation to ensure regulatory compliance and foster innovative drug development. Partner with us for a healthier future.</p>
         <a href="aping.html" class="product-link">
@@ -359,9 +367,7 @@
 
       <!-- Excipients Section -->
       <div class="product-card" data-aos="flip-left">
-        <!-- Product Image -->
         <img src="images/molecules2.webp" alt="Excipients" class="product-image">
-
         <h2>Excipients</h2>
         <p>Our excipients are biologically stable, pharmaceutically acceptable, and cost-effective. Approved by regulatory bodies, they ensure safety, accessibility, and top-tier functionality in drug formulations.</p>
         <a href="excipients.html" class="product-link">
@@ -380,7 +386,6 @@
         <ul>
           <li><a href="aping.html">Active Pharmaceutical Ingredients</a></li>
           <li><a href="excipients.html">Excipients</a></li>
-          <!-- Removed "Products" from Our Services as requested -->
         </ul>
       </div>
       <div class="footer-section">
@@ -389,7 +394,6 @@
           <li><a href="index.html">Home</a></li>
           <li><a href="about.html">About Us</a></li>
           <li><a href="contact.html">Contact</a></li>
-          <!-- Removed "Privacy Policy" and "Terms of Service" as requested -->
         </ul>
       </div>
       <div class="footer-section">
@@ -407,7 +411,6 @@
           <a href="https://www.linkedin.com/company/starkintl?trk=blended-typeahead" target="_blank" aria-label="LinkedIn">
             <i class="fab fa-linkedin"></i>
           </a>
-          <!-- Removed Twitter icon as requested -->
         </div>
       </div>
     </div>
@@ -417,21 +420,19 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
   <script>
     AOS.init({
-      duration: 800, // Animation duration in milliseconds
-      once: true,    // Whether animation should happen only once - while scrolling down
-      mirror: false, // Whether elements should animate out while scrolling past them
+      duration: 800,
+      once: true,
+      mirror: false,
     });
   </script>
 
   <!-- Mobile Redirect Script -->
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      // Function to detect mobile devices
       function isMobileDevice() {
         return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
       }
 
-      // Redirect to excipients.html if accessed from a mobile device
       if (isMobileDevice()) {
         window.location.href = "excipients.html";
       }

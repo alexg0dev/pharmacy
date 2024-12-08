@@ -36,6 +36,23 @@
       padding-top: 6rem; /* Prevent overlapping with fixed header */
     }
 
+    /* Preload 'Murasuit' Font Files */
+    @font-face {
+      font-family: 'Murasuit';
+      src: url('fonts/Murasuit.woff2') format('woff2'),
+           url('fonts/Murasuit.woff') format('woff'),
+           url('fonts/Murasuit.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    /* Custom Class for Murasuit Font */
+    .font-Murasuit {
+      font-family: 'Murasuit', sans-serif;
+      font-weight: 400;
+    }
+
     /* Navigation Link Hover Underline */
     .nav-link::after {
       content: '';
@@ -65,20 +82,20 @@
       justify-content: space-between;
     }
 
-    /* Logo Style */
+    /* Apply Murasuit with the exact Tailwind classes from the snippet */
     .logo a {
       color: #ffffff;
-      font-size: 2.5rem;
-      font-weight: bold;
       text-decoration: none;
       cursor: pointer;
+      font-family: 'Murasuit', sans-serif;
+      font-weight: 400;
     }
 
-    /* Navigation Links */
     nav {
       display: flex;
       gap: 1.5rem;
     }
+
     .nav-link {
       font-size: 1.2rem;
       color: #ffffff;
@@ -89,14 +106,13 @@
       color: #cce7f0;
     }
 
-    /* Icon Styles */
     .controls {
       display: flex;
       gap: 1rem;
       align-items: center;
     }
     .controls a {
-      color: #ffffff; /* Ensure icons are white */
+      color: #ffffff;
       transition: color 0.3s ease, transform 0.3s ease;
       text-decoration: none;
     }
@@ -108,10 +124,20 @@
       font-size: 1.5rem;
     }
 
-    /* Contact Page Styling */
+    .fade-section {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s ease-out, transform 1s ease-out;
+    }
+
+    .fade-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     .contact-container {
       max-width: 1200px;
-      margin: 0 auto 4rem auto; /* Removed top margin */
+      margin: 0 auto 4rem auto;
       padding: 2rem;
       background: #fff;
       border-radius: 20px;
@@ -152,7 +178,6 @@
       color: #118f9d;
     }
 
-    /* Location & Additional Info */
     .location-section {
       margin-bottom: 3rem;
     }
@@ -163,7 +188,6 @@
       text-align: left;
     }
 
-    /* Fixed map size */
     .map-container {
       width: 100%;
       height: 300px;
@@ -209,7 +233,6 @@
       color: #333;
     }
 
-    /* Office Hours */
     .office-hours {
       background: #f9fafb;
       padding: 2rem;
@@ -231,7 +254,6 @@
       margin-bottom: 0.5rem;
     }
 
-    /* Contact Form */
     .contact-form-section {
       margin-bottom: 3rem;
     }
@@ -283,7 +305,6 @@
       text-decoration:underline;
     }
 
-    /* FAQ Section */
     .faq-section {
       background: #f9fafb;
       padding: 2rem;
@@ -328,7 +349,6 @@
       padding-left: 30px;
     }
 
-    /* Footer Section with Gradient */
     .footer {
       background: linear-gradient(to right, #0f609b, #118f9d);
       color: white;
@@ -385,28 +405,34 @@
   </style>
 </head>
 <body>
-  <!-- Header -->
+  <script>
+    // Redirect to mobile version if on mobile
+    if (/Mobi|Android/i.test(navigator.userAgent)) {
+      window.location.href = 'contact1.html';
+    }
+  </script>
   <header>
     <div class="container mx-auto header-container">
       <!-- Logo -->
       <div class="logo">
-        <a href="index.html">Stark International</a>
+        <!-- Applied 'font-Murasuit' and customized size using Tailwind classes -->
+        <a href="index.html" class="font-Murasuit text-5xl md:text-6xl lg:text-5xl">Stark International</a>
       </div>
-
+      
       <!-- Navigation Links -->
       <nav>
-        <a href="index.html" class="nav-link font-medium">Home</a>
-        <a href="about.html" class="nav-link font-medium">About</a>
-        <a href="products.html" class="nav-link font-medium">Products</a>
-        <a href="#contact" class="nav-link font-medium">Contact</a>
+        <a href="index.html" class="nav-link font-medium fade-section">Home</a>
+        <a href="about.html" class="nav-link font-medium fade-section">About</a>
+        <a href="products.html" class="nav-link font-medium fade-section">Products</a>
+        <a href="contact.html" class="nav-link font-medium fade-section">Contact</a>
       </nav>
 
-      <!-- WhatsApp and Gmail Icons -->
+      <!-- WhatsApp and Email Icons -->
       <div class="controls">
-        <a href="https://wa.me/00971518007643" target="_blank" class="transition" aria-label="WhatsApp">
+        <a href="https://wa.me/00971518007643" target="_blank" class="transition fade-section" aria-label="WhatsApp">
           <i class="fab fa-whatsapp icon"></i>
         </a>
-        <a href="mailto:info@starkint.com" class="transition" aria-label="Email">
+        <a href="mailto:info@starkintl.com" class="transition fade-section" aria-label="Email">
           <i class="fas fa-envelope icon"></i>
         </a>
       </div>
@@ -415,30 +441,29 @@
 
   <main>
     <!-- Contact Page Content -->
-    <div class="contact-container">
+    <div class="contact-container fade-section">
       <!-- Contact Heading -->
-      <div class="contact-heading">
+      <div class="contact-heading fade-section">
         <h1>Get in Touch with Us</h1>
         <p style="font-size:1.2rem; color:#333;">We’re here to help with your inquiries, partnership requests, and product details.</p>
       </div>
 
       <!-- Contact Information -->
-      <div class="contact-info-block">
+      <div class="contact-info-block fade-section">
         <h2>Our Main Contact Details</h2>
         <p><i class="fas fa-phone"></i><strong>Phone:</strong> <a href="tel:00971518007643">00971518007643</a></p>
-        <p><i class="fas fa-envelope"></i><strong>Email:</strong> <a href="mailto:info@starkint.com">info@starkint.com</a></p>
+        <p><i class="fas fa-envelope"></i><strong>Email:</strong> <a href="mailto:info@starkintl.com">info@starkintl.com</a></p>
         <p><i class="fab fa-whatsapp"></i><strong>WhatsApp:</strong> <a href="https://wa.me/00971518007643" aria-label="WhatsApp Link">00971518007643</a></p>
-        <p><i class="fas fa-globe"></i><strong>Website:</strong> <a href="https://www.starkint.com">www.starkint.com</a></p>
+        <p><i class="fas fa-globe"></i><strong>Website:</strong> <a href="https://www.starkintl.com">www.starkintl.com</a></p>
         <p style="margin-top:1rem; font-size:1.1rem;">
           For business inquiries, please email us directly. For sales, reach out via phone or WhatsApp. For technical support, please email or call us, and we'll assist as soon as possible.
         </p>
       </div>
 
       <!-- Location Section -->
-      <div class="location-section">
+      <div class="location-section fade-section">
         <h2>Our Main Office Location</h2>
         <div class="map-container">
-          <!-- Updated Google Maps Embed for UAE Address -->
           <iframe 
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3450.123456789!2d55.978100!3d25.800690!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ef6761e1ed9b66f%3A0xabcdef123456789!2sFBC50274%20Compass%20Building%2C%20Al%20Shohada%20Road%2C%20AL%20Hamra%20Industrial%20Zone-FZ%2C%20Ras%20Al%20Khaimah%2C%20United%20Arab%20Emirates!5e0!3m2!1sen!2sae!4v1700000000000!5m2!1sen!2sae" 
             allowfullscreen="" loading="lazy"></iframe>
@@ -454,79 +479,75 @@
 
         <!-- Branch Offices -->
         <h2>Our Branch Offices</h2>
-        <div class="branch-offices">
+        <div class="branch-offices fade-section">
           <!-- UAE Branch -->
-          <div class="office-card">
+          <div class="office-card fade-section">
             <h3>UAE Branch</h3>
             <p><i class="fas fa-map-marker-alt" style="color:#0f609b;"></i> FBC50274 Compass Building, Al Shohada Road, AL Hamra Industrial Zone-FZ, Ras Al Khaimah, United Arab Emirates</p>
             <p><i class="fas fa-phone" style="color:#0f609b;"></i> <a href="tel:00971518007643">00971518007643</a></p>
-            <p><i class="fas fa-envelope" style="color:#0f609b;"></i> <a href="mailto:info@starkint.com">info@starkint.com</a></p>
+            <p><i class="fas fa-envelope" style="color:#0f609b;"></i> <a href="mailto:info@starkintl.com">info@starkintl.com</a></p>
           </div>
 
           <!-- Saudi Arabia Branch (Coming Soon) -->
-          <div class="office-card">
+          <div class="office-card fade-section">
             <h3>Saudi Arabia Branch</h3>
             <p><i class="fas fa-map-marker-alt" style="color:#0f609b;"></i> Jeddah, Saudi Arabia (Coming Soon)</p>
-            <p><i class="fas fa-phone" style="color:#0f609b;"></i> +966-XXXXXXXXX</p>
-            <p><i class="fas fa-envelope" style="color:#0f609b;"></i> <a href="mailto:saudi@starkint.com">saudi@starkint.com</a></p>
           </div>
 
           <!-- China Sourcing Office (Coming Soon) -->
-          <div class="office-card">
+          <div class="office-card fade-section">
             <h3>China Sourcing Office</h3>
             <p><i class="fas fa-map-marker-alt" style="color:#0f609b;"></i> Room 402, No.63 Huancheng North Road, Hangzhou, China. Post code:310003 (Coming Soon)</p>
-            <p><i class="fas fa-phone" style="color:#0f609b;"></i> +86-XXXXXXXXX</p>
-            <p><i class="fas fa-envelope" style="color:#0f609b;"></i> <a href="mailto:china@starkint.com">china@starkint.com</a></p>
           </div>
         </div>
       </div>
 
       <!-- Office Hours & Response Times -->
-      <div class="office-hours">
+      <div class="office-hours fade-section">
         <h2>Office Hours &amp; Response Times</h2>
         <ul>
           <li><strong>Headquarters:</strong> Mon-Fri 9am - 5pm</li>
-          <li><strong>Branches:</strong> 2 (Ras el Kheima &amp; Jeddah soon)</li>
+          <li><strong>Branches:</strong> Ras el Khaimah &amp; Jeddah soon</li>
           <li><strong>Emails:</strong> Answered within 24 hours</li>
           <li><strong>WhatsApp &amp; Phone:</strong> within 2 hours</li>
         </ul>
       </div>
 
       <!-- Contact Form -->
-      <div class="contact-form-section">
+      <div class="contact-form-section fade-section">
         <h2>Contact Form</h2>
-        <form class="contact-form" action="https://formspree.io/f/your-form-id" method="POST"> <!-- Update Form Action -->
+        <form class="contact-form fade-section" action="https://formspree.io/f/your-form-id" method="POST">
           <input type="text" name="name" placeholder="Your Name" required>
           <input type="email" name="email" placeholder="Your Email" required>
           <input type="text" name="subject" placeholder="Subject" required>
           <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-          <button type="submit">Send Message</button>
+          <button type="submit" class="fade-section">Send Message</button>
         </form>
-        <p class="contact-whatsapp-help">
+        <p class="contact-whatsapp-help fade-section">
           Need help right now? Contact us on <a href="https://wa.me/00971518007643" target="_blank">WhatsApp</a> for immediate assistance.
         </p>
       </div>
 
       <!-- FAQ Section -->
-      <div class="faq-section">
+      <div class="faq-section fade-section">
         <h2>Frequently Asked Questions</h2>
 
-        <div class="faq-item">
+        <div class="faq-item fade-section">
           <h3>How soon can I expect a response?</h3>
           <p>We strive to respond to all inquiries within 24 hours. For urgent matters, please use our phone or WhatsApp line during business hours.</p>
         </div>
 
-        <div class="faq-item">
+        <div class="faq-item fade-section">
           <h3>Can I schedule a meeting at your headquarters?</h3>
           <p>Yes, please send us an email at least 48 hours in advance so we can arrange a suitable time and ensure a dedicated representative is available.</p>
         </div>
 
-        <div class="faq-item">
+        <div class="faq-item fade-section">
           <h3>Do you offer technical support?</h3>
           <p>Yes, please email or call us for technical support, and we’ll assist as quickly as possible.</p>
         </div>
 
-        <div class="faq-item">
+        <div class="faq-item fade-section">
           <h3>Where can I find product documentation?</h3>
           <p>Detailed product manuals, API documentation, and integration guides are available on our <a href="about.html">About Us</a> page and the <a href="products.html">Products</a> section.</p>
         </div>
@@ -537,31 +558,28 @@
   <!-- Enhanced Footer Section -->
   <footer class="footer">
     <div class="container mx-auto footer-container">
-      <div class="footer-section">
-        <h3>Our Services</h3>
-        <ul>
-          <li><a href="aping.html">Active Pharmaceutical Ingredients</a></li>
-          <li><a href="excipients.html">Excipients</a></li>
-          <!-- Updated links to aping.html and excipients.html -->
+      <div class="footer-section fade-section">
+        <h3 class="fade-section">Our Services</h3>
+        <ul class="fade-section">
+          <li class="fade-section"><a href="aping.html">Active Pharmaceutical Ingredients</a></li>
+          <li class="fade-section"><a href="excipients.html">Excipients</a></li>
         </ul>
       </div>
-      <div class="footer-section">
-        <h3>Quick Links</h3>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <!-- Removed About Us from Quick Links as requested -->
-          <li><a href="about.html">About</a></li>
-          <!-- Updated Contact link to contact.html -->
-          <li><a href="products.html">Products</a></li>
+      <div class="footer-section fade-section">
+        <h3 class="fade-section">Quick Links</h3>
+        <ul class="fade-section">
+          <li class="fade-section"><a href="index.html">Home</a></li>
+          <li class="fade-section"><a href="about.html">About</a></li>
+          <li class="fade-section"><a href="products.html">Products</a></li>
         </ul>
       </div>
-      <div class="footer-section">
-        <h3>Connect with Us</h3>
-        <div class="footer-icons">
+      <div class="footer-section fade-section">
+        <h3 class="fade-section">Connect with Us</h3>
+        <div class="footer-icons fade-section">
           <a href="https://wa.me/971518007643" target="_blank">
             <i class="fab fa-whatsapp"></i>
           </a>
-          <a href="mailto:contact@starkint.com">
+          <a href="mailto:info@starkintl.com">
             <i class="fas fa-envelope icon"></i>
           </a>
           <a href="tel:+971518007643">
@@ -570,88 +588,35 @@
           <a href="https://www.linkedin.com/company/starkintl?trk=blended-typeahead" target="_blank">
             <i class="fab fa-linkedin"></i>
           </a>
-          <!-- Removed Twitter icon as requested -->
         </div>
       </div>
     </div>
   </footer>
 
-  <!-- Scripts -->
   <script>
-    // Optional: Remove or comment out unused scripts if not needed
-    /*
-    // Slideshow functionality (not used in contact page)
-    const images = [
-      'images/medicine.jpg',
-      'images/medicine2.jpg',
-      'images/medicine3.jpg'
-    ];
-    let currentImageIndex = 0;
-    let slideInterval;
-
-    function changeSlide(direction) {
-      currentImageIndex = (currentImageIndex + direction + images.length) % images.length;
-      const slidesContainer = document.querySelector('.slides-container');
-      slidesContainer.style.transform = `translateX(-${currentImageIndex * 100}%)`;
-      resetInterval();
-    }
-
-    function startSlideshow() {
-      slideInterval = setInterval(() => {
-        changeSlide(1);
-      }, 6000); // Changed from 5000ms to 6000ms
-    }
-
-    function resetInterval() {
-      clearInterval(slideInterval);
-      startSlideshow();
-    }
-
-    // Start the slideshow on page load
-    window.onload = function() {
-      startSlideshow();
-
-      // Counter animations (if any)
-      animateCounter("users-bought", 0, 150, 1500); // Animate to 150
-      animateCounter("users-trust", 0, 150, 1500); // Animate to 150
-      animateCounter("items-stock", 0, 200, 1500, function() {
-        document.getElementById("items-stock").textContent += "+";
-      }); // Animate to 200 and append "+"
-    };
-
-    // Counter animations
-    function animateCounter(id, start, end, duration, callback) {
-      let obj = document.getElementById(id);
-      let range = end - start;
-      let increment = end > start ? 1 : -1;
-      let stepTime = Math.abs(Math.floor(duration / range));
-      let current = start;
-      let timer = setInterval(function () {
-        current += increment;
-        obj.textContent = current;
-        if (current === end) {
-          clearInterval(timer);
-          if (callback) callback();
-        }
-      }, stepTime);
-    }
-
-    // Fade-in on scroll
     document.addEventListener('DOMContentLoaded', function() {
-      const observer = new IntersectionObserver(entries => {
+      const faders = document.querySelectorAll('.fade-section');
+
+      const appearOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px"
+      };
+
+      const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
         entries.forEach(entry => {
-          if (entry.isIntersecting) {
+          if (!entry.isIntersecting) {
+            return;
+          } else {
             entry.target.classList.add('fade-in');
+            appearOnScroll.unobserve(entry.target);
           }
         });
-      }, { threshold: 0.1 });
+      }, appearOptions);
 
-      document.querySelectorAll('.fade-section').forEach(el => {
-        observer.observe(el);
+      faders.forEach(fader => {
+        appearOnScroll.observe(fader);
       });
     });
-    */
-    
   </script>
 </body>
 </html>
