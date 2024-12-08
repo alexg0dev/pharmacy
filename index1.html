@@ -19,6 +19,16 @@
   <link rel="preload" href="fonts/Murasuit.woff" as="font" type="font/woff" crossorigin>
   <link rel="preload" href="fonts/Murasuit.ttf" as="font" type="font/ttf" crossorigin>
   
+  <script>
+    // Detect PC and redirect to PC site
+    document.addEventListener('DOMContentLoaded', function() {
+      if (!/Mobi|Android/i.test(navigator.userAgent)) {
+        // If not mobile, redirect to desktop site
+        window.location.href = 'index.html';
+      }
+    });
+  </script>
+  
   <style>
     /* Define 'Murasuit' Font - Regular */
     @font-face {
@@ -31,15 +41,9 @@
       font-display: swap;
     }
 
-    .font-Murasuit {
-      font-family: 'Murasuit', sans-serif;
-      font-weight: 400;
-    }
-
     body {
       font-family: 'Poppins', sans-serif;
       margin: 0;
-      padding-top: 4rem;
       background-color: #ffffff;
       scroll-behavior: smooth;
     }
@@ -66,39 +70,43 @@
       text-decoration: none;
       font-size: 1.5rem;
       white-space: nowrap;
+      display: flex;
+      align-items: center;
+      font-family: 'Murasuit', sans-serif;
     }
 
-    /* Hamburger Menu */
     .hamburger {
       font-size: 1.5rem;
       color: #ffffff;
       cursor: pointer;
+      display: flex;
+      align-items: center;
     }
 
     /* Animated Dropdown Nav */
     .mobile-nav {
-      display: flex;
-      flex-direction: column;
       background: #0f609b;
       border-radius: 10px;
-      margin-top: 1rem;
       padding: 0 1rem;
-      max-height: 0; /* Start collapsed */
-      overflow: hidden; 
-      transition: max-height 0.3s ease;
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      opacity: 0;
     }
 
     .nav-open {
-      max-height: 500px; /* Adjust according to content */
+      transform: scaleY(1);
+      opacity: 1;
     }
 
     .mobile-nav a {
+      display: block;
       color: #ffffff;
       text-decoration: none;
       font-size: 1rem;
       padding: 0.5rem 0;
       border-bottom: 1px solid rgba(255,255,255,0.2);
-      font-family: 'Murasuit', sans-serif; /* Applied Murasuit font here */
+      /* Removed Murasuit here, default Poppins applies */
     }
 
     .mobile-nav a:last-child {
@@ -114,6 +122,7 @@
       position: relative;
       width: 100%;
       height: 60vh;
+      margin-top: 4rem; /* Add margin-top so header doesn't overlap hero text */
       background-size: cover;
       background-position: center;
       display: flex;
@@ -157,6 +166,7 @@
       text-shadow: 4px 4px 20px rgba(0, 0, 0, 1);
       font-size: 2rem;
       text-transform: uppercase;
+      font-family: 'Murasuit', sans-serif;
     }
 
     .fullscreen-content p {
@@ -232,6 +242,7 @@
       font-size: 1.8rem;
       font-weight: 700;
       margin-bottom: 1rem;
+      color: #118f9d;
     }
 
     .content-section p {
@@ -239,6 +250,7 @@
       line-height: 1.5;
       margin-bottom: 1rem;
       max-width: 500px;
+      color: #333;
     }
 
     .content-section a {
@@ -290,6 +302,7 @@
       font-size: 0.9rem;
       line-height: 1.5;
       padding: 0 0.5rem;
+      color: #333;
     }
 
     /* Order Products Section */
@@ -313,6 +326,7 @@
       max-width: 500px;
       margin: 0 auto;
       margin-bottom: 1rem;
+      color: #333;
     }
 
     .order-products-section a {
@@ -488,18 +502,18 @@
   <!-- Header with Hamburger Menu -->
   <header>
     <div class="header-container">
-      <div class="logo font-Murasuit">
-        <a href="index_mobile.html">Stark International</a>
+      <div class="logo">
+        <a href="index1.html">Stark International</a>
       </div>
       <div class="hamburger" onclick="toggleNav()">
         <i class="fas fa-bars"></i>
       </div>
     </div>
     <div class="mobile-nav" id="mobile-nav">
-      <a href="index_mobile.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="products.html">Products</a>
-      <a href="contact.html">Contact</a>
+      <a href="index1.html">Home</a>
+      <a href="about1.html">About</a>
+      <a href="products1.html">Products</a>
+      <a href="contact1.html">Contact</a>
       <div class="mt-2">
         <a href="https://wa.me/971518007643" target="_blank" aria-label="WhatsApp" class="block mt-2 text-white">
           <i class="fab fa-whatsapp mr-1"></i> WhatsApp
@@ -526,14 +540,14 @@
     </div>
 
     <div class="fullscreen-content">
-      <h1 class="font-Murasuit">STARK INTERNATIONAL</h1>
+      <h1>STARK INTERNATIONAL</h1>
       <p>A Partner to Trust</p>
       
       <!-- Button Group -->
       <div class="mt-4 flex flex-col gap-2">
-        <a href="about.html" class="learn-more-btn">Learn More</a>
-        <a href="aping.html" class="learn-more-btn">API Listing</a>
-        <a href="excipients.html" class="learn-more-btn">Excipients</a>
+        <a href="about1.html" class="learn-more-btn">Learn More</a>
+        <a href="aping1.html" class="learn-more-btn">API Listing</a>
+        <a href="excipients1.html" class="learn-more-btn">Excipients</a>
       </div>
     </div>
 
@@ -542,12 +556,12 @@
     <button class="arrow right" onclick="changeSlide(1)">&#8250;</button>
   </section>
 
-  <!-- Intro Content Section -->
+  <!-- Intro Content Section with Image -->
   <section class="content-section fade-section">
     <h2>Pioneering Healthcare Solutions</h2>
-    <h1>Transforming lives through innovation</h1>
-    <p>We focus on imparting knowledge and technical expertise to assist our clients in achieving optimal solutions. We regularly evaluate and refine our management processes, operational methods, and resources to ensure continuous improvement in our systems, products, and services.</p>
-    <a href="contact.html">Get in touch</a>
+    <h1>Transforming Lives Through Innovation</h1>
+    <p>We focus on imparting knowledge and technical expertise to assist our clients in achieving optimal solutions. Our team consistently evaluates and refines our management processes, operational methods, and resources to ensure continuous improvement and unparalleled quality in our systems, products, and services.</p>
+    <a href="contact1.html">Get in touch</a>
     <img src="images/medicine.jpg" alt="Pharmaceutical Supplies">
   </section>
 
@@ -569,7 +583,7 @@
   <section class="order-products-section fade-section">
     <h2>Order Our Products</h2>
     <p>Since 1989, we have specialized in the field of Active Pharmaceutical Ingredients and Excipients. Our esteemed clientele includes multinational pharmaceutical corporations, generic pharmaceutical firms, and toll manufacturers. Additionally, we offer technical transfer dossiers, meticulously crafted to meet the unique needs of our clients.</p>
-    <a href="contact.html">Contact Us and Order</a>
+    <a href="contact1.html">Contact Us and Order</a>
   </section>
 
   <!-- Contact & Map Section -->
@@ -605,17 +619,17 @@
       <div class="footer-section">
         <h3>Our Services</h3>
         <ul>
-          <li><a href="aping.html">Active Pharmaceutical Ingredients</a></li>
-          <li><a href="excipients.html">Excipients</a></li>
+          <li><a href="aping1.html">Active Pharmaceutical Ingredients</a></li>
+          <li><a href="excipients1.html">Excipients</a></li>
         </ul>
       </div>
 
       <div class="footer-section">
         <h3>Quick Links</h3>
         <ul>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="products.html">Products</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="about1.html">About Us</a></li>
+          <li><a href="products1.html">Products</a></li>
+          <li><a href="contact1.html">Contact</a></li>
         </ul>
       </div>
 
