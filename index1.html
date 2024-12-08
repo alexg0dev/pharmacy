@@ -75,13 +75,21 @@
       cursor: pointer;
     }
 
+    /* Animated Dropdown Nav */
     .mobile-nav {
-      display: none;
+      display: flex;
       flex-direction: column;
       background: #0f609b;
       border-radius: 10px;
       margin-top: 1rem;
-      padding: 1rem;
+      padding: 0 1rem;
+      max-height: 0; /* Start collapsed */
+      overflow: hidden; 
+      transition: max-height 0.3s ease;
+    }
+
+    .nav-open {
+      max-height: 500px; /* Adjust according to content */
     }
 
     .mobile-nav a {
@@ -90,9 +98,14 @@
       font-size: 1rem;
       padding: 0.5rem 0;
       border-bottom: 1px solid rgba(255,255,255,0.2);
+      font-family: 'Murasuit', sans-serif; /* Applied Murasuit font here */
     }
 
     .mobile-nav a:last-child {
+      border-bottom: none;
+    }
+
+    .mobile-nav .mt-2 a {
       border-bottom: none;
     }
 
@@ -462,7 +475,6 @@
     }
 
     @media (min-width: 769px) {
-      /* On larger screens, center content and perhaps increase some sizes */
       .fullscreen-section {
         height: 80vh;
       }
@@ -629,14 +641,10 @@
 
   <!-- Scripts -->
   <script>
-    // Toggle Mobile Nav
+    // Toggle Mobile Nav with animation
     function toggleNav() {
       const nav = document.getElementById('mobile-nav');
-      if (nav.style.display === 'flex') {
-        nav.style.display = 'none';
-      } else {
-        nav.style.display = 'flex';
-      }
+      nav.classList.toggle('nav-open');
     }
 
     // Slideshow
