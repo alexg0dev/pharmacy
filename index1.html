@@ -2,59 +2,68 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <!-- Enable responsive design -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!-- Disable zooming on mobile -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0"/>
   <title>Stark International - Mobile</title>
-  
+
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  
+
   <!-- Fonts & Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Organetto&display=swap" rel="stylesheet"/>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  
+
+  <!-- Preload Custom Fonts -->
+  <link rel="preload" href="fonts/Murasuit.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/Murasuit.woff" as="font" type="font/woff" crossorigin>
+  <link rel="preload" href="fonts/Murasuit.ttf" as="font" type="font/ttf" crossorigin>
+
   <style>
     @font-face {
-      font-family: 'Bodoniferraposter-extra';
-      src: url('fonts/Bodoniferraposter-extra.woff2') format('woff2'),
-           url('fonts/Bodoniferraposter-extra.woff') format('woff');
-      font-weight: normal;
+      font-family: 'Murasuit';
+      src: url('fonts/Murasuit.woff2') format('woff2'),
+           url('fonts/Murasuit.woff') format('woff'),
+           url('fonts/Murasuit.ttf') format('truetype');
+      font-weight: 400; 
       font-style: normal;
+      font-display: swap;
     }
 
-    /* Body Styling */
+    .font-Murasuit {
+      font-family: 'Murasuit', sans-serif;
+      font-weight: 400;
+    }
+
     body {
       font-family: 'Poppins', sans-serif;
       margin: 0;
-      padding: 5rem 1rem 0 1rem; /* Adjusted padding for mobile */
+      padding: 0;
       background-color: #ffffff;
       scroll-behavior: smooth;
     }
 
-    /* Navigation Link Hover Underline */
+    /* Navigation underline animation */
     .nav-link::after {
       content: '';
       display: block;
       width: 0;
-      height: 2px;
+      height: 3px;
       background: #ffffff;
       transition: width 0.3s ease;
     }
-
     .nav-link:hover::after {
       width: 100%;
     }
 
-    /* Header Styling */
     header {
       background: linear-gradient(to right, #0f609b, #118f9d);
-      padding: 1rem 1.5rem; /* Reduced padding for mobile */
-      position: fixed; /* Make header fixed */
+      padding: 1rem;
+      position: fixed;
       top: 0;
-      width: 100%; /* Span full width */
-      z-index: 1000; /* Stay above other elements */
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Optional shadow for depth */
+      width: 100%;
+      z-index: 1000;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
 
     .header-container {
@@ -63,80 +72,73 @@
       justify-content: space-between;
     }
 
-    .logo {
-      flex-shrink: 0;
-      margin-right: 1rem;
-      font-size: 1.25rem;
-      font-weight: bold;
+    .logo a {
       color: #ffffff;
+      text-decoration: none;
+      font-family: 'Murasuit', sans-serif;
+      font-weight: 400;
+      font-size: 1.5rem;
     }
 
-    nav {
-      display: none; /* Hidden by default on mobile */
+    .nav {
+      display: none;
       flex-direction: column;
       gap: 1rem;
-      background: #0f609b;
+      background: #118f9d;
       position: absolute;
       top: 100%;
-      left: 0;
-      width: 100%;
-      padding: 1rem 0;
+      right: 1rem;
+      width: auto;
+      padding: 1rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      border-radius: 0.5rem;
+    }
+
+    .nav.show {
+      display: flex;
     }
 
     .nav-link {
       font-size: 1rem;
       color: #ffffff;
-      padding: 0.5rem 1.5rem;
+      text-decoration: none;
+      position: relative;
+      padding: 0.5rem 0;
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
     }
 
     .icon {
-      font-size: 1.5rem;
-      transition: transform 0.3s ease, color 0.3s ease;
-    }
-
-    .icon:hover {
-      transform: scale(1.1);
-      color: #67a955;
-    }
-
-    .controls a {
+      font-size: 1.2rem;
       color: #ffffff;
     }
 
-    .controls a:hover {
-      color: #67a955;
-    }
-
-    /* Hamburger Menu Button */
     .hamburger {
-      font-size: 1.5rem;
+      background: none;
+      border: none;
       color: #ffffff;
+      font-size: 1.5rem;
       cursor: pointer;
-      display: block;
     }
 
-    /* Fullscreen Section */
+    /* Fullscreen Section & Slideshow */
     .fullscreen-section {
-      position: relative;
       width: 100%;
       height: 70vh;
-      background-size: cover;
-      background-position: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      text-align: center;
+      position: relative;
+      margin-top: 3.5rem; /* space for fixed header */
       overflow: hidden;
-      box-shadow: inset 0 0 200px rgba(0, 0, 0, 0.6);
-      margin-top: 0; /* No margin since header is fixed */
     }
 
-    /* Slideshow Container */
     .slides-container {
       display: flex;
-      width: 300%;
       transition: transform 0.5s ease-in-out;
+      height: 100%;
+      width: 300%;
     }
 
     .slide {
@@ -156,55 +158,55 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      z-index: 2;
-      padding: 1.5rem;
+      text-align: center;
+      color: #ffffff;
       max-width: 90%;
     }
 
     .fullscreen-content h1 {
-      font-family: 'Bodoniferraposter-extra', serif;
-      text-shadow: 2px 2px 10px rgba(0, 0, 0, 1);
+      font-family: 'Murasuit', sans-serif;
       font-size: 2.5rem;
       text-transform: uppercase;
+      font-weight: 400;
     }
 
     .fullscreen-content p {
       font-family: 'Organetto', sans-serif;
-      text-shadow: 2px 2px 10px rgba(0, 0, 0, 1);
       font-size: 1.2rem;
+      font-weight: 500;
       margin-top: 0.5rem;
     }
 
     .learn-more-btn {
       display: inline-block;
       margin-top: 1rem;
-      padding: 0.75rem 1.5rem;
+      padding: 0.8rem 1.5rem;
       background-color: #118f9d;
       color: white;
       font-weight: 600;
-      border-radius: 20px;
-      transition: background-color 0.3s ease, transform 0.3s ease;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-      text-decoration: none; /* Ensure no underline */
-      font-size: 1rem;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
     }
 
     .learn-more-btn:hover {
       background-color: #67a955;
-      transform: translateY(-2px);
     }
 
+    /* Arrows */
     .arrow {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background-color: rgba(0, 0, 0, 0.8);
+      background-color: rgba(0, 0, 0, 0.5);
       color: #fff;
       border: none;
-      padding: 0.5rem 1rem;
+      padding: 0.5rem;
       cursor: pointer;
       border-radius: 50%;
       transition: background-color 0.3s ease;
+      font-size: 1rem;
     }
 
     .arrow:hover {
@@ -219,343 +221,7 @@
       right: 1rem;
     }
 
-    /* Content Sections */
-    .content-section {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 2rem 1rem;
-      max-width: 800px;
-      margin: 2rem auto;
-      background: #ffffff;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-
-    .text-content {
-      max-width: 100%;
-    }
-
-    .text-content h2 {
-      color: #67a955;
-      font-weight: 600;
-      font-size: 1.25rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .text-content h1 {
-      font-size: 1.75rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      text-align: center;
-    }
-
-    .text-content p {
-      font-size: 1rem;
-      line-height: 1.6;
-      margin-bottom: 1rem;
-      text-align: center;
-    }
-
-    .text-content a {
-      color: #118f9d;
-      text-decoration: none;
-      font-weight: 500;
-      display: block;
-      text-align: center;
-      margin-top: 0.5rem;
-    }
-
-    .text-content a:hover {
-      text-decoration: underline;
-    }
-
-    .image-container {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      margin-top: 1rem;
-    }
-
-    .image-container img {
-      width: 100%;
-      max-width: 300px;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    /* Split Section */
-    .split-section {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 2rem;
-      padding: 2rem 1rem;
-      max-width: 800px;
-      margin: 2rem auto;
-      position: relative;
-    }
-
-    .split-content {
-      width: 100%;
-      text-align: center;
-      padding: 1.5rem;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      background: #ffffff;
-    }
-
-    .split-content img {
-      width: 100px;
-      height: 100px;
-      margin: 0 auto 1rem;
-      border-radius: 50%;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-      display: block;
-    }
-
-    .split-content h2 {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: #118f9d;
-      margin-bottom: 0.5rem;
-    }
-
-    .split-content p {
-      font-size: 1rem;
-      line-height: 1.6;
-      padding: 0 0.5rem;
-    }
-
-    .vertical-line {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 50%;
-      width: 6px;
-      background: #118f9d;
-      transform: translateX(-50%);
-      border-radius: 10px;
-      display: none; /* Hidden on mobile */
-    }
-
-    /* Order Products Section */
-    .order-products-section {
-      text-align: center;
-      padding: 3rem 1rem;
-      background: #f0f0f0;
-      margin-top: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-
-    .order-products-section h2 {
-      font-size: 2rem;
-      font-weight: bold;
-      margin-bottom: 1rem;
-    }
-
-    .order-products-section p {
-      font-size: 1rem;
-      line-height: 1.6;
-      max-width: 600px;
-      margin: 0 auto 1rem;
-    }
-
-    .order-products-section a {
-      display: inline-block;
-      margin-top: 1rem;
-      padding: 0.75rem 1.5rem;
-      background-color: #118f9d;
-      color: white;
-      font-weight: 600;
-      border-radius: 20px;
-      transition: background-color 0.3s ease, transform 0.3s ease;
-      text-decoration: none;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-      font-size: 1rem;
-    }
-
-    .order-products-section a:hover {
-      background-color: #67a955;
-      transform: translateY(-2px);
-    }
-
-    /* Statistics Section */
-    .statistics-section {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-      justify-content: center;
-      margin-top: 2rem;
-      padding: 0 1rem;
-    }
-
-    .stat-box {
-      background: #fff;
-      border-radius: 10px;
-      padding: 1.5rem;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      text-align: center;
-    }
-
-    .stat-box h3 {
-      font-size: 1.25rem;
-      color: #118f9d;
-      margin-bottom: 0.5rem;
-    }
-
-    .stat-box .icon {
-      font-size: 2rem;
-      color: #118f9d;
-      margin-bottom: 0.5rem;
-    }
-
-    .stat-box .counter {
-      font-size: 2rem;
-      color: #118f9d;
-      font-weight: bold;
-    }
-
-    /* Contact & Map Section */
-    .map-section-container { 
-      display: flex; 
-      flex-direction: column; 
-      align-items: center; 
-      gap: 2rem; 
-      margin-top: 2rem; 
-      justify-content: center; 
-      max-width: 800px;
-      margin: 2rem auto;
-      background: #ffffff;
-      padding: 1rem;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-
-    .map-details {
-      width: 100%;
-      background: #f9fafb;
-      border-radius: 10px;
-      padding: 1.5rem;
-      text-align: left;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .map-details h2 {
-      color: #118f9d;
-      font-weight: 700;
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-      text-align: center;
-    }
-
-    .map-details p {
-      margin-bottom: 1rem;
-      font-size: 1rem;
-      text-align: center;
-      color: #333;
-    }
-
-    .map-details ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .map-details ul li {
-      margin-bottom: 1rem;
-      font-size: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: #333;
-    }
-
-    .map-details ul li i {
-      color: #118f9d;
-      font-size: 1rem;
-    }
-
-    .map-details ul li a {
-      color: #118f9d;
-      font-weight: 500;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-
-    .map-details ul li a:hover {
-      text-decoration: underline;
-      color: #0f609b;
-    }
-
-    .map-section {
-      width: 100%;
-      height: 300px;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    }
-
-    /* Footer Styling */
-    .footer {
-      background: linear-gradient(to right, #118f9d, #0f609b);
-      color: white;
-      padding: 2rem 1rem;
-      margin-top: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-
-    .footer-container {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-      align-items: center;
-    }
-
-    .footer-section {
-      width: 100%;
-      text-align: center;
-    }
-
-    .footer-section h3 {
-      color: #ffffff;
-      font-weight: bold;
-      margin-bottom: 0.5rem;
-      font-size: 1.25rem;
-    }
-
-    .footer-section ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .footer-section ul li {
-      margin-bottom: 0.5rem;
-    }
-
-    .footer-section a {
-      color: #ffffff;
-      text-decoration: none;
-      transition: color 0.3s;
-      font-size: 1rem;
-    }
-
-    .footer-section a:hover {
-      color: #bdbdbd;
-    }
-
-    .footer-icons {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-top: 0.5rem;
-    }
-    
-    /* Fade-in on scroll classes */
+    /* Fade-in on scroll */
     .fade-section {
       opacity: 0;
       transform: translateY(30px);
@@ -565,43 +231,153 @@
       opacity: 1 !important;
       transform: translateY(0) !important;
     }
+
+    /* Simple content section */
+    .content-section {
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+
+    .content-section h2 {
+      color: #67a955;
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .content-section h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #118f9d;
+    }
+
+    .content-section p {
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+      color: #333;
+    }
+
+    .content-section a {
+      color: #118f9d;
+      font-weight: 500;
+      font-size: 1rem;
+      text-decoration: none;
+    }
+
+    .content-section a:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    .footer {
+      background: linear-gradient(to right, #0f609b, #118f9d);
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .footer h3 {
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    .footer ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      margin-bottom: 2rem;
+    }
+
+    .footer ul li {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.3s;
+    }
+
+    .footer a:hover {
+      color: #bdbdbd;
+    }
+
+    .footer-icons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .footer-icons a:hover {
+      transform: scale(1.1);
+    }
+
+    @media (min-width: 768px) {
+      .header-container {
+        justify-content: space-between;
+      }
+      .nav {
+        display: flex !important;
+        position: static;
+        background: none;
+        flex-direction: row;
+        gap: 1.5rem;
+        box-shadow: none;
+        padding: 0;
+      }
+      .hamburger {
+        display: none;
+      }
+      .nav-link {
+        font-size: 1.2rem;
+      }
+      .fullscreen-content h1 {
+        font-size: 3rem;
+      }
+      .fullscreen-content p {
+        font-size: 1.5rem;
+      }
+      .learn-more-btn {
+        font-size: 1rem;
+      }
+    }
   </style>
 </head>
 <body>
-  <!-- Mobile Navigation -->
+  <script>
+    // No mobile redirect here, you can add if needed.
+  </script>
+
   <header>
-    <div class="container mx-auto header-container">
-      <!-- Logo -->
+    <div class="header-container">
       <div class="logo">
-        <a href="index1.html">Stark International</a>
+        <a href="index.html" class="font-Murasuit">Stark International</a>
       </div>
-
-      <!-- Hamburger Menu Button -->
-      <div class="hamburger" id="hamburger-button">
-        <i class="fas fa-bars"></i>
-      </div>
-    </div>
-
-    <!-- Mobile Navigation Menu -->
-    <nav id="mobile-nav" class="hidden">
-      <a href="index1.html" class="nav-link font-medium">Home</a>
-      <a href="about.html" class="nav-link font-medium">About</a>
-      <a href="products.html" class="nav-link font-medium">Products</a>
-      <a href="#contact" class="nav-link font-medium">Contact</a>
-      <div class="controls mt-4 flex justify-center gap-4">
-        <a href="https://wa.me/971518007643" target="_blank" class="transition text-white">
+      <div class="controls">
+        <button class="hamburger" onclick="document.querySelector('.nav').classList.toggle('show')">
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="nav">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="products.html" class="nav-link">Products</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+        <a href="https://wa.me/971518007643" target="_blank" aria-label="WhatsApp">
           <i class="fab fa-whatsapp icon"></i>
         </a>
-        <a href="mailto:contact@starkint.com" class="transition text-white">
+        <a href="mailto:info@starkintl.com" aria-label="Email">
           <i class="fas fa-envelope icon"></i>
         </a>
       </div>
-    </nav>
+    </div>
   </header>
 
-  <!-- Fullscreen Section with Slideshow -->
-  <section id="medicine-section" class="fullscreen-section fade-section">
-    <!-- Slideshow Container -->
+  <section class="fullscreen-section fade-section">
     <div class="slides-container">
       <div class="slide">
         <img src="images/medicine.jpg" alt="Medicine Slide 1">
@@ -615,166 +391,78 @@
     </div>
 
     <div class="fullscreen-content">
-      <h1 class="text-3xl font-bold">STARK INTERNATIONAL</h1>
-      <p class="text-lg mt-2">A Partner to Trust</p>
-      <a href="about.html" class="learn-more-btn">Learn More</a>
+      <h1>STARK INTERNATIONAL</h1>
+      <p>A Partner to Trust</p>
+      <div style="margin-top:1rem;">
+        <a href="about.html" class="learn-more-btn">Learn More</a>
+        <a href="aping.html" class="learn-more-btn" style="margin-left:0.5rem;">API Listing</a>
+        <a href="excipients.html" class="learn-more-btn" style="margin-left:0.5rem;">Excipients</a>
+      </div>
     </div>
 
-    <!-- Navigation Arrows -->
-    <button class="arrow left" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
-    <button class="arrow right" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
+    <button class="arrow left" onclick="changeSlide(-1)">&#8249;</button>
+    <button class="arrow right" onclick="changeSlide(1)">&#8250;</button>
   </section>
 
-  <!-- Intro Content Section -->
   <section class="content-section fade-section">
-    <div class="text-content">
-      <h2>Pioneering Healthcare Solutions</h2>
-      <h1>Transforming lives through innovation</h1>
-      <p>We are focused on imparting knowledge and technical expertise to assist our clients in achieving optimal solutions. We regularly evaluate and refine our management processes, operational methods, practices, controls, and resources to ensure continuous improvement in our systems, products, and services.</p>
-      <a href="contact.html">Get in touch</a>
-    </div>
-    
-    <div class="image-container">
-      <img src="images/medicine.jpg" alt="Pharmaceutical Supplies">
-    </div>
+    <h2>Pioneering Healthcare Solutions</h2>
+    <h1>Transforming lives through innovation</h1>
+    <p>We impart knowledge and technical expertise to help our clients achieve optimal solutions. Continuous improvement in all aspects ensures excellence in products and services.</p>
+    <a href="contact.html">Get in touch</a>
   </section>
 
-  <!-- Split Section -->
-  <section class="split-section fade-section">
-    <div class="split-content">
-      <img src="images/chemistry.jpg" alt="Chemistry Icon">
-      <h2>Why Choose Stark International</h2>
-      <p>At Stark International, we prioritize customer satisfaction. Our skilled professionals, with extensive experience in the chemical and pharmaceutical industries, ensure exceptional quality and innovative solutions, making us a reliable partner in the pharmaceutical sector.</p>
-    </div>
-    <div class="vertical-line hidden sm:block"></div>
-    <div class="split-content">
-      <img src="images/chemistry.jpg" alt="Pharmaceutical Icon">
-      <h2>About Stark International</h2>
-      <p>Stark International is committed to revolutionizing the pharmaceutical industry through top-quality raw materials. We strive to meet clients' evolving needs and provide unparalleled service across the Middle East.</p>
-    </div>
-  </section>
-
-  <!-- Order Products Section -->
-  <section class="order-products-section fade-section">
-    <h2>Order Our Products</h2>
-    <p>Since 1989, we have specialized in the field of pharmaceutical ingredients and cosmetic raw materials. Our customer base encompasses multi-national pharmaceutical corporations, generic pharmaceutical companies, biotech, and virtual companies, as well as others at the forefront of healthcare and personal care industries.</p>
-    <a href="contact.html">Contact Us and Order</a>
-  </section>
-
-  <!-- Statistics Section -->
-  <section class="statistics-section fade-section">
-    <div class="stat-box">
-      <i class="fas fa-shopping-cart icon"></i>
-      <h3>Users Bought This Month</h3>
-      <div class="counter" id="users-bought">0</div>
-    </div>
-    <div class="stat-box">
-      <i class="fas fa-users icon"></i>
-      <h3>Trust This</h3>
-      <div class="counter" id="users-trust">0</div>
-    </div>
-    <div class="stat-box">
-      <i class="fas fa-box icon"></i>
-      <h3>Items in Stock</h3>
-      <div class="counter" id="items-stock">0</div>
-    </div>
-  </section>
-
-  <!-- Contact & Map Section -->
-  <section id="contact" class="content-section fade-section">
-    <div class="map-section-container">
-      <div class="map-details">
-        <h2>Get in Touch</h2>
-        <p>For inquiries and support, connect with us:</p>
-        <ul>
-          <li><i class="fas fa-envelope"></i> Email: <a href="mailto:info@starkintl.com">info@starkintl.com</a></li>
-          <li><i class="fab fa-whatsapp"></i> WhatsApp: <a href="https://wa.me/971518007643" target="_blank">Click me to message</a></li>
-          <li><i class="fas fa-phone"></i> Phone: <a href="tel:00971518007643">Call here</a></li>
-          <li><i class="fas fa-map-marker-alt"></i> Address: FBC50274 Compass Building, Al Shohada Road, AL Hamra Industrial Zone-FZ, Ras Al Khaimah, United Arab Emirates</li>
-        </ul>
-      </div>
-      
-      <div class="map-section">
-        <!-- Updated Google Maps Embed for the new address -->
-        <iframe 
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3450.123456789!2d55.978100!3d25.800690!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ef6761e1ed9b66f%3A0xabcdef123456789!2sFBC50274%20Compass%20Building%2C%20Al%20Shohada%20Road%2C%20AL%20Hamra%20Industrial%20Zone-FZ%2C%20Ras%20Al%20Khaimah%2C%20United%20Arab%20Emirates!5e0!3m2!1sen!2sae!4v1700000000000!5m2!1sen!2sae" 
-          width="100%" 
-          height="500" 
-          style="border:0; border-radius: 15px;" 
-          allowfullscreen="" 
-          loading="lazy">
-        </iframe>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
   <footer class="footer">
-    <div class="container mx-auto footer-container">
-      <!-- Our Services Section -->
-      <div class="footer-section">
-        <h3>Our Services</h3>
-        <ul>
-          <li><a href="aping.html">Active Pharmaceutical Ingredients</a></li>
-          <li><a href="excipients.html">Excipients</a></li>
-        </ul>
-      </div>
-
-      <!-- Quick Links Section -->
-      <div class="footer-section">
-        <h3>Quick Links</h3>
-        <ul>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="products.html">Products</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <!-- Removed Privacy Policy and Terms of Service -->
-        </ul>
-      </div>
-
-      <!-- Connect with Us Section -->
-      <div class="footer-section">
-        <h3>Connect with Us</h3>
-        <div class="footer-icons">
-          <a href="https://wa.me/971518007643" target="_blank" class="hover:text-green-400">
-            <i class="fab fa-whatsapp"></i>
-          </a>
-          <a href="mailto:info@starkintl.com" class="hover:text-red-400">
-            <i class="fas fa-envelope icon"></i>
-          </a>
-          <a href="tel:00971518007643" class="hover:text-blue-400">
-            <i class="fas fa-phone"></i>
-          </a>
-          <a href="https://www.linkedin.com/company/starkintl?trk=blended-typeahead" target="_blank" class="hover:text-blue-500">
-            <i class="fab fa-linkedin"></i>
-          </a>
-          <!-- Removed Twitter and Facebook icons -->
-        </div>
+    <div>
+      <h3>Our Services</h3>
+      <ul>
+        <li><a href="aping.html">APIs</a></li>
+        <li><a href="excipients.html">Excipients</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Connect with Us</h3>
+      <div class="footer-icons">
+        <a href="https://wa.me/971518007643" target="_blank" aria-label="WhatsApp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="mailto:info@starkintl.com" aria-label="Email">
+          <i class="fas fa-envelope"></i>
+        </a>
+        <a href="tel:+971518007643" aria-label="Phone">
+          <i class="fas fa-phone"></i>
+        </a>
+        <a href="https://www.linkedin.com/company/starkintl" target="_blank" aria-label="LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
       </div>
     </div>
   </footer>
 
-  <!-- Scripts -->
   <script>
-    // Slideshow functionality
-    const images = [
-      'images/medicine.jpg',
-      'images/medicine2.jpg',
-      'images/medicine3.jpg'
-    ];
-    let currentImageIndex = 0;
+    // Slideshow
+    const slidesContainer = document.querySelector('.slides-container');
+    let currentSlide = 0;
+    let slideCount = 3;
     let slideInterval;
 
-    function changeSlide(direction) {
-      currentImageIndex = (currentImageIndex + direction + images.length) % images.length;
-      const slidesContainer = document.querySelector('.slides-container');
-      slidesContainer.style.transform = `translateX(-${currentImageIndex * 100}%)`;
+    function changeSlide(dir) {
+      currentSlide = (currentSlide + dir + slideCount) % slideCount;
+      slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
       resetInterval();
     }
 
     function startSlideshow() {
       slideInterval = setInterval(() => {
         changeSlide(1);
-      }, 6000); // Changed from 5000ms to 6000ms
+      }, 6000);
     }
 
     function resetInterval() {
@@ -782,34 +470,10 @@
       startSlideshow();
     }
 
-    // Start the slideshow on page load
+    // Start Slideshow
     window.onload = function() {
       startSlideshow();
-
-      // Counter animations
-      animateCounter("users-bought", 0, 150, 1500); // Animate to 150
-      animateCounter("users-trust", 0, 150, 1500); // Animate to 150
-      animateCounter("items-stock", 0, 200, 1500, function() {
-        document.getElementById("items-stock").textContent += "+";
-      }); // Animate to 200 and append "+"
     };
-
-    // Counter animations
-    function animateCounter(id, start, end, duration, callback) {
-      let obj = document.getElementById(id);
-      let range = end - start;
-      let increment = end > start ? 1 : -1;
-      let stepTime = Math.abs(Math.floor(duration / range));
-      let current = start;
-      let timer = setInterval(function () {
-        current += increment;
-        obj.textContent = current;
-        if (current === end) {
-          clearInterval(timer);
-          if (callback) callback();
-        }
-      }, stepTime);
-    }
 
     // Fade-in on scroll
     document.addEventListener('DOMContentLoaded', function() {
@@ -826,20 +490,14 @@
       });
     });
 
-    // Mobile Navigation Toggle
-    const hamburgerButton = document.getElementById('hamburger-button');
-    const mobileNav = document.getElementById('mobile-nav');
-
-    hamburgerButton.addEventListener('click', () => {
-      mobileNav.classList.toggle('hidden');
-    });
-
-    // Close mobile nav when a link is clicked
-    document.querySelectorAll('#mobile-nav .nav-link').forEach(link => {
-      link.addEventListener('click', () => {
-        mobileNav.classList.add('hidden');
-      });
-    });
+    // Close nav on outside click (mobile)
+    document.addEventListener('click', function(e) {
+      const nav = document.querySelector('.nav');
+      const hamburger = document.querySelector('.hamburger');
+      if (!nav.contains(e.target) && !hamburger.contains(e.target)) {
+        nav.classList.remove('show');
+      }
+    }, true);
   </script>
 </body>
 </html>
